@@ -1,0 +1,17 @@
+{
+  "name": "2gatherapi-js",
+  "description": "",
+  "main": "",
+  "authors": [
+    "ysapir <ysapir@ebay.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

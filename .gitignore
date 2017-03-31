@@ -1,0 +1,11 @@
+.idea
+out/
+target/
+WEB-INF
+bower_components
+bin/app.js
+node_modules/
+package.json
+routes/
+bin/
+dist/
