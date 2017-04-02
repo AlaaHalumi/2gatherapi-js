@@ -6,9 +6,9 @@ class Gatherapi {
         this.utils = {
             annyangUtil : new AnnyangUtil()
         };
+        this.utilsConfiguration(options);
         this.objectFactories = {inputFactory : new InputFactory()};
         this.pluginFactories = {loginFactory: new LoginFactory()};
-        this.utilsConfiguration(options);
     }
 
     utilsConfiguration(options){

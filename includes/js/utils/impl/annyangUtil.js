@@ -6,8 +6,6 @@ class AnnyangUtil extends Util{
         super();
         if(!annyangUtilInstance){
             this.languages = {hebrew:'he'};
-            annyang.start();
-            annyang.debug();
             annyangUtilInstance = this;
         }
         return annyangUtilInstance;
@@ -20,7 +18,7 @@ class AnnyangUtil extends Util{
     addAnnyangCommands(options){
         if (annyang) {
             annyang.addCommands(options.commands);
-            console.log(annyang.isListening());
+            annyang.start();
         }
     }
 }
