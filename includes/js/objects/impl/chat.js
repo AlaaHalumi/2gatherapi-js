@@ -4,6 +4,6 @@ class Chat extends Object{
     }
 
     initUtils(){
-        console.log("chat");
+        console.log("initUtils");
     }
 }
