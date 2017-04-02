@@ -26,7 +26,12 @@
 </tg-login>
 <script>
 
+    var ann = function(){
+        console.log(annyang.isListening());
+    }
+
     var loginOptions = {
+        buttonValue:'submit',
         commands: {
             'submit': {
                 name: 'כנס', func: function () {
