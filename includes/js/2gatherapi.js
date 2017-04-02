@@ -7,16 +7,11 @@ class Gatherapi {
             annyangUtil : new AnnyangUtil()
         };
         this.utilsConfiguration(options);
-        this.inputsInitializations();
+        this.objectFactories = {inputFactory : new InputFactory()};
+        this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory()};
     }
 
     utilsConfiguration(options){
         this.utils.annyangUtil.setLanguage(options["voiceToTextLanguage"]);
-    }
-
-    inputsInitializations(){
-        this.listOfObjects = {};
-        this.listOfObjects["chat"] = new Chat();
-        this.listOfObjects["login"] = new Login();
     }
 }

@@ -4,8 +4,8 @@ let annyangUtilInstance = null;
 class AnnyangUtil extends Util{
     constructor() {
         super();
-        this.languages = {hebrew:'he'};
         if(!annyangUtilInstance){
+            this.languages = {hebrew:'he'};
             annyangUtilInstance = this;
         }
         return annyangUtilInstance;
@@ -15,7 +15,7 @@ class AnnyangUtil extends Util{
         annyang.setLanguage(this.languages[language]);
     }
 
-    initAnnyang(options){
+    addAnnyangCommands(options){
         if (annyang) {
             annyang.addCommands(options.commands);
             annyang.start();
