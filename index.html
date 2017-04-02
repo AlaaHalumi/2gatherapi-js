@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!--Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
     <script src="includes/js/third-parties/annyang.js"></script>
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware.js"></script>
@@ -15,41 +18,71 @@
     <script src="includes/js/plugins/impl/login.js"></script>
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
+    <!--css chat-->
+    <link rel="stylesheet" href="includes/css/chat.css">
+
+
 </head>
 <body>
+
 <tg-login options="loginOptions">
 </tg-login>
+<br>
+<br>
+
+<tg-chat options="chatOptions">
+</tg-chat>
 <script>
 
-    var ann = function(){
-        console.log(annyang.isListening());
-    }
-
     var loginOptions = {
-        buttonValue:'submit',
+        buttonValue:"submit",
         commands: {
             'submit': {
-                name: 'כנס', func: function () {
-                    console.log(annyang.isListening());
+                name: 'login', func: function () {
+                    console.log("login");
                 }
             },
             'moveToPassword': {
-                name: 'סיסמא', func: function () {
-                    console.log("moveToPass");
+                name: 'password', func: function () {
+                    document.querySelector(".password input").focus();
                 }
             }
         }
     }
 
-    var options = {voiceToTextLanguage: "hebrew"};
+    var chatOptions = {
+        commands: {
+            'name': {
+                name: 'my name is *search', func: function (content) {
+                    console.log("name");
+                    console.log('inside fillName');
+                        //set content
+                        $("#name > input").val(content);
+//                        get content and speak it
+                        var contents = $('#name > input').val();
+//                        textToSpeak(contents);
+
+                }
+            },
+            'message': {
+                name: 'message *', func: function () {
+                    console.log("message");
+                }
+            }
+        }
+    }
+
+    var options = {voiceToTextLanguage: "english"};
     var twoGatherApi = new Gatherapi(options);
     twoGatherApi.middleware.init();
     twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
+    twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
 </script>
 </body>
 </html>
