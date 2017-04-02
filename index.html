@@ -6,11 +6,22 @@
     <script src="includes/js/third-parties/annyang.js"></script>
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware.js"></script>
-    <script src="includes/js/utils/Util.js"></script>
-    <script src="includes/js/objects/object.js"></script>
+    <!--Utils-->
+    <script src="includes/js/utils/util.js"></script>
     <script src="includes/js/utils/impl/annyangUtil.js"></script>
-    <script src="includes/js/objects/impl/chat.js"></script>
-    <script src="includes/js/objects/impl/login.js"></script>
+    <!--Plugins-->
+    <script src="includes/js/plugins/plugin.js"></script>
+    <script src="includes/js/plugins/impl/chat.js"></script>
+    <script src="includes/js/plugins/impl/login.js"></script>
+    <script src="includes/js/plugins/factories/pluginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
+    <!--Objects-->
+    <script src="includes/js/objects/object.js"></script>
+    <script src="includes/js/objects/impl/inputText.js"></script>
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
+
+
 </head>
 <body>
 <tg-login options="loginOptions">
@@ -35,8 +46,7 @@
     var options = {voiceToTextLanguage: "hebrew"};
     var twoGatherApi = new Gatherapi(options);
     twoGatherApi.middleware.init();
-    twoGatherApi.listOfObjects.chat.draw();
-    twoGatherApi.listOfObjects.login.draw();
+    twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
 </script>
 </body>
 </html>
