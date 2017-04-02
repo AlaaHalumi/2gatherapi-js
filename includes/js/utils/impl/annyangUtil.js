@@ -19,7 +19,6 @@ class AnnyangUtil extends Util{
         if (annyang) {
             annyang.addCommands(options.commands);
             annyang.start();
-            annyang.debug();
         }
     }
 }
