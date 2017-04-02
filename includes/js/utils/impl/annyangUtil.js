@@ -7,6 +7,7 @@ class AnnyangUtil extends Util{
         if(!annyangUtilInstance){
             this.languages = {hebrew:'he'};
             annyang.start();
+            annyang.debug();
             annyangUtilInstance = this;
         }
         return annyangUtilInstance;
