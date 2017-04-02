@@ -4,8 +4,17 @@ class Gatherapi {
     constructor(options) {
         this.middleware = new Middleware();
         this.utils = {
-            voiceToTextUtil : new VoiceToTextUtil(options["textToVoiceLanguage"])
+            annyangUtil : new AnnyangUtil()
         };
+        this.utilsConfiguration(options);
+        this.inputsInitializations();
+    }
+
+    utilsConfiguration(options){
+        this.utils.annyangUtil.setLanguage(options["voiceToTextLanguage"]);
+    }
+
+    inputsInitializations(){
         this.listOfObjects = {};
         this.listOfObjects["chat"] = new Chat();
         this.listOfObjects["login"] = new Login();

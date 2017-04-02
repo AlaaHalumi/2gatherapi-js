@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="includes/js/third-parties/annyang.js"></script>
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware.js"></script>
-    <script src="includes/js/utils/impl/annyangUtil.js"></script>
-    <script src="includes/js/objects/object.js"></script>
-    <script src="includes/js/objects/impl/chat.js"></script>
-    <script src="includes/js/objects/impl/Login.js"></script>
     <script src="includes/js/utils/Util.js"></script>
-    <script src="includes/js/utils/impl/voiceToTextUtil.js"></script>
+    <script src="includes/js/objects/object.js"></script>
+    <script src="includes/js/utils/impl/annyangUtil.js"></script>
+    <script src="includes/js/objects/impl/chat.js"></script>
+    <script src="includes/js/objects/impl/login.js"></script>
 </head>
 <body>
-    <tg-login>
-    </tg-login>
+<tg-login options="loginOptions">
+</tg-login>
 <script>
-    var options = { textToVoiceLanguage : "hebrew" };
+
+    var loginOptions = {
+        commands: {
+            'submit': {
+                name: 'כנס', func: function () {
+                    console.log("login");
+                }
+            },
+            'moveToPassword': {
+                name: 'סיסמא', func: function () {
+                    console.log("moveToPass");
+                }
+            }
+        }
+    }
+
+    var options = {voiceToTextLanguage: "hebrew"};
     var twoGatherApi = new Gatherapi(options);
     twoGatherApi.middleware.init();
     twoGatherApi.listOfObjects.chat.draw();
