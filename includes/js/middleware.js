@@ -6,7 +6,7 @@ class Middleware {
     }
 
     init(){
-        console.log("init");
+        console.log("initializing");
     }
 
     enableTobii(){
