@@ -16,13 +16,17 @@
     <script src="includes/js/utils/impl/annyangUtil.js"></script>
     <!--Plugins-->
     <script src="includes/js/plugins/impl/button.js"></script>
+    <script src="includes/js/plugins/impl/menu.js"></script>
+
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
     <script src="includes/js/plugins/impl/login.js"></script>
+
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
@@ -63,17 +67,6 @@
     <p> Nam egestas sit amet quam vel vulputate. Fusce dapibus elementum tellus, venenatis aliquet lorem suscipit vitae. Morbi dictum velit justo, sit amet varius dui ullamcorper quis. Integer non cursus ipsum. Pellentesque facilisis, tortor et placerat fringilla, ipsum enim tempus leo, eget laoreet odio dui ac nisi. Etiam facilisis augue ipsum, id ullamcorper metus pellentesque eu. Fusce posuere mi sit amet posuere malesuada. Sed fermentum neque nec gravida gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a ipsum sodales, </p>
 
     <br><br>
-    <!--                     <textarea id="textarea" rows=10 cols=80></textarea>
-                            <button id="button" onclick="toggleStartStop()"></button> -->
-    <p>
-        Say orange for click on button via voice command
-        <button id="orangeButton"> orange </button>
-    </p><br><br>
-    <p>
-        Say yellow for click on button via voice command
-        <button id="yellowButton"> yellow </button>
-    </p>
-
 
 
 </main>
@@ -120,6 +113,34 @@
                 }
             }
     };
+
+
+
+    var menuOptions = {
+            link1: {
+                href: "https://w3schools.com/",
+                id: "jLink",
+                target: "_self",
+                text: "w3school"
+            },
+            link2: {
+                href: "https://google.com/",
+                id: "google",
+                target: "_self",
+                text: "google"
+
+            },
+            link3: {
+                href: "https://ynet.co.il/",
+                id: "ynet",
+                target: "_self",
+                text: "ynet"
+
+            }
+
+    }
+
+
 
 
     var buttonOptionsOrange = {
@@ -195,7 +216,7 @@
     twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
     twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
     twoGatherApi.pluginFactories.buttonFactory.createPlugin(document.getElementsByTagName("tg-button"));
-
+    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
 </script>
 <!--skipTp third-party-->
 <script src="includes/js/third-parties/skipTo/skipTo.js"></script>
