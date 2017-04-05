@@ -13,8 +13,6 @@ class Chat extends Object{
             '<div class="panel">'+
             '<tg-input name="name" id="name" placeholder="Your Name" maxlength="15"/></tg-input>'+
             '<tg-input name="message" id="message" placeholder="Message" maxlength="80"/></tg-input>'+
-                // '<input type="text" name="name" id="name" placeholder="Your Name" maxlength="15" />'+
-                //  '<input type="text" name="message" id="message" placeholder="Message" maxlength="80" />'+
                // 'onkeydown = '+"if (event.keyCode == 13)document.getElementById("+"+'send-btn'+"+").click()"+
                // '/>
             '</div>'+

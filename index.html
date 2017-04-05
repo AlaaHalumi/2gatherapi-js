@@ -5,20 +5,24 @@
     <title>Title</title>
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <!--third-party-->
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
 
-    <script src="includes/js/third-parties/annyang.js"></script>
+    <!--2gatherAPI-->
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware.js"></script>
     <!--Utils-->
     <script src="includes/js/utils/util.js"></script>
     <script src="includes/js/utils/impl/annyangUtil.js"></script>
     <!--Plugins-->
+    <script src="includes/js/plugins/impl/button.js"></script>
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
     <script src="includes/js/plugins/impl/login.js"></script>
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
@@ -26,10 +30,63 @@
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <!--css chat-->
     <link rel="stylesheet" href="includes/css/chat.css">
-
+    <!--css skipTo-->
+    <link rel="stylesheet" type="text/css" media="screen" href="includes/css/SkipTo.css">
 
 </head>
 <body>
+
+<header>
+
+    <section  class="MyCustomClass" aria-labelledby="id1">
+    </section>
+
+
+    <nav role="navigation" id="mainNav">
+
+        <ul>
+            <li><a id="navHomePage" href="index.html" target="_self">HomePage</a></li>
+            <li><a id="navTsamid" href="https://jquery.com/" target="_self">Jquery</a></li>
+            <li><a id="navW3School" href="http://www.w3schools.com/" target="_self">w3school</a></li>
+        </ul>
+
+    </nav>
+
+</header>
+
+<main role="main">
+
+    <h1>First Header</h1>
+    <p> Mauris et augue sapien. Aenean sollicitudin non odio quis sollicitudin. Nam in porta mauris. Suspendisse quis ipsum scelerisque, laoreet ipsum eu, interdum orci. Ut sit amet urna et nisi laoreet congue nec eget orci. Nullam eu accumsan felis. Phasellus faucibus nibh turpis, in tincidunt mi porta at. Curabitur eget lacus justo. Morbi semper ac justo dignissim convallis. Nam nisi massa, convallis nec lacinia id, mollis non lacus. Ut purus leo, molestie non hendrerit a, posuere auctor mi.</p>
+    <br><br>
+    <h1>Second Header</h1>
+    <p> Nam egestas sit amet quam vel vulputate. Fusce dapibus elementum tellus, venenatis aliquet lorem suscipit vitae. Morbi dictum velit justo, sit amet varius dui ullamcorper quis. Integer non cursus ipsum. Pellentesque facilisis, tortor et placerat fringilla, ipsum enim tempus leo, eget laoreet odio dui ac nisi. Etiam facilisis augue ipsum, id ullamcorper metus pellentesque eu. Fusce posuere mi sit amet posuere malesuada. Sed fermentum neque nec gravida gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a ipsum sodales, </p>
+
+    <br><br>
+    <!--                     <textarea id="textarea" rows=10 cols=80></textarea>
+                            <button id="button" onclick="toggleStartStop()"></button> -->
+    <p>
+        Say orange for click on button via voice command
+        <button id="orangeButton"> orange </button>
+    </p><br><br>
+    <p>
+        Say yellow for click on button via voice command
+        <button id="yellowButton"> yellow </button>
+    </p>
+
+
+
+</main>
+
+
+
+<tg-menu options="menuOptions">
+
+</tg-menu>
+
+<tg-skipTo options="skipToOptions">
+</tg-skipTo>
+
 
 <tg-login options="loginOptions">
 </tg-login>
@@ -38,13 +95,61 @@
 
 <tg-chat options="chatOptions">
 </tg-chat>
+
+<tg-button options="buttonOptionsOrange">
+</tg-button>
+
+
+
+
 <script>
+
+    var SkipToConfig = {
+            "settings": {
+                "skipTo": {
+                    "headings": "h1 ,h2, h3",
+                    "landmarks": "[role=navigation],[role=search]",
+                    "sections": "nav",
+                    "ids": "#navHomePage, #navW3School, #navTsamid, #main , #orangeButton, #yellowButton",
+                    "accesskey": "0",
+                    "wrap": "true",
+                    "visibility": "onLoad",
+                    "customClass": "custom",
+//                    "attachElement": ".SkipToAttach"
+                    "attachElement": ".MyCustomClass"
+                }
+            }
+    };
+
+
+    var buttonOptionsOrange = {
+        buttonValue:"orange",
+        commands: {
+            'click': {
+                name: 'כתום', func: function () {
+                    console.log("click orange");
+                }
+            }
+        }
+    }
+
+    var buttonOptionsRed = {
+        buttonValue:"red",
+        commands: {
+            'click': {
+                name: 'אדום', func: function () {
+                    console.log("click red");
+                }
+            }
+        }
+    }
+
 
     var loginOptions = {
         buttonValue:"submitbutton",
         commands: {
             'submit': {
-                name: 'login', func: function () {
+                name: 'כנס', func: function () {
                     console.log("login");
                 }
             },
@@ -62,10 +167,10 @@
                 name: 'my name is *search', func: function (content) {
                     console.log("name");
                     console.log('inside fillName');
-                        //set content
-                        $("#name > input").val(content);
-//                        get content and speak it
-                        var contents = $('#name > input').val();
+                    //set content
+                    document.querySelector("#name").focus();
+//                  get content and speak it
+                    var contents = document.querySelector("#name").value;
 //                        textToSpeak(contents);
 
                 }
@@ -73,16 +178,27 @@
             'message': {
                 name: 'message *', func: function () {
                     console.log("message");
+                    console.log('inside message');
+                    //set content
+                    document.querySelector("#message").focus();
+//                  get content and speak it
+                    var contents = document.querySelector("#message").value;
+//                        textToSpeak(contents);
                 }
             }
         }
     }
 
-    var options = {voiceToTextLanguage: "english"};
+    var options = {voiceToTextLanguage: "hebrew"};
     var twoGatherApi = new Gatherapi(options);
     twoGatherApi.middleware.init();
     twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
     twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
+    twoGatherApi.pluginFactories.buttonFactory.createPlugin(document.getElementsByTagName("tg-button"));
+
 </script>
+<!--skipTp third-party-->
+<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
+<script type="text/javascript" src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </body>
 </html>

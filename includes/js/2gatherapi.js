@@ -8,7 +8,7 @@ class Gatherapi {
         };
         this.utilsConfiguration(options);
         this.objectFactories = {inputFactory : new InputFactory()};
-        this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory()};
+        this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(), buttonFactory: new ButtonFactory()};
     }
 
     utilsConfiguration(options){
