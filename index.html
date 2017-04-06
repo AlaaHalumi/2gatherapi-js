@@ -45,37 +45,14 @@
     <section  class="MyCustomClass" aria-labelledby="id1">
     </section>
 
+    <tg-menu options="menuOptions" id="mainNav">
 
-    <nav role="navigation" id="mainNav">
-
-        <ul>
-            <li><a id="navHomePage" href="index.html" target="_self">HomePage</a></li>
-            <li><a id="navTsamid" href="https://jquery.com/" target="_self">Jquery</a></li>
-            <li><a id="navW3School" href="http://www.w3schools.com/" target="_self">w3school</a></li>
-        </ul>
-
-    </nav>
+    </tg-menu>
 
 </header>
 
-<main role="main">
-
-    <h1>First Header</h1>
-    <p> Mauris et augue sapien. Aenean sollicitudin non odio quis sollicitudin. Nam in porta mauris. Suspendisse quis ipsum scelerisque, laoreet ipsum eu, interdum orci. Ut sit amet urna et nisi laoreet congue nec eget orci. Nullam eu accumsan felis. Phasellus faucibus nibh turpis, in tincidunt mi porta at. Curabitur eget lacus justo. Morbi semper ac justo dignissim convallis. Nam nisi massa, convallis nec lacinia id, mollis non lacus. Ut purus leo, molestie non hendrerit a, posuere auctor mi.</p>
-    <br><br>
-    <h1>Second Header</h1>
-    <p> Nam egestas sit amet quam vel vulputate. Fusce dapibus elementum tellus, venenatis aliquet lorem suscipit vitae. Morbi dictum velit justo, sit amet varius dui ullamcorper quis. Integer non cursus ipsum. Pellentesque facilisis, tortor et placerat fringilla, ipsum enim tempus leo, eget laoreet odio dui ac nisi. Etiam facilisis augue ipsum, id ullamcorper metus pellentesque eu. Fusce posuere mi sit amet posuere malesuada. Sed fermentum neque nec gravida gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a ipsum sodales, </p>
-
-    <br><br>
 
 
-</main>
-
-
-
-<tg-menu options="menuOptions">
-
-</tg-menu>
 
 <tg-skipTo options="skipToOptions">
 </tg-skipTo>
@@ -119,20 +96,20 @@
     var menuOptions = {
             link1: {
                 href: "https://w3schools.com/",
-                id: "jLink",
+                id: "navW3School",
                 target: "_self",
                 text: "w3school"
             },
             link2: {
                 href: "https://google.com/",
-                id: "google",
+                id: "navHomePage",
                 target: "_self",
                 text: "google"
 
             },
             link3: {
                 href: "https://ynet.co.il/",
-                id: "ynet",
+                id: "navTsamid",
                 target: "_self",
                 text: "ynet"
 
