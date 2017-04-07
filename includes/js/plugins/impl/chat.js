@@ -4,6 +4,7 @@ class Chat extends Object{
         super();
         this.domElement = domElement;
         this.inputFactory = new InputFactory();
+        this.chatUtil = new ChatUtil();
     }
 
     draw(){
@@ -12,9 +13,7 @@ class Chat extends Object{
             '<div class="message_box" id="message_box"></div>' +
             '<div class="panel">'+
             '<tg-input name="name" id="name" placeholder="Your Name" maxlength="15"/></tg-input>'+
-            '<tg-input name="message" id="message" placeholder="Message" maxlength="80"/></tg-input>'+
-                // '<input type="text" name="name" id="name" placeholder="Your Name" maxlength="15" />'+
-                //  '<input type="text" name="message" id="message" placeholder="Message" maxlength="80" />'+
+            '<tg-input name="message" id="message" placeholder="Message" maxlength="80" onkeydown="if (event.keyCode == 13)document.getElementById('+"'send-btn'"+').click()"/></tg-input>'+
                // 'onkeydown = '+"if (event.keyCode == 13)document.getElementById("+"+'send-btn'+"+").click()"+
                // '/>
             '</div>'+
@@ -25,5 +24,6 @@ class Chat extends Object{
         for(let i = 0; i < inputs.length; i++){
             this.inputFactory.createObject(inputs[i]);
         }
+        this.chatUtil.initChat();
     }
 }

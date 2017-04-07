@@ -5,7 +5,7 @@ class AnnyangUtil extends Util{
     constructor() {
         super();
         if(!annyangUtilInstance){
-            this.languages = {hebrew:'he'};
+            this.languages = {hebrew:'he',english:'en-US'};
             annyangUtilInstance = this;
         }
         return annyangUtilInstance;
@@ -17,6 +17,7 @@ class AnnyangUtil extends Util{
 
     addAnnyangCommands(options){
         if (annyang) {
+            annyang.debug();
             annyang.addCommands(options.commands);
             annyang.start();
         }
