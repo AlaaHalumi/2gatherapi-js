@@ -14,6 +14,7 @@ class Menu extends Object{
 
         for(var propertyName in options) {
             let li = document.createElement("li");
+            li.setAttribute("class","yaniv");
             let a = document.createElement("a");
 
             for(var propertyValue in options[propertyName]) {
