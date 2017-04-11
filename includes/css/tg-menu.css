@@ -2,19 +2,36 @@
     float:right;
     height: 24px;
     position: relative;
-    top: 62px;
     right: 37%;
 }
-ul li{
+#mainNav .custom-ul .custom-il{
     float:left;
     padding-left: 20px;
     padding-right: 20px;
 }
-ul li >a{
+#mainNav .custom-ul .custom-il>a{
     text-decoration:none;
     font-size: 18px;
     color: #0D0D0D;
 }
-ul{
+.custom-ul{
     list-style-type:none;
+}
+/*login css*/
+#mainLogin .username{
+
+}
+/*button css*/
+#buttonOrange {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: orange;
+}
+
+#buttonRed {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: red;
 }

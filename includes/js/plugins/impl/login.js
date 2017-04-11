@@ -8,7 +8,7 @@ class Login extends Plugin{
 
     draw(){
         let options = eval(this.domElement.getAttribute("options"));
-        this.domElement.innerHTML += "<tg-input class='username'></tg-input><tg-input class='password'></tg-input>";
+        this.domElement.innerHTML += "<tg-input class='username'></tg-input><tg-input class='password'><br></tg-input><br>";
         if(options.buttonValue) {
             var button = document.createElement("button");
             button.innerHTML = options.buttonValue;

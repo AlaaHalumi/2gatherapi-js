@@ -22,12 +22,14 @@
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
     <script src="includes/js/plugins/impl/login.js"></script>
+    <script src="includes/js/plugins/impl/paragraph.js"></script>
 
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
@@ -58,7 +60,7 @@
 </tg-skipTo>
 
 
-<tg-login options="loginOptions">
+<tg-login options="loginOptions" id="mainLogin">
 </tg-login>
 <br>
 <br>
@@ -66,11 +68,14 @@
 <tg-chat options="chatOptions">
 </tg-chat>
 
-<tg-button options="buttonOptionsOrange">
+<tg-button options="buttonOptionsOrange" id="buttonOrange">
 </tg-button>
 
-<tg-button options="buttonOptionsRed">
+<tg-button options="buttonOptionsRed" id="buttonRed">
 </tg-button>
+
+<tg-paragraph options="paragraphOption">
+</tg-paragraph>
 
 
 
@@ -102,20 +107,22 @@
                 id: "navW3School",
                 target: "_self",
                 text: "w3school",
-                commandTrigger: "go to w3school"
+                commandTrigger: "בית ספר"
             },
             link2: {
                 href: "https://google.com/",
                 id: "navHomePage",
                 target: "_self",
-                text: "google"
+                text: "google",
+                commandTrigger: "גוגל"
 
             },
             link3: {
-                href: "https://ynet.co.il/",
+                href: "www.nana10.co.il/",
                 id: "navTsamid",
                 target: "_self",
-                text: "ynet"
+                text: "nana",
+                commandTrigger: "נענע"
 
             }
 
@@ -200,6 +207,13 @@
         }
     }
 
+    var paragraphOption = {
+            commands: {
+                'content' : 'once when a lion, the king of the jungle, was asleep, a little mouse began running up and down on him. This soon awakened the lion, who placed his huge paw on the mouse, and opened his big jaws to swallow him.',
+                'commandTrigger': 'אריה'
+        }
+    }
+
     var options = {voiceToTextLanguage: "hebrew"};
     var twoGatherApi = new Gatherapi(options);
     twoGatherApi.middleware.init();
@@ -207,6 +221,7 @@
     twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
     twoGatherApi.pluginFactories.buttonFactory.createPlugin(document.getElementsByTagName("tg-button"));
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
+    twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph")[0]);
 </script>
 <!--skipTp third-party-->
 <script src="includes/js/third-parties/skipTo/skipTo.js"></script>
