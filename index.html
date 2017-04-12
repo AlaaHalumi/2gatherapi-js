@@ -15,6 +15,7 @@
     <script src="includes/js/utils/util.js"></script>
     <script src="includes/js/utils/impl/annyangUtil.js"></script>
     <script src="includes/js/utils/impl/chatUtil.js"></script>
+    <script src="includes/js/utils/impl/ttv.js"></script>
     <!--Plugins-->
     <script src="includes/js/plugins/impl/button.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
@@ -74,10 +75,14 @@
 <tg-button options="buttonOptionsRed" id="buttonRed">
 </tg-button>
 
-<tg-paragraph options="paragraphOption">
+<tg-paragraph options="paragraphOptionLion">
 </tg-paragraph>
 
+<tg-paragraph options="paragraphOptionTortoise">
+</tg-paragraph>
 
+<tg-paragraph options="paragraphOptionTest">
+</tg-paragraph>
 
 
 <script>
@@ -207,21 +212,37 @@
         }
     }
 
-    var paragraphOption = {
+    var paragraphOptionLion = {
             commands: {
-                'content' : 'once when a lion, the king of the jungle, was asleep, a little mouse began running up and down on him. This soon awakened the lion, who placed his huge paw on the mouse, and opened his big jaws to swallow him.',
+                'content' : 'once when a lion, the king of the jungle, was asleep, a little mouse began running up and down on him. This soon awakened the lion, who placed his huge paw on the mouse, and opened his big jaws to swallow him.'+
+                'once when a lion, the king of the jungle, was asleep, a little mouse began running up and down on him. This soon awakened the lion, who placed his huge paw on the mouse, and opened his big jaws to swallow him.',
                 'commandTrigger': 'אריה'
         }
     }
 
-    var options = {voiceToTextLanguage: "hebrew"};
+    var paragraphOptionTortoise = {
+        commands: {
+            'content' : 'There once was a speedy Hare who bragged about how fast he could run. Tired of hearing him boast, the Tortoise challenged him to a race. All the animals in the forest gathered to watch.the Hare ran down the road for a while and then paused to rest. He looked back at the tortoise and cried out, How do you expect to win this race when you are walking along at your slow, slow pace',
+            'commandTrigger': 'זברה'
+        }
+    }
+
+    var paragraphOptionTest = {
+        commands: {
+            'content' : 'hello world',
+            'commandTrigger': 'שלום'
+        }
+    }
+
+
+    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english"};
     var twoGatherApi = new Gatherapi(options);
     twoGatherApi.middleware.init();
     twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
     twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
     twoGatherApi.pluginFactories.buttonFactory.createPlugin(document.getElementsByTagName("tg-button"));
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-    twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph")[0]);
+    twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph"));
 </script>
 <!--skipTp third-party-->
 <script src="includes/js/third-parties/skipTo/skipTo.js"></script>

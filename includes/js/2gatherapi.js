@@ -5,7 +5,8 @@ class Gatherapi {
         this.middleware = new Middleware();
         this.utils = {
             annyangUtil : new AnnyangUtil(),
-            chatUtil  : new ChatUtil()
+            chatUtil  : new ChatUtil(),
+            // textToVoice : new SpeechUtil()
         };
         this.utilsConfiguration(options);
         this.objectFactories = {inputFactory : new InputFactory()};
@@ -15,5 +16,6 @@ class Gatherapi {
 
     utilsConfiguration(options){
         this.utils.annyangUtil.setLanguage(options["voiceToTextLanguage"]);
+        // this.utils.textToVoice.setLanguage(options["textToVoice"]);
     }
 }

@@ -8,7 +8,6 @@ class Paragraph extends Object{
 
     draw(){
         let options = eval(this.domElement.getAttribute("options"));
-
         let p = document.createElement("p");
         p.setAttribute("class","custom-p");
         p.innerHTML = options.commands.content;
