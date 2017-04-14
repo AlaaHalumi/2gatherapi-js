@@ -14,8 +14,8 @@ class LibraryFactory extends PluginFactory{
     createPlugin(domElement){
         let library = new Library(domElement);
         this.options = eval(domElement.getAttribute("options"));
-        this.initUtils();
         library.draw();
+        this.initUtils();
         return library;
     }
 
@@ -27,18 +27,16 @@ class LibraryFactory extends PluginFactory{
 
         let commands = {};
 
-        // for(let propertyName in this.options) {
-        //
-        //     for(let propertyValue in this.options[propertyName]) {
-        //         let value = propertyValue;
-        //         if (value == "commandTrigger") {
-        //             let webPage =  this.options[propertyName].href;
-        //
-        //             commands[this.options[propertyName][value]] = function () {   window.location.replace(webPage);};
-        //
-        //         }
-        //     }
-        // }
+        for(let propertyName in this.options) {
+
+            let dataCommand = this.options[propertyName]["triggerCommand"];
+
+            commands[this.options[propertyName]["triggerCommand"]] = function () {
+                let button = document.querySelector("[data-command='"+dataCommand+"']");
+                button.click();
+            };
+
+        }
 
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);

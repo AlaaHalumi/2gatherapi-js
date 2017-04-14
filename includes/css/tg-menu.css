@@ -42,5 +42,5 @@
 }
 
 .custom-library-bookDiv{
-    float: left;
+    display: inline-block;
 }

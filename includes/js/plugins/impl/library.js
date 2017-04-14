@@ -33,6 +33,7 @@ class Library extends Object{
 
             // buttonStart.setAttribute("background","url(includes/library/play icon.png)" );
             // buttonStop.style.backgroundImage = "url('includes/library/pause icon.png')";
+            buttonStart.setAttribute("data-command",options[propertyName]["triggerCommand"])
             buttonStart.innerHTML = "start";
             buttonStop.innerHTML = "stop";
 
@@ -42,6 +43,46 @@ class Library extends Object{
                 console.log("stop stop speaker");
             }
 
+            buttonStart.onclick = function(){
+                let path = options[propertyName]["path"];
+                console.log("path " + path);
+
+                let rawFile = new XMLHttpRequest();
+                rawFile.open("GET", path, false);
+                rawFile.onreadystatechange = function ()
+                {
+                    if(rawFile.readyState === 4)
+                    {
+                        if(rawFile.status === 200 || rawFile.status == 0)
+                        {
+                            let allText = rawFile.responseText;
+
+                            let chunkLength = 120;
+                            let pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
+                            let arr = [];
+                            let txt = allText;
+                            while (txt.length > 0) {
+                                arr.push(txt.match(pattRegex)[0]);
+                                txt = txt.substring(arr[arr.length - 1].length);
+                            }
+                            arr.forEach(function(element) {
+                                let content = element.trim();
+                                console.log(content);
+                                let u = new SpeechSynthesisUtterance(content);
+                                u.lang = 'en-US';
+                                let speaker = new SpeechUtil();
+                                speaker.startSpeak(u);
+                                // window.speechSynthesis.speak(u);
+
+                            });
+
+
+
+                        }
+                    }
+                }
+                rawFile.send(null);
+            }
 
             bookDiv.appendChild(bookHeader);
             bookDiv.appendChild(img);
@@ -50,5 +91,10 @@ class Library extends Object{
             mainDiv.appendChild(bookDiv)
         }
         this.domElement.appendChild(mainDiv);
+    }
+
+    readText(text)
+    {
+
     }
 }
