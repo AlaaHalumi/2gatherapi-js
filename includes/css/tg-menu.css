@@ -35,3 +35,12 @@
     border-radius: 50%;
     background-color: red;
 }
+
+/*library css*/
+.custom-library-img{
+    display: block;
+}
+
+.custom-library-bookDiv{
+    float: left;
+}

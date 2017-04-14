@@ -5,21 +5,19 @@ class SpeechUtil extends Util{
     constructor() {
         super();
         if(!SpeechUtilInstance){
-            SpeechUtilInstance =  new SpeechSynthesisUtterance();
+            // this.SpeechUtilInstance = window.speechSynthesis;
+            // SpeechUtilInstance =  new SpeechSynthesisUtterance();
             // this.languages = {english:'en-US'};
-            SpeechUtilInstance.lang('en-US');
-            // SpeechUtilInstance = this;
+            // SpeechUtilInstance.lang('en-US');
+            this.SpeechUtilInstance = this;
         }
-        return SpeechUtilInstance;
+        return this.SpeechUtilInstance;
     }
 
-    // setLanguageS(language){
-    //     console.log("sss");
-    //     SpeechUtilInstance.lang(this.languages[language]);
-    // }
-    //
-    // setText(contents){
-    //     this.text = contents;
-    //     window.speechSynthesis.speak(this);
-    // }
+    startSpeak(utterance){
+        window.speechSynthesis.speak(utterance);
+    }
+    cancelSpeak(){
+        window.speechSynthesis.cancel();
+    }
 }

@@ -6,6 +6,8 @@ class Menu extends Object{
         this.menuFactory = new MenuFactory();
     }
 
+
+
     draw(){
         let options = eval(this.domElement.getAttribute("options"));
 

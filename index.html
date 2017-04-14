@@ -24,6 +24,7 @@
     <script src="includes/js/plugins/impl/chat.js"></script>
     <script src="includes/js/plugins/impl/login.js"></script>
     <script src="includes/js/plugins/impl/paragraph.js"></script>
+    <script src="includes/js/plugins/impl/library.js"></script>
 
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
@@ -31,6 +32,7 @@
     <script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
@@ -84,8 +86,19 @@
 <tg-paragraph options="paragraphOptionTest">
 </tg-paragraph>
 
+<tg-library options="libraryOption">
+
+</tg-library>
+
+<button onclick="myFunction()">Click me for stop paragraph speaker</button>
 
 <script>
+
+    var myFunction = function(){
+            let speaker = new SpeechUtil();
+            speaker.cancelSpeak();
+             console.log("stop");
+    }
 
     var SkipToConfig = {
             "settings": {
@@ -104,6 +117,23 @@
             }
     };
 
+
+    var libraryOption = {
+        book1 : {
+            path: "includes/library/The Hare and the Tortoise",
+            bookName : "The Hare and the Tortoise",
+            img : "includes/library/The Hare and the Tortoise.jpg",
+            triggerCommand : "ספר ראשון"
+        },
+        book2 : {
+            path: "includes/library/The Lion and the Mouse",
+            bookName : "The Lion and the Mouse",
+            img : "includes/library/The Lion and the Mouse.jpg",
+            triggerCommand : "ספר שני"
+        }
+
+
+    }
 
 
     var menuOptions = {
@@ -235,6 +265,7 @@
     }
 
 
+
     var options = {voiceToTextLanguage: "hebrew",textToVoice: "english"};
     var twoGatherApi = new Gatherapi(options);
     twoGatherApi.middleware.init();
@@ -243,6 +274,7 @@
     twoGatherApi.pluginFactories.buttonFactory.createPlugin(document.getElementsByTagName("tg-button"));
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
     twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph"));
+    twoGatherApi.pluginFactories.libraryFactory.createPlugin(document.getElementsByTagName("tg-library")[0]);
 </script>
 <!--skipTp third-party-->
 <script src="includes/js/third-parties/skipTo/skipTo.js"></script>

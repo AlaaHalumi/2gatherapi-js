@@ -7,6 +7,7 @@ class ParagraphFactory extends PluginFactory {
         if (!paragraphFactoryInstance) {
             paragraphFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
+            this.SpeechUtils = new SpeechUtil();
         }
         return paragraphFactoryInstance;
     }
@@ -46,7 +47,9 @@ class ParagraphFactory extends PluginFactory {
                 console.log(content);
                 let u = new SpeechSynthesisUtterance(content);
                 u.lang = 'en-US';
-                window.speechSynthesis.speak(u);
+                let speaker = new SpeechUtil();
+                speaker.startSpeak(u);
+                // window.speechSynthesis.speak(u);
 
             });
         };
