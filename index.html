@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <!--third-party-->
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
@@ -16,11 +17,13 @@
     <script src="includes/js/utils/impl/annyangUtil.js"></script>
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
     <!--Plugins-->
     <script src="includes/js/plugins/impl/button.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
 
     <script src="includes/js/plugins/plugin.js"></script>
+    <script src="includes/js/plugins/impl/accessibility.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
     <script src="includes/js/plugins/impl/login.js"></script>
     <script src="includes/js/plugins/impl/paragraph.js"></script>
@@ -33,6 +36,7 @@
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
@@ -43,9 +47,10 @@
     <link rel="stylesheet" href="includes/css/tg-menu.css">
     <!--css skipTo-->
     <link rel="stylesheet" type="text/css" media="screen" href="includes/css/SkipTo.css">
-
+    <!--css accessibility -->
+    <link rel="stylesheet" type="text/css" media="screen" href="includes/css/styleacc.css">
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="includes/css/scriptacc.js">-->
 </head>
-<body>
 
 <header>
 
@@ -83,14 +88,16 @@
 <tg-paragraph options="paragraphOptionTortoise">
 </tg-paragraph>
 
-<tg-paragraph options="paragraphOptionTest">
-</tg-paragraph>
+<br><button onclick="myFunction()">Click on me for stop paragraph speaker</button>
 
 <tg-library options="libraryOption">
 
 </tg-library>
 
-<br><button onclick="myFunction()">Click me for stop paragraph speaker</button>
+<tg-accessibility options="accessibilityOption">
+
+</tg-accessibility>
+
 
 <script>
 
@@ -264,7 +271,11 @@
         }
     }
 
+    var accessibilityOption = {
 
+
+
+    }
 
     var options = {voiceToTextLanguage: "hebrew",textToVoice: "english"};
     var twoGatherApi = new Gatherapi(options);
@@ -275,6 +286,7 @@
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
     twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph"));
     twoGatherApi.pluginFactories.libraryFactory.createPlugin(document.getElementsByTagName("tg-library")[0]);
+    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
 </script>
 <!--skipTp third-party-->
 <script src="includes/js/third-parties/skipTo/skipTo.js"></script>
