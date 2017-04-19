@@ -12,12 +12,21 @@ class AccessibilityUtil extends Util {
 
     initAccessibility(){
 
-        document.getElementById("acc_logo").onclick = function(){
-            document.getElementById("acc_logo").style.display = 'block';
-        };
-        document.getElementById("hide_panel").onclick = function(){
-            document.getElementById("hide_panel").style.display = 'none';
-        };
+        console.log("inside init accessibilty");
+        // document.getElementById("acc_logo").onclick = function(){
+        //     document.getElementById("acc_logo").style.display = 'block';
+        // };
+        // document.getElementById("hide_panel").onclick = function(){
+        //     document.getElementById("hide_panel").style.display = 'none';
+        // };
+
+
+        $("#acc_logo").click(function(){
+            $("#acc_panel").toggle();
+        });
+        $('#hide_panel').click(function(){
+            $('#acc_panel').hide();
+        });
 
         // var divtxt = $("body:not(div:acc_panel)"); //"p:not(.intro)"
         var divtxt = $("body:not(#acc_panel)");

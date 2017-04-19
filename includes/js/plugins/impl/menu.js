@@ -11,12 +11,13 @@ class Menu extends Object{
     draw(){
         let options = eval(this.domElement.getAttribute("options"));
 
+        let nav = document.createElement("nav");
         let ul = document.createElement("ul");
-        ul.setAttribute("class","custom-ul");
+        ul.setAttribute("class","tg-ul");
 
         for(let propertyName in options) {
             let li = document.createElement("li");
-            li.setAttribute("class","custom-il");
+            li.setAttribute("class","tg-il");
             let a = document.createElement("a");
 
             for(let propertyValue in options[propertyName]) {
@@ -31,6 +32,7 @@ class Menu extends Object{
             li.appendChild(a);
             ul.appendChild(li);
         }
-        this.domElement.appendChild(ul);
+        nav.appendChild(ul);
+        this.domElement.appendChild(nav);
     }
 }

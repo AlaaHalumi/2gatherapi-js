@@ -33,7 +33,6 @@ class MenuFactory extends PluginFactory{
                 let value = propertyValue;
                 if (value == "commandTrigger") {
                     let webPage =  this.options[propertyName].href;
-
                     commands[this.options[propertyName][value]] = function () {   window.location.replace(webPage);};
 
                 }

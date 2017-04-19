@@ -55,7 +55,6 @@
     <script src="includes/js/objects/impl/inputText.js"></script>
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
-
 </head>
 <body>
 
@@ -65,61 +64,110 @@
 <header>
     <div class="headerContainer">
         <div class="headerD">
-            <a href="index.html"><img src="images/heart.png"> Tsamid</a>
+            <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
         </div>
+
+        <tg-menu options="menuOptions">
+
+        </tg-menu>
+
     </div>
     <div class="clear"></div>
 </header>
 
-<div class="welcome">
-    <h1>Welcome to Tsamid!</h1>
-    <h3>Where you can Watch, Hear and Navigate in your content.</h3>
+<div id="wrapper">
+    <div class="row_activity">
+
+        <div class="snow-globe">
+            <img src="">
+            <div class="bottom"></div>
+            <a class="button" href="#">Games</a>
+        </div>
+
+        <div class="snow-globe">
+            <img src="">
+            <div class="bottom"></div>
+            <a class="button" href="library.html">Library</a>
+        </div>
+
+        <div class="snow-globe">
+            <img src="">
+            <div class="bottom"></div>
+            <a class="button" href="zula.html">Zula</a>
+        </div>
+    </div>
+
+    <div class="row_activity">
+
+        <div class="snow-globe">
+            <img src="">
+            <div class="bottom"></div>
+            <a class="button" href="chat.html">Chat</a>
+        </div>
+
+        <div class="snow-globe">
+            <img src="">
+            <div class="bottom"></div>
+            <a class="button" href="agenda.html">Agenda</a>
+        </div>
+
+        <div class="snow-globe">
+            <img src="">
+            <div class="bottom"></div>
+            <a class="button" href="#">Calender</a>
+
+        </div>
+
+    </div>
+
 </div>
-
-
-<div id="signin">
-    <tg-login options="loginOptions" >
-    </tg-login>
-</div>
-
 <div class="grass"></div>
 
 <script>
 
     var accessibilityOption = {
-
     }
 
-    var loginOptions = {
-        buttonValue:"Sigin in",
-        commands: {
-            'submit': {
-                name: 'התחבר', func: function () {
-                    console.log("login");
-                    window.location.replace("homePage.html");
-                }
-            },
-            'username': {
-                name: 'שם *search', func: function (contents) {
-                    console.log("username");
-                    document.querySelector(".login-username > label > input").value = contents;
-                }
-            },
+    var menuOptions = {
+        link1: {
+            href: "homePage.html",
+//            id: "navW3School",
+//            target: "_self",
+            text: "Homepage",
+            commandTrigger: "דף הבית"
+        },
+        link2: {
+            href: "library.html",
+//            id: "navHomePage",
+//            target: "_self",
+            text: "Library",
+            commandTrigger: "ספריה"
 
-            'moveToPassword': {
-                name: 'סיסמא *search', func: function (contents) {
-                    document.querySelector(".login-password > label > input").value = contents;
-                }
-            }
+        },
+        link3: {
+            href: "chat.html",
+//            id: "navTsamid",
+//            target: "_self",
+            text: "Chat",
+            commandTrigger: "חדר שיחה"
+
+        },
+        link4: {
+            href: "agenda.html",
+//            id: "navTsamid",
+//            target: "_self",
+            text: "Agenda",
+            commandTrigger: "לוח מודעות"
+
         }
+
     }
 
-    var options = {voiceToTextLanguage: "hebrew", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english"};
     var twoGatherApi = new Gatherapi(options);
-    twoGatherApi.middleware.init();
-    twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
+//    twoGatherApi.middleware.init();
+    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
 </script>
-
 </body>
 </html>
