@@ -24,10 +24,21 @@ class MenuFactory extends PluginFactory{
     }
 
     initAnnyang(){
+
         let commands = {};
-        for(let command in this.options.commands){
-            commands[this.options.commands[command].name] = this.options.commands[command].func;
+
+        for(let propertyName in this.options) {
+
+            for(let propertyValue in this.options[propertyName]) {
+                let value = propertyValue;
+                if (value == "commandTrigger") {
+                    let webPage =  this.options[propertyName].href;
+                    commands[this.options[propertyName][value]] = function () {   window.location.replace(webPage);};
+
+                }
+            }
         }
+
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
     }

@@ -8,7 +8,7 @@ class Button extends Object{
 
     draw(){
         let options = eval(this.domElement.getAttribute("options"));
-        // this.domElement.innerHTML += "<tg-button class='username'></tg-button><tg-input class='password'></tg-input>";
+
         if(options.buttonValue) {
             var button = document.createElement("button");
             button.innerHTML = options.buttonValue;

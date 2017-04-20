@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--tsamid css -->
+    <link rel="stylesheet" type="text/css" href="includes/style.css">
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+
+    <!--accessibilty tool-->
+    <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
+
+    <title>Tsamid</title>
+
+    <!--2gatherAPI.js-->
+    <script src="dist/2gatherapi.js"></script>
+
+    <!--&lt;!&ndash;third-party&ndash;&gt;-->
+    <!--<script src="includes/js/third-parties/annyang/annyang.js"></script>-->
+
+    <!--&lt;!&ndash;2gatherAPI&ndash;&gt;-->
+    <!--<script src="includes/js/2gatherapi.js"></script>-->
+    <!--<script src="includes/js/middleware.js"></script>-->
+    <!--&lt;!&ndash;Utils&ndash;&gt;-->
+
+    <!--<script src="includes/js/utils/util.js"></script>-->
+    <!--<script src="includes/js/utils/impl/annyangUtil.js"></script>-->
+    <!--<script src="includes/js/utils/impl/chatUtil.js"></script>-->
+    <!--<script src="includes/js/utils/impl/ttv.js"></script>-->
+    <!--<script src="includes/js/utils/impl/accessibilityUtil.js"></script>-->
+
+    <!--&lt;!&ndash;Plugins&ndash;&gt;-->
+    <!--<script src="includes/js/plugins/impl/button.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/menu.js"></script>-->
+
+
+    <!--<script src="includes/js/plugins/plugin.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/chat.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/login.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/paragraph.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/library.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/accessibility.js"></script>-->
+
+    <!--<script src="includes/js/plugins/factories/pluginFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/loginFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/chatFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/menuFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>-->
+
+    <!--&lt;!&ndash;Objects&ndash;&gt;-->
+    <!--<script src="includes/js/objects/object.js"></script>-->
+    <!--<script src="includes/js/objects/impl/inputText.js"></script>-->
+    <!--<script src="includes/js/objects/factories/objectFactory.js"></script>-->
+    <!--<script src="includes/js/objects/factories/impl/inputFactory.js"></script>-->
+</head>
+<body>
+
+<tg-accessibility options="accessibilityOption">
+</tg-accessibility>
+
+<header>
+    <div class="headerContainer">
+        <div class="headerD">
+            <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
+        </div>
+
+        <tg-menu options="menuOptions">
+
+        </tg-menu>
+
+    </div>
+    <div class="clear"></div>
+</header>
+
+<div id="wrapper">
+    <div class="news">
+
+        <h1> News</h1>
+        <section  class="rowNews" >
+            <tg-paragraph options="paragraphOne"></tg-paragraph>
+            <button class="addCalender">Add</button>
+            <button class="addCalender">Remove</button>
+        </section>
+
+        <section  class="rowNews" >
+            <tg-paragraph options="paragraphTwo"></tg-paragraph>
+            <button class="addCalender">Add</button>
+            <button class="addCalender">Remove</button>
+        </section>
+
+        <section  class="rowNews" >
+            <tg-paragraph options="paragraphThree"></tg-paragraph>
+            <button class="addCalender">Add</button>
+            <button class="addCalender">Remove</button>
+        </section>
+
+        <section  class="rowNews" >
+            <tg-paragraph options="paragraphFour"></tg-paragraph>
+            <button class="addCalender">Add</button>
+            <button class="addCalender">Remove</button>
+        </section>
+
+    </div>
+</div>
+<div class="grass"></div>
+
+<script>
+
+    var accessibilityOption = {
+
+    }
+
+    var paragraphOne = {
+        commands: {
+            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
+            'commandTrigger': 'זברה'
+        }
+    }
+
+    var paragraphTwo = {
+        commands: {
+            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
+            'commandTrigger': 'זברה'
+        }
+    }
+
+    var paragraphThree = {
+        commands: {
+            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
+            'commandTrigger': 'זברה'
+        }
+    }
+
+    var paragraphFour = {
+        commands: {
+            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
+            'commandTrigger': 'זברה'
+        }
+    }
+
+
+    var menuOptions = {
+        link1: {
+            href: "homePage.html",
+//            id: "navW3School",
+//            target: "_self",
+            text: "Homepage",
+            commandTrigger: "דף הבית"
+        },
+        link2: {
+            href: "library.html",
+//            id: "navHomePage",
+//            target: "_self",
+            text: "Library",
+            commandTrigger: "ספריה"
+
+        },
+        link3: {
+            href: "chat.html",
+//            id: "navTsamid",
+//            target: "_self",
+            text: "Chat",
+            commandTrigger: "חדר שיחה"
+
+        },
+        link4: {
+            href: "agenda.html",
+//            id: "navTsamid",
+//            target: "_self",
+            text: "Agenda",
+            commandTrigger: "לוח מודעות"
+
+        }
+
+    }
+
+    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+    var twoGatherApi = new Gatherapi(options);
+    twoGatherApi.middleware.init();
+    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
+    twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph"));
+    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+
+</script>
+</body>
+</html>

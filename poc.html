@@ -1,0 +1,296 @@
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+    <!--&lt;!&ndash;Jquery&ndash;&gt;-->
+    <!--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
+    <!--&lt;!&ndash;third-party&ndash;&gt;-->
+    <!--<script src="includes/js/third-parties/annyang/annyang.js"></script>-->
+
+    <!--&lt;!&ndash;2gatherAPI&ndash;&gt;-->
+    <!--<script src="includes/js/2gatherapi.js"></script>-->
+    <!--<script src="includes/js/middleware.js"></script>-->
+    <!--&lt;!&ndash;Utils&ndash;&gt;-->
+    <!--<script src="includes/js/utils/util.js"></script>-->
+    <!--<script src="includes/js/utils/impl/annyangUtil.js"></script>-->
+    <!--<script src="includes/js/utils/impl/chatUtil.js"></script>-->
+    <!--<script src="includes/js/utils/impl/ttv.js"></script>-->
+    <!--<script src="includes/js/utils/impl/accessibilityUtil.js"></script>-->
+    <!--&lt;!&ndash;Plugins&ndash;&gt;-->
+    <!--<script src="includes/js/plugins/impl/button.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/menu.js"></script>-->
+
+    <!--<script src="includes/js/plugins/plugin.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/accessibility.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/chat.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/login.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/paragraph.js"></script>-->
+    <!--<script src="includes/js/plugins/impl/library.js"></script>-->
+
+    <!--<script src="includes/js/plugins/factories/pluginFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/loginFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/chatFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/menuFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>-->
+    <!--<script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>-->
+    <!--&lt;!&ndash;Objects&ndash;&gt;-->
+    <!--<script src="includes/js/objects/object.js"></script>-->
+    <!--<script src="includes/js/objects/impl/inputText.js"></script>-->
+    <!--<script src="includes/js/objects/factories/objectFactory.js"></script>-->
+    <!--<script src="includes/js/objects/factories/impl/inputFactory.js"></script>-->
+    <!--&lt;!&ndash;css chat&ndash;&gt;-->
+    <!--<link rel="stylesheet" href="includes/css/chat.css">-->
+    <!--<link rel="stylesheet" href="includes/css/tg-menu.css">-->
+    <!--&lt;!&ndash;css skipTo&ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="includes/css/SkipTo.css">-->
+    <!--&lt;!&ndash;css accessibility &ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="includes/css/styleacc.css">-->
+    <!--&lt;!&ndash;<link rel="stylesheet" type="text/css" media="screen" href="includes/css/scriptacc.js">&ndash;&gt;-->
+<!--</head>-->
+
+<!--<header>-->
+
+    <!--<section  class="MyCustomClass" aria-labelledby="id1">-->
+    <!--</section>-->
+
+    <!--<tg-menu options="menuOptions" id="mainNav">-->
+
+    <!--</tg-menu>-->
+
+<!--</header>-->
+
+
+<!--<tg-skipTo options="skipToOptions">-->
+<!--</tg-skipTo>-->
+
+
+<!--<tg-login options="loginOptions" id="mainLogin">-->
+<!--</tg-login>-->
+<!--<br>-->
+<!--<br>-->
+
+<!--<tg-chat options="chatOptions">-->
+<!--</tg-chat>-->
+
+<!--<tg-button options="buttonOptionsOrange" id="buttonOrange">-->
+<!--</tg-button>-->
+
+<!--<tg-button options="buttonOptionsRed" id="buttonRed">-->
+<!--</tg-button>-->
+
+<!--<tg-paragraph options="paragraphOptionLion">-->
+<!--</tg-paragraph>-->
+
+<!--<tg-paragraph options="paragraphOptionTortoise">-->
+<!--</tg-paragraph>-->
+
+<!--<br><button onclick="myFunction()">Click on me for stop paragraph speaker</button>-->
+
+<!--<tg-library options="libraryOption">-->
+
+<!--</tg-library>-->
+
+<!--<tg-accessibility options="accessibilityOption">-->
+
+<!--</tg-accessibility>-->
+
+
+<!--<script>-->
+
+    <!--var myFunction = function(){-->
+            <!--let speaker = new SpeechUtil();-->
+            <!--speaker.cancelSpeak();-->
+             <!--console.log("stop");-->
+    <!--}-->
+
+    <!--var SkipToConfig = {-->
+            <!--"settings": {-->
+                <!--"skipTo": {-->
+                    <!--"headings": "h1 ,h2, h3",-->
+                    <!--"landmarks": "[role=navigation],[role=search]",-->
+                    <!--"sections": "nav",-->
+                    <!--"ids": "#navHomePage, #navW3School, #navTsamid, #main , #orangeButton, #yellowButton",-->
+                    <!--"accesskey": "0",-->
+                    <!--"wrap": "true",-->
+                    <!--"visibility": "onLoad",-->
+                    <!--"customClass": "custom",-->
+<!--//                    "attachElement": ".SkipToAttach"-->
+                    <!--"attachElement": ".MyCustomClass"-->
+                <!--}-->
+            <!--}-->
+    <!--};-->
+
+
+    <!--var libraryOption = {-->
+        <!--book1 : {-->
+            <!--path: "includes/library/The Hare and the Tortoise",-->
+            <!--bookName : "The Hare and the Tortoise",-->
+            <!--img : "includes/library/The Hare and the Tortoise.jpg",-->
+            <!--triggerCommand : "ספר ראשון"-->
+        <!--},-->
+        <!--book2 : {-->
+            <!--path: "includes/library/The Lion and the Mouse",-->
+            <!--bookName : "The Lion and the Mouse",-->
+            <!--img : "includes/library/The Lion and the Mouse.jpg",-->
+            <!--triggerCommand : "ספר שני"-->
+        <!--}-->
+
+
+    <!--}-->
+
+
+    <!--var menuOptions = {-->
+            <!--link1: {-->
+                <!--href: "https://w3schools.com/",-->
+                <!--id: "navW3School",-->
+                <!--target: "_self",-->
+                <!--text: "w3school",-->
+                <!--commandTrigger: "בית ספר"-->
+            <!--},-->
+            <!--link2: {-->
+                <!--href: "https://google.com/",-->
+                <!--id: "navHomePage",-->
+                <!--target: "_self",-->
+                <!--text: "google",-->
+                <!--commandTrigger: "גוגל"-->
+
+            <!--},-->
+            <!--link3: {-->
+                <!--href: "www.nana10.co.il/",-->
+                <!--id: "navTsamid",-->
+                <!--target: "_self",-->
+                <!--text: "nana",-->
+                <!--commandTrigger: "נענע"-->
+
+            <!--}-->
+
+    <!--}-->
+
+
+    <!--var buttonOptionsOrange = {-->
+        <!--buttonValue:"orange",-->
+        <!--commands: {-->
+            <!--'click': {-->
+                <!--name: 'כתום', func: function () {-->
+                    <!--console.log("click orange");-->
+                <!--}-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+    <!--var buttonOptionsOrange = {-->
+        <!--buttonValue:"orange",-->
+        <!--commands: {-->
+            <!--'click': {-->
+                <!--name: 'כתום', func: function () {-->
+                    <!--console.log("click orange");-->
+                <!--}-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+    <!--var buttonOptionsRed = {-->
+        <!--buttonValue:"red",-->
+        <!--commands: {-->
+            <!--'click': {-->
+                <!--name: 'אדום', func: function () {-->
+                    <!--console.log("click red");-->
+                <!--}-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+
+    <!--var loginOptions = {-->
+        <!--buttonValue:"submitbutton",-->
+        <!--commands: {-->
+            <!--'submit': {-->
+                <!--name: 'כנס', func: function () {-->
+                    <!--console.log("login");-->
+                <!--}-->
+            <!--},-->
+            <!--'moveToPassword': {-->
+                <!--name: 'password', func: function () {-->
+                    <!--document.querySelector(".password input").focus();-->
+                <!--}-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+    <!--var chatOptions = {-->
+        <!--commands: {-->
+            <!--'name': {-->
+                <!--name: 'my name is *search', func: function (content) {-->
+                    <!--console.log("name");-->
+                    <!--console.log('inside fillName');-->
+                    <!--//set content-->
+                    <!--document.querySelector("#name").focus();-->
+<!--//                  get content and speak it-->
+                    <!--var contents = document.querySelector("#name").value;-->
+<!--//                        textToSpeak(contents);-->
+
+                <!--}-->
+            <!--},-->
+            <!--'message': {-->
+                <!--name: 'message *', func: function () {-->
+                    <!--console.log("message");-->
+                    <!--console.log('inside message');-->
+                    <!--//set content-->
+                    <!--document.querySelector("#message").focus();-->
+<!--//                  get content and speak it-->
+                    <!--var contents = document.querySelector("#message").value;-->
+<!--//                        textToSpeak(contents);-->
+                <!--}-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+    <!--var paragraphOptionLion = {-->
+            <!--commands: {-->
+                <!--'content' : 'once when a lion, the king of the jungle, was asleep, a little mouse began running up and down on him. This soon awakened the lion, who placed his huge paw on the mouse, and opened his big jaws to swallow him.'+-->
+                <!--'once when a lion, the king of the jungle, was asleep, a little mouse began running up and down on him. This soon awakened the lion, who placed his huge paw on the mouse, and opened his big jaws to swallow him.',-->
+                <!--'commandTrigger': 'אריה'-->
+        <!--}-->
+    <!--}-->
+
+    <!--var paragraphOptionTortoise = {-->
+        <!--commands: {-->
+            <!--'content' : 'There once was a speedy Hare who bragged about how fast he could run. Tired of hearing him boast, the Tortoise challenged him to a race. All the animals in the forest gathered to watch.the Hare ran down the road for a while and then paused to rest. He looked back at the tortoise and cried out, How do you expect to win this race when you are walking along at your slow, slow pace',-->
+            <!--'commandTrigger': 'זברה'-->
+        <!--}-->
+    <!--}-->
+
+    <!--var paragraphOptionTest = {-->
+        <!--commands: {-->
+            <!--'content' : 'hello world',-->
+            <!--'commandTrigger': 'שלום'-->
+        <!--}-->
+    <!--}-->
+
+    <!--var accessibilityOption = {-->
+
+
+
+    <!--}-->
+
+    <!--var options = {voiceToTextLanguage: "hebrew",textToVoice: "english"};-->
+    <!--var twoGatherApi = new Gatherapi(options);-->
+    <!--twoGatherApi.middleware.init();-->
+    <!--twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);-->
+    <!--twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);-->
+    <!--twoGatherApi.pluginFactories.buttonFactory.createPlugin(document.getElementsByTagName("tg-button"));-->
+    <!--twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);-->
+    <!--twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph"));-->
+    <!--twoGatherApi.pluginFactories.libraryFactory.createPlugin(document.getElementsByTagName("tg-library")[0]);-->
+    <!--twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);-->
+<!--</script>-->
+<!--&lt;!&ndash;skipTp third-party&ndash;&gt;-->
+<!--<script src="includes/js/third-parties/skipTo/skipTo.js"></script>-->
+<!--<script type="text/javascript" src="includes/js/third-parties/skipTo/dropMenu.js"></script>-->
+<!--</body>-->
+<!--</html>-->

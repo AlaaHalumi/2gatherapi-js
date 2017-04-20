@@ -12,7 +12,7 @@ class ChatUtil extends Util{
 
     initChat(){
 
-        var wsUri = "ws://ec2-54-190-54-146.us-west-2.compute.amazonaws.com/index.php"
+        var wsUri = "ws://ec2-54-191-75-104.us-west-2.compute.amazonaws.com:8080/index.php"
         var websocket = new WebSocket(wsUri);
         var myname;
 
@@ -59,8 +59,10 @@ class ChatUtil extends Util{
                 $('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
                 //voice to text only what the other says
                 if(uname != myname){
-                    userInput.text = uname + "say" + umsg;
-                    window.speechSynthesis.speak(userInput);
+                    let u = new SpeechSynthesisUtterance(uname + "say" + umsg);
+                    u.lang = 'en-US';
+                    let speaker = new SpeechUtil();
+                    speaker.startSpeak(u);
                 }
 
             }

@@ -1,0 +1,121 @@
+
+/*____________________PROJECT_______________________*/
+#acc_logo{
+    position: fixed;
+    width: 4%;
+    height: 8.5%;
+    background-image: url(../images/pic.png);
+    right: 0%;
+    top: 20%;
+    background-size: 100%;
+    cursor: pointer;
+    border-radius: 30% 0px 0px 30%;
+    background-color: #fff;
+}
+#acc_panel{
+    display: none;
+    position: fixed;
+    width: 20%;
+    background-color: #fff;
+    top: 150px;
+    right: 0%;
+    padding: 15px 2px 15px 0px;
+    border: 1px #fff solid;
+    border-radius: 5% 0px 0px 5%;
+    z-index: 99999;
+}
+#acc_panel a{
+    cursor: pointer;
+}
+#bigger_font,#smaller_font,#blackCursor,#whiteCursor,#impared{
+    border-right: 1px solid #d1d2d3;
+}
+.row_panel{
+    display: block;
+    padding: 6px;
+    border-bottom: 1px solid #d1d2d3;
+}
+.row3_panel{
+    width: 100%;
+}
+.row3_panel ul li{
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    float: left;
+    width: 33%;
+    height: 97px;
+}
+.row3_panel ul li:hover{
+    background: #efefff;
+}
+.row3_panel ul li:active{
+    background: #efefff;
+}
+.row3_panel ul li span{
+    top: 20px;
+    text-align: center;
+    position: relative;
+    display: block;
+    font-size: 0.8em;
+}
+.row3_panel ul li img{
+    position: relative;
+    left: 26%;
+    margin-right: -50%;
+}
+/* Black Cursor*/
+.black_cursor{
+    cursor: url("../images/cursorBlack1.png") 0 0 ,auto;
+}
+/* White Cursor*/
+.white_cursor{
+    cursor: url("../images/cursorWhite1.png") 0 0 ,auto;
+}
+/*Hightligh titles*/
+.hightlight_titles{
+    font-weight: bold;
+    border-bottom: 2px solid #222;
+}
+/*Visully Impared*/
+.vi_whitefont{
+    color:#fff;
+    border-color:#ff0;
+    background-color: #000;
+}
+.vi_yellowfont{
+    color: #ff0;
+    border-color:#ff0;
+    background-color: #000;
+}
+.vi_link{
+    color:#9fcfff;
+    border-color:#ff0;
+    background-color: #000;
+    text-decoration: underline;
+    background:invert(100%);
+/*    background-image: none;*/
+}
+.vi_image{
+    -webkit-filter: invert(100%);
+    -moz-filter: invert(100%);
+    -o-filter: invert(100%);
+    -ms-filter: invert(100%);
+    filter:invert(100%);
+}
+/*Color Blind*/
+.cb_grayscale{
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+}
+.cb_bodyWhite{
+    background-color: #ffffff;
+}
+#lang{
+    position: absolute;
+    right: 4%;
+}
+
