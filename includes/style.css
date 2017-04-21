@@ -548,6 +548,35 @@ width: 78%;
 .rowNews p{
     direction: rtl;
 }
+
+#buttonRemove{
+    width: 7%;
+    height: 40px;
+    top: -20px;
+    position: relative;
+    float: left;
+    background: #fd6ca3;
+    color: #fff;
+    border-radius: 15px;
+    border: #e2e2e2 3px solid;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
+#buttonAdd{
+    width: 7%;
+    height: 40px;
+    top: -20px;
+    position: relative;
+    float: left;
+    background: #fd6ca3;
+    color: #fff;
+    border-radius: 15px;
+    border: #e2e2e2 3px solid;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
 .addCalender{
     width: 7%;
     height: 40px;
