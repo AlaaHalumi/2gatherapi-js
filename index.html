@@ -12,8 +12,53 @@
     <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
 
     <title>Tsamid</title>
-    <script src="dist/2gatherapi.js"></script>
+    <!--<script src="dist/2gatherapi.js"></script>-->
 
+    <!--third-party-->
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
+    <!--2gatherAPI-->
+    <script src="includes/js/2gatherapi.js"></script>
+    <script src="includes/js/middleware.js"></script>
+    <!--Utils-->
+
+    <script src="includes/js/utils/util.js"></script>
+    <script src="includes/js/utils/impl/annyangUtil.js"></script>
+    <script src="includes/js/utils/impl/chatUtil.js"></script>
+    <script src="includes/js/utils/impl/ttv.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+
+    <!--Plugins-->
+
+    <script src="includes/js/plugins/impl/menu.js"></script>
+
+
+    <script src="includes/js/plugins/plugin.js"></script>
+    <script src="includes/js/plugins/impl/chat.js"></script>
+    <script src="includes/js/plugins/impl/login.js"></script>
+    <script src="includes/js/plugins/impl/library.js"></script>
+    <script src="includes/js/plugins/impl/accessibility.js"></script>
+
+    <script src="includes/js/plugins/factories/pluginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
+    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
+    <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+
+    <!--Objects-->
+    <script src="includes/js/objects/object.js"></script>
+    <script src="includes/js/objects/impl/inputText.js"></script>
+    <script src="includes/js/objects/impl/button.js"></script>
+    <script src="includes/js/objects/impl/link.js"></script>
+    <script src="includes/js/objects/impl/paragraph.js"></script>
+
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
 </head>
 <body>
 
@@ -38,6 +83,13 @@
 <div id="signin">
     <tg-login options="loginOptions" >
     </tg-login>
+
+    <label>street:<tg-input options="inputOptions" id="name"></tg-input></label>
+
+    <!--<tg-input options="input1Options" id="name1">-->
+    <!--</tg-input>-->
+
+
 </div>
 
 <div class="grass"></div>
@@ -48,7 +100,40 @@
 
     }
 
+    var input1Options = {
+        commands: {
+            'username': {
+                name: 'טלפון *search', func: function (contents) {
+                    console.log("phone");
+                    document.querySelector("#name1 > input").value = contents;
+                }
+            }
+        }
+    }
+
+
+    var inputOptions = {
+        inputAttribute : {
+            type: "password",
+            min : "1",
+            max : "5"
+        },
+        commands: {
+            'username': {
+                name: 'כתובת *search', func: function (contents) {
+                    console.log("address");
+                    document.querySelector("#name > input").value = contents;
+                }
+            },
+
+        }
+    }
+
     var loginOptions = {
+        labels: {
+            nickname: "Nick Name",
+            password: "Password",
+        },
         buttonValue:"Sigin in",
         commands: {
             'submit': {
@@ -74,9 +159,11 @@
 
     var options = {voiceToTextLanguage: "hebrew", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
     var twoGatherApi = new Gatherapi(options);
-    twoGatherApi.middleware.init();
+//    twoGatherApi.middleware.init();
+    twoGatherApi.objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0],null);
     twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+
 </script>
 
 </body>

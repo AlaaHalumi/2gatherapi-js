@@ -11,7 +11,8 @@ class Gatherapi {
             textToVoice : new SpeechUtil()
         };
         this.utilsConfiguration(options);
-        this.objectFactories = {inputFactory : new InputFactory() , buttonFactory: new ButtonFactory};
+        this.objectFactories = {inputFactory : new InputFactory() , buttonFactory: new ButtonFactory ,linkFactory : new LinkFactory()
+                                ,paragraphFactory : new ParagraphFactory()};
         this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(),
              menuFactory: new MenuFactory(), paragraphFactory: new ParagraphFactory(), libraryFactory: new LibraryFactory(),
             accessibilityFactory : new AccessibilityFactory() };

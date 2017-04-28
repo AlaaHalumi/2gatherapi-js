@@ -5,27 +5,53 @@ class Button extends Object{
         this.domElement = domElement;
     }
 
-    draw(){
+    draw(options){
 
-        let options = eval(this.domElement.getAttribute("options"));
+        let button
+
+        if(options == null || options == undefined ){
+            this.options = eval(this.domElement.getAttribute("options"));
+            button = this.initButton()
+        }
+        else{
+            this.options = options;
+            button = this.initButton()
+        }
+
+        this.domElement.appendChild(button);
+    }
+
+    initButton(){
+
         let button = document.createElement("button");
 
-        if(options.buttonValue) {
+        if(this.options.buttonAttribute){
+            for (let attribute in this.options.buttonAttribute) {
+                console.log("attribute: " + attribute + " " + this.options.buttonAttribute[attribute]);
+                button.setAttribute(attribute,this.options.buttonAttribute[attribute]);
+            }
+        }
+        if(this.options.buttonValue) {
             console.log("button-object: there is button value");
-            button.innerHTML = options.buttonValue;
+            button.innerHTML = this.options.buttonValue;
         }
-
-        if(options.commands){
+        if(this.options.commands) {
             console.log("button-object: there is button command");
-            button.onclick = options.commands.click.func;
-        }
+            if(this.options.hasOwnProperty("buttonAttribute")){
+                if (this.options.buttonAttribute.hasOwnProperty("id")) {
+                    if (this.options.buttonAttribute["id"] == 'send-btn') {
 
-        let attributes = this.domElement.attributes;
-        while(this.domElement.attributes.length > 0){
-            let attributeName = attributes[0].nodeName;
-            button.setAttribute(attributeName, attributes[0].nodeValue);
-            this.domElement.removeAttribute(attributeName);
+                    }
+                    else{
+                        button.onclick = this.options.commands.submit.func;
+                    }
+                }
+                else{
+                    button.onclick = this.options.commands.submit.func;
+                }
+
+            }
         }
-        this.domElement.appendChild(button);
+        return button;
     }
 }

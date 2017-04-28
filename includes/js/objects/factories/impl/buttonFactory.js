@@ -12,15 +12,22 @@ class ButtonFactory extends ObjectFactory{
         return buttonFactoryInstance;
     }
 
-    createObject(domElement){
+    createObject(domElement,options){
 
-        for(let child = 0 ; child < domElement.length ; child++){
-            console.log(domElement[child]);
-            let button = new Button(domElement[child]);
-            this.options = eval(domElement[child].getAttribute("options"));
-            this.initUtils();
+        let button;
+        if(options == null || options == undefined ){
+            this.options = eval(domElement.getAttribute("options"));
+            button = new Button(domElement);
             button.draw();
+            this.initUtils();
         }
+        else{
+            this.options = options;
+            button = new Button(domElement);
+            button.draw(this.options);
+        }
+
+        return button;
     }
 
     initUtils(){

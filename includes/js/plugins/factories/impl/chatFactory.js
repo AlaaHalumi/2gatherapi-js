@@ -15,7 +15,7 @@ class ChatFactory extends PluginFactory{
         let chat = new Chat(domElement);
         this.options = eval(domElement.getAttribute("options"));
         this.initUtils();
-        chat.draw();
+        chat.draw(this.options.wsURL);
         return chat;
     }
 

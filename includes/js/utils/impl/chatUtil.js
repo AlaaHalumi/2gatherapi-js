@@ -10,9 +10,8 @@ class ChatUtil extends Util{
         return chatUtilInstance;
     }
 
-    initChat(){
-
-        var wsUri = "ws://ec2-54-191-75-104.us-west-2.compute.amazonaws.com:8080/index.php"
+    initChat(wsChatServer){
+        var wsUri = wsChatServer;
         var websocket = new WebSocket(wsUri);
         var myname;
 

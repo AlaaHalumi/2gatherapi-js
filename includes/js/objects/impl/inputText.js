@@ -5,14 +5,29 @@ class InputText extends Object{
         this.domElement = domElement;
     }
 
-    draw(){
-        let input = document.createElement("input");
-        let attributes = this.domElement.attributes;
-        while(this.domElement.attributes.length > 0){
-            let attributeName = attributes[0].nodeName;
-            input.setAttribute(attributeName, attributes[0].nodeValue);
-            this.domElement.removeAttribute(attributeName);
+    draw(options) {
+
+        let input;
+        if(options == null || options == undefined ){
+            this.options = eval(this.domElement.getAttribute("options"));
+            input = this.initInput()
+        }
+        else{
+            this.options = options;
+            input = this.initInput()
         }
         this.domElement.appendChild(input);
+    }
+
+    initInput(){
+        let input = document.createElement("input");
+        if(this.options.inputAttribute){
+            for (let attribute in this.options.inputAttribute) {
+                console.log("attribute: " + attribute + " " + this.options.inputAttribute[attribute]);
+                input.setAttribute(attribute,this.options.inputAttribute[attribute]);
+            }
+        }
+
+        return input;
     }
 }

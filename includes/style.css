@@ -414,6 +414,7 @@ width: 78%;
     left: 10px;
     border-radius: 10px;
     float: left;
+
 }
 .system_msg,.system_error{
     top: -135px;
@@ -440,6 +441,7 @@ width: 78%;
     border-radius: 10px;
     float: left;
     border: 2px solid #e2e2e2;
+    overflow: scroll;
 }
 .bellow{
     width: 97%;

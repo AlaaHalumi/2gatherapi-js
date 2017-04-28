@@ -31,4 +31,4 @@ class LoginFactory extends PluginFactory{
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
     }
-}
+}1

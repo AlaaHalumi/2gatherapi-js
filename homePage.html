@@ -11,52 +11,51 @@
     <!--accessibilty tool-->
     <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
 
+    <!--third-party-->
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
     <title>Tsamid</title>
+    <!--2gatherAPI-->
+    <script src="includes/js/2gatherapi.js"></script>
+    <script src="includes/js/middleware.js"></script>
+    <!--Utils-->
 
-    <script src="dist/2gatherapi.js"></script>
+    <script src="includes/js/utils/util.js"></script>
+    <script src="includes/js/utils/impl/annyangUtil.js"></script>
+    <script src="includes/js/utils/impl/chatUtil.js"></script>
+    <script src="includes/js/utils/impl/ttv.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
 
-    <!--&lt;!&ndash;2gatherAPI.js&ndash;&gt;-->
+    <!--Plugins-->
 
-    <!--&lt;!&ndash;third-party&ndash;&gt;-->
-    <!--<script src="includes/js/third-parties/annyang/annyang.js"></script>-->
+    <script src="includes/js/plugins/plugin.js"></script>
+    <script src="includes/js/plugins/impl/chat.js"></script>
+    <script src="includes/js/plugins/impl/login.js"></script>
+    <script src="includes/js/plugins/impl/library.js"></script>
+    <script src="includes/js/plugins/impl/accessibility.js"></script>
+    <script src="includes/js/plugins/impl/menu.js"></script>
 
-    <!--&lt;!&ndash;2gatherAPI&ndash;&gt;-->
-    <!--<script src="includes/js/2gatherapi.js"></script>-->
-    <!--<script src="includes/js/middleware.js"></script>-->
-    <!--&lt;!&ndash;Utils&ndash;&gt;-->
-
-    <!--<script src="includes/js/utils/util.js"></script>-->
-    <!--<script src="includes/js/utils/impl/annyangUtil.js"></script>-->
-    <!--<script src="includes/js/utils/impl/chatUtil.js"></script>-->
-    <!--<script src="includes/js/utils/impl/ttv.js"></script>-->
-    <!--<script src="includes/js/utils/impl/accessibilityUtil.js"></script>-->
-
-    <!--&lt;!&ndash;Plugins&ndash;&gt;-->
-    <!--<script src="includes/js/plugins/impl/button.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/menu.js"></script>-->
-
-
-    <!--<script src="includes/js/plugins/plugin.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/chat.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/login.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/paragraph.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/library.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/accessibility.js"></script>-->
-
-    <!--<script src="includes/js/plugins/factories/pluginFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/loginFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/chatFactory.js"></script>-->
+    <script src="includes/js/plugins/factories/pluginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
     <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/menuFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>-->
+    <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
 
-    <!--&lt;!&ndash;Objects&ndash;&gt;-->
-    <!--<script src="includes/js/objects/object.js"></script>-->
-    <!--<script src="includes/js/objects/impl/inputText.js"></script>-->
-    <!--<script src="includes/js/objects/factories/objectFactory.js"></script>-->
-    <!--<script src="includes/js/objects/factories/impl/inputFactory.js"></script>-->
+
+    <!--Objects-->
+    <script src="includes/js/objects/object.js"></script>
+    <script src="includes/js/objects/impl/inputText.js"></script>
+    <script src="includes/js/objects/impl/button.js"></script>
+    <script src="includes/js/objects/impl/link.js"></script>
+    <script src="includes/js/objects/impl/paragraph.js"></script>
+
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
 </head>
 <body>
 
@@ -72,6 +71,10 @@
         <tg-menu options="menuOptions">
 
         </tg-menu>
+
+        <tg-a options="linkOptions">
+
+        </tg-a>
 
     </div>
     <div class="clear"></div>
@@ -130,34 +133,44 @@
     var accessibilityOption = {
     }
 
+    var linkOptions = {
+        link1: {
+            href: "homePage.html",
+            id: "myHomePage",
+            target: "_self",
+            text: "Homepage",
+            commandTrigger: "דף הבית"
+        }
+    }
+
     var menuOptions = {
         link1: {
             href: "homePage.html",
-//            id: "navW3School",
-//            target: "_self",
+            id: "navW3School",
+            target: "_self",
             text: "Homepage",
             commandTrigger: "דף הבית"
         },
         link2: {
             href: "library.html",
-//            id: "navHomePage",
-//            target: "_self",
+            id: "navHomePage",
+            target: "_self",
             text: "Library",
             commandTrigger: "ספריה"
 
         },
         link3: {
             href: "chat.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "navTsamid",
+            target: "_self",
             text: "Chat",
             commandTrigger: "חדר שיחה"
 
         },
         link4: {
             href: "agenda.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "navTsamid",
+            target: "_self",
             text: "Agenda",
             commandTrigger: "לוח מודעות"
 
@@ -167,7 +180,8 @@
 
     var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
     var twoGatherApi = new Gatherapi(options);
-    twoGatherApi.middleware.init();
+//    twoGatherApi.middleware.init();
+//    twoGatherApi.objectFactories.linkFactory.createObject(document.getElementsByTagName("tg-a")[0]);
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
 </script>

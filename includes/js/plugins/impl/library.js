@@ -42,8 +42,6 @@ class Library extends Object{
             img.setAttribute("src",options[propertyName]["img"]);
             bookHeader.innerHTML = options[propertyName]["bookName"];
 
-            // buttonStart.setAttribute("background","url(includes/library/play icon.png)" );
-            // buttonStop.style.backgroundImage = "url('includes/library/pause icon.png')";
             buttonStart.setAttribute("data-command",options[propertyName]["triggerCommand"])
             buttonStart.innerHTML = "start";
             buttonStop.innerHTML = "stop";
@@ -116,6 +114,8 @@ class Library extends Object{
             }
 
             buttonStart.onclick = function(){
+
+
                 let path = options[propertyName]["path"];
                 console.log("path " + path);
 

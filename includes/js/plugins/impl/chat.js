@@ -7,26 +7,14 @@ class Chat extends Object{
         this.chatUtil = new ChatUtil();
     }
 
-    draw(){
-
-        // this.domElement.innerHTML += '<div class="tg-chat-wrapper">'+
-        //     '<div class="message_box" id="message_box"></div>' +
-        //     '<div class="panel">'+
-        //     '<tg-input name="name" id="name" placeholder="Your Name" maxlength="15"/></tg-input>'+
-        //     '<tg-input name="message" id="message" placeholder="Message" maxlength="80" onkeydown="if (event.keyCode == 13)document.getElementById('+"'send-btn'"+').click()"/></tg-input>'+
-        //        // 'onkeydown = '+"if (event.keyCode == 13)document.getElementById("+"+'send-btn'+"+").click()"+
-        //        // '/>
-        //     '</div>'+
-        //     '<button id="send-btn" class=button>Send</button>'+
-        //     '</div>';
-
+    draw(wsChatServer){
 
         this.domElement.innerHTML +='<div class="chatmain">'+
                                         '<div class="messages">'+
                                             '<div class="above"  id="message_box">'+
                                                 '<div class="bellow">'+
-                                                    '<tg-input class="text" name="name" id="name" placeholder="Your Name" maxlength="15"/></tg-input>'+
-                                                    '<tg-input class="text" name="message" id="message" placeholder="Message" maxlength="80" onkeydown="if (event.keyCode == 13)document.getElementById('+"'send-btn'"+').click()"/></tg-input>'+
+                                                    '<tg-input class="text" name="name" id="name" placeholder="Your Name" /></tg-input>'+
+                                                    '<tg-input class="text" name="message" id="message" placeholder="Message" /></tg-input>'+
                                                     // '<section class="text"> </section>'+
                                                     '<button  id="send-btn" class="send">Send</button>'+
                                                 '</div>'+
@@ -44,11 +32,23 @@ class Chat extends Object{
                                         '<div class="clear"></div>'+
                                         '</div>';
 
+        let inputOption = {
+            inputAttribute : {
+
+            }
+        }
 
         let inputs = this.domElement.getElementsByTagName("tg-input");
+
         for(let i = 0; i < inputs.length; i++){
-            this.inputFactory.createObject(inputs[i]);
+            let attributes = inputs[i].attributes;
+            while(inputs[i].attributes.length > 0){
+                let attributeName = attributes[0].nodeName;
+                inputOption.inputAttribute[attributeName] = attributes[0].nodeValue;
+                inputs[i].removeAttribute(attributeName);
+            }
+            this.inputFactory.createObject(inputs[i],inputOption);
         }
-        this.chatUtil.initChat();
+        this.chatUtil.initChat(wsChatServer);
     }
 }
