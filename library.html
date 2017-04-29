@@ -16,6 +16,9 @@
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
 
     <title>Tsamid</title>
+    <!--third-party-->
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
     <!--2gatherAPI-->
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware.js"></script>
@@ -32,7 +35,6 @@
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
     <script src="includes/js/plugins/impl/login.js"></script>
-    <script src="includes/js/plugins/impl/paragraph.js"></script>
     <script src="includes/js/plugins/impl/library.js"></script>
     <script src="includes/js/plugins/impl/accessibility.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
@@ -42,20 +44,22 @@
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
     <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
-    <script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+
 
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
+    <script src="includes/js/objects/impl/paragraph.js"></script>
 
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
 
 </head>
 <body>
@@ -186,6 +190,7 @@
 
 
     }
+
 
     var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
     var twoGatherApi = new Gatherapi(options);

@@ -248,7 +248,7 @@ nav{
 }
 .tg-library-startButton:before {
     z-index: 2;
-    top: 16em;
+    top: 14.5em;
     width: 0;
     height: 0;
     border: 1.4em solid transparent;
@@ -256,7 +256,7 @@ nav{
     border-left-width: 2.6em;
 }
 .tg-library-stopButton:before{
-    top: 16.2em;
+    top: 14.5em;
     left: 10.4em;
     width: 2.3em;
     height: 2.3em;

@@ -27,6 +27,11 @@ class LibraryFactory extends PluginFactory{
 
         let commands = {};
 
+        commands["עצור"] = function(){
+            console.log("stop stop speaker");
+            let speaker = new SpeechUtil();
+            speaker.cancelSpeak();
+        }
         for(let propertyName in this.options) {
 
             let dataCommand = this.options[propertyName]["triggerCommand"];

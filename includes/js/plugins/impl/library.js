@@ -23,6 +23,7 @@ class Library extends Object{
         spanClose.setAttribute("class","close");
         spanClose.innerHTML = "&times";
         let pararpghText = document.createElement("p");
+        pararpghText.setAttribute("class","content-paragraph");
         pararpghText.innerHTML = "";
         divContent.appendChild(spanClose);
         divContent.appendChild(pararpghText);
@@ -55,6 +56,9 @@ class Library extends Object{
             // When the user clicks the button, open the modal
             img.onclick = function() {
 
+                document.getElementsByClassName("content-paragraph").innerHTML += "";
+
+
                 let path = options[propertyName]["path"];
                 console.log("path " + path);
                 let rawFile = new XMLHttpRequest();
@@ -66,21 +70,14 @@ class Library extends Object{
                         if(rawFile.status === 200 || rawFile.status == 0)
                         {
                             let allText = rawFile.responseText;
-
-                            let chunkLength = 120;
-                            let pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
-                            let arr = [];
-                            let txt = allText;
-                            while (txt.length > 0) {
-                                arr.push(txt.match(pattRegex)[0]);
-                                txt = txt.substring(arr[arr.length - 1].length);
+                            // By lines
+                            var lines = allText.split('\n');
+                            console.log(" lines.length" +  lines.length);
+                            for(var line = 0; line < lines.length; line++) {
+                                pararpghText.innerHTML += lines[line];
+                                pararpghText.innerHTML += "<br>";
                             }
-                            arr.forEach(function(element) {
-                                let content = element.trim();
-                                pararpghText.innerHTML +=  content;
 
-
-                            });
                         }
                     }
                 }
@@ -129,7 +126,7 @@ class Library extends Object{
                         {
                             let allText = rawFile.responseText;
 
-                            let chunkLength = 120;
+                            let chunkLength = 5;
                             let pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
                             let arr = [];
                             let txt = allText;
@@ -138,19 +135,16 @@ class Library extends Object{
                                 txt = txt.substring(arr[arr.length - 1].length);
                             }
                             arr.forEach(function(element) {
-                                let content = element.trim();
-                                console.log(content);
-                                let u = new SpeechSynthesisUtterance(content);
-                                u.lang = 'en-US';
-                                let speaker = new SpeechUtil();
-                                speaker.startSpeak(u);
-                                // window.speechSynthesis.speak(u);
+
+                                window.setTimeout(textToVoice(element),150000);
+
 
                             });
                         }
                     }
                 }
                 rawFile.send(null);
+
             }
 
             bookDiv.appendChild(bookHeader);
@@ -162,7 +156,21 @@ class Library extends Object{
 
         this.domElement.appendChild(mainDiv);
         this.domElement.appendChild(divModel);
+
+        var textToVoice= function(element){
+            console.log("before========================");
+            console.log(element);
+            let content = element.trim();
+            // console.log(content);
+            let u = new SpeechSynthesisUtterance(content);
+            u.lang = 'en-US';
+            let speaker = new SpeechUtil();
+            speaker.startSpeak(u);
+            console.log("after========================");
+            // window.speechSynthesis.speak(u);
+        }
     }
+
 
     readText(text)
     {

@@ -11,10 +11,14 @@
     <!--accessibilty tool-->
     <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
 
+    <title>Tsamid</title>
     <!--third-party-->
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
 
     <title>Tsamid</title>
+    <!--third-party-->
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
     <!--2gatherAPI-->
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware.js"></script>
@@ -25,6 +29,7 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/boxModal.js"></script>
 
     <!--Plugins-->
 
@@ -34,6 +39,7 @@
     <script src="includes/js/plugins/impl/library.js"></script>
     <script src="includes/js/plugins/impl/accessibility.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
+
 
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
@@ -50,12 +56,18 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
+    <script src="includes/js/objects/impl/image.js"></script>
 
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
 <body>
 
@@ -77,37 +89,30 @@
 
 <div id="wrapper">
 
-    <div class="chatmain">
-        <div class="messages">
-            <div class="above"  id="message_box">
-                <div class="bellow">
-                    <!--create chat with 2 inputs and button and div with id "message box"-->
-                    <input class="text" type="text" id="name" >
-                    <tg-input options="inputChat"></tg-input>
-                    <tg-button options="buttonChat"></tg-button>
 
-                </div>
-            </div>
+
+    <div class="main">
+        <!--<tg-library options="libraryOption">-->
+
+        <!--</tg-library>-->
+
+        <div class="tg-library-story">
+            <tg-img options="imgText"></tg-img>
+
+            <tg-buttonreaderStart options="buttonReadOne">
+            </tg-buttonreaderStart>
+
+            <tg-buttonReaderStop options="buttonStopOne">
+            </tg-buttonReaderStop>
         </div>
-        <div class="loggedin">
-            <section class="me">
-                <img class="mypic" src="images/anyone.png">
-                <p class="name">Me me: </p>
-                <p class="status">Online</p>
-            </section>
-            <section class="others">
-            </section>
-        </div>
-        <div class="clear"></div>
+
+
     </div>
 
 
-    <!--<div id="message_box" style="width: 400px ; height: 400px ; overflow: scroll"></div>-->
+    <div class="clear"></div>
+</div><!--  End of wrapper -->
 
-
-
-</div>
-<div class="grass"></div>
 
 <script>
 
@@ -150,99 +155,101 @@
 
     }
 
-    var buttonChat = {
+    var imgText = {
+        imgAttribute : {
+            id : "imgReader",
+            class : "tg-library-img"
+        },
+        path: "includes/library/The Hare and the Tortoise",
+        img : "includes/library/The Hare and the Tortoise.jpg"
+    }
+
+    var buttonReadOne = {
         buttonAttribute : {
-            id : "send-btn",
-            class : "send"
+            id : "startButton",
+            class : "tg-library-startButton"
         },
-        buttonValue : "send",
-        commands: {
-            'submit': {
-                name: 'שלח', func: function () {
-                    console.log("send");
-                    console.log('inside send');
-                    document.getElementById('send-btn').click();
-                }
-            }
-        }
+        triggerCommand : "התחל להקריא",
+        path: "includes/library/The Hare and the Tortoise",
+        buttonValue : "start",
+        imgID : "imgReader"
+
     }
 
-
-    var inputChat = {
-        inputAttribute : {
-            type: "text",
-            min : "1",
-            max : "5",
-            class : "text",
-            id : "message",
-            name : "message",
-            placeholder : "compose message"
+    var buttonStopOne = {
+        buttonAttribute : {
+            id : "stopButton",
+            class : "tg-library-stopButton"
         },
-        commands: {
-            'message': {
-                name: 'הודעה *search', func: function (contents) {
-                    console.log("message");
-                    console.log('inside message');
-                    //set content
-                    document.querySelector("#message").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#message").value;
-//                        textToSpeak(contents);
-                }
-            },
-
-        }
+        triggerCommand : "עצור הקראה",
+        buttonValue : "stop",
+        imgID : "imgReader"
     }
 
+    var libraryOption = {
+        book1 : {
+            path: "includes/library/The Hare and the Tortoise",
+            bookName : "The Hare and the Tortoise",
+            img : "includes/library/The Hare and the Tortoise.jpg",
+            triggerCommand : "ספר ראשון"
+        },
+        book2 : {
+            path: "includes/library/The Lion and the Mouse",
+            bookName : "The Lion and the Mouse",
+            img : "includes/library/The Lion and the Mouse.jpg",
+            triggerCommand : "ספר שני"
+        },
+        book3 : {
+            path: "includes/library/The Goose with the Golden Eggs",
+            bookName : "The Goose with the Golden Eggs",
+            img : "includes/library/The Goose with the Golden Eggs.jpg",
+            triggerCommand : "ספר שלישי"
+        },
+        book4 : {
+            path: "includes/library/The Milkmaid and her Pail",
+            bookName : "The Milkmaid and her Pail",
+            img : "includes/library/The Milkmaid and her Pail.jpg",
+            triggerCommand : "ספר רביעי"
+        },
+        book5 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "A Christmas Surprise",
+            img : "includes/library/A Christmas Surprise.jpg",
+            triggerCommand : "ספר חמישי"
+        },
+        book6 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "The Ant and the Grasshopper",
+            img : "includes/library/The Ant and the Grasshopper.jpg",
+            triggerCommand : "ספר שישי"
+        },
+        book7 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "Three Sons and a Bundle of Sticks",
+            img : "includes/library/Three Sons and a Bundle of Sticks.jpg",
+            triggerCommand : "ספר שביעי"
+        },
+        book8 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "The Fox and the Grapes",
+            img : "includes/library/The Fox and the Grapes.jpg",
+            triggerCommand : "ספר שמיני"
+        },
 
-    var chatOptions = {
-        wsURL : "ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php",
-        commands: {
-            'name': {
-                name: 'שם *search', func: function (contents) {
-                    console.log("name");
-                    console.log('inside fillName');
-                    //set content
-                    document.querySelector("#name").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#name").value;
-//                        textToSpeak(contents);
 
-                }
-            },
-            'message': {
-                name: 'הודעה *search', func: function (contents) {
-                    console.log("message");
-                    console.log('inside message');
-                    //set content
-                    document.querySelector("#message").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#message").value;
-//                        textToSpeak(contents);
-                }
-            },
-            'submit': {
-                name: 'שלח', func: function () {
-                    console.log("send");
-                    console.log('inside send');
-                    document.getElementById('send-btn').click();
-                }
-            }
-        }
+
     }
+
 
     var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
     var twoGatherApi = new Gatherapi(options);
     //    twoGatherApi.middleware.init();
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-//    twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
+//    twoGatherApi.pluginFactories.libraryFactory.createPlugin(document.getElementsByTagName("tg-library")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
-    twoGatherApi.objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0]);
-    twoGatherApi.objectFactories.buttonFactory.createObject(document.getElementsByTagName("tg-button")[0]);
-
-    var chatUtil = new ChatUtil();
-    chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php");
-
+    twoGatherApi.objectFactories.imgFactory.createObject(document.getElementsByTagName("tg-img")[0]);
+    twoGatherApi.objectFactories.buttonReaderStartFactory.createObject(document.getElementsByTagName("tg-buttonreaderStart")[0]);
+    twoGatherApi.objectFactories.buttonReaderStopFactory.createObject(document.getElementsByTagName("tg-buttonreaderStop")[0]);
 </script>
 </body>
 </html>
