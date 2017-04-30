@@ -15,9 +15,11 @@ class SpeechUtil extends Util{
     }
 
     startSpeak(utterance){
+        console.log("inside startSpeak");
         window.speechSynthesis.speak(utterance);
     }
     cancelSpeak(){
+
         window.speechSynthesis.cancel();
     }
     chunkContents(text){

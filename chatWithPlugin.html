@@ -77,34 +77,8 @@
 
 <div id="wrapper">
 
-    <div class="chatmain">
-        <div class="messages">
-            <div class="above"  id="message_box">
-                <div class="bellow">
-                    <!--create chat with 2 inputs and button and div with id "message box"-->
-                    <input class="text" type="text" id="name" >
-                    <tg-input options="inputChat"></tg-input>
-                    <tg-button options="buttonChat"></tg-button>
-
-                </div>
-            </div>
-        </div>
-        <div class="loggedin">
-            <section class="me">
-                <img class="mypic" src="images/anyone.png">
-                <p class="name">Me me: </p>
-                <p class="status">Online</p>
-            </section>
-            <section class="others">
-            </section>
-        </div>
-        <div class="clear"></div>
-    </div>
-
-
-    <!--<div id="message_box" style="width: 400px ; height: 400px ; overflow: scroll"></div>-->
-
-
+    <tg-chat options="chatOptions">
+    </tg-chat>
 
 </div>
 <div class="grass"></div>
@@ -150,50 +124,6 @@
 
     }
 
-    var buttonChat = {
-        buttonAttribute : {
-            id : "send-btn",
-            class : "send"
-        },
-        buttonValue : "send",
-        commands: {
-            'submit': {
-                name: 'שלח', func: function () {
-                    console.log("send");
-                    console.log('inside send');
-                    document.getElementById('send-btn').click();
-                }
-            }
-        }
-    }
-
-
-    var inputChat = {
-        inputAttribute : {
-            type: "text",
-            min : "1",
-            max : "5",
-            class : "text",
-            id : "message",
-            name : "message",
-            placeholder : "compose message"
-        },
-        commands: {
-            'message': {
-                name: 'הודעה *search', func: function (contents) {
-                    console.log("message");
-                    console.log('inside message');
-                    //set content
-                    document.querySelector("#message").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#message").value;
-//                        textToSpeak(contents);
-                }
-            },
-
-        }
-    }
-
 
     var chatOptions = {
         wsURL : "ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php",
@@ -233,16 +163,10 @@
 
     var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
     var twoGatherApi = new Gatherapi(options);
-    //    twoGatherApi.middleware.init();
+//    twoGatherApi.middleware.init();
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-//    twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
+    twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
-    twoGatherApi.objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0]);
-    twoGatherApi.objectFactories.buttonFactory.createObject(document.getElementsByTagName("tg-button")[0]);
-
-    var chatUtil = new ChatUtil();
-    chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php");
-
 </script>
 </body>
 </html>

@@ -1,0 +1,20 @@
+	
+	 [{
+		 "name": "steve",
+		 "password" : "12345",
+		 "disability" : "motor",
+		 "device" : "clicker"
+		},
+		{
+		  "name":"john",
+		  "password" : "hello world",
+		  "disability" : "blind",
+		  "device" : "tobi"
+		},
+		{
+		  "name":"albert",
+		  "password" : "12345",
+		  "disability" : "hearing",
+		  "device" : ""
+		}
+	]

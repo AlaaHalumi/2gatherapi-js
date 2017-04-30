@@ -33,7 +33,8 @@ class BoxModelUtil extends Util {
         this.divContent.appendChild(this.spanClose);
         this.divContent.appendChild(this.pararpghText);
         this.divModel.appendChild(this.divContent)
-        document.getElementById("wrapper").appendChild(this.divModel);
+        document.body.appendChild(this.divModel);
+
 
         // Get the modal
         let modal = document.getElementById('myModal');

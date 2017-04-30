@@ -5,6 +5,9 @@
     <!--tsamid css -->
     <link rel="stylesheet" type="text/css" href="includes/style.css">
 
+    <!--skipTo css-->
+    <link rel="stylesheet" type="text/css" href="includes/SkipTo.css">
+
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 
@@ -25,6 +28,7 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/boxModal.js"></script>
 
     <!--Plugins-->
 
@@ -50,12 +54,18 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
+    <script src="includes/js/objects/impl/image.js"></script>
 
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
 <body>
 
@@ -64,9 +74,14 @@
 
 <header>
     <div class="headerContainer">
+
+        <section  class="SkipToAttach" aria-labelledby="id1">
+        </section>
+
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
         </div>
+
 
         <tg-menu options="menuOptions">
         </tg-menu>
@@ -77,13 +92,55 @@
 
 <div id="wrapper">
 
-    <tg-chat options="chatOptions">
-    </tg-chat>
+    <div class="chatmain">
+        <div class="messages">
+            <div class="above"  id="message_box">
+                <div class="bellow">
+                    <!--create chat with 2 inputs and button and div with id "message box"-->
+                    <input class="text" type="text" id="name" >
+                    <tg-input options="inputChat"></tg-input>
+                    <tg-button options="buttonChat"></tg-button>
+
+                </div>
+            </div>
+        </div>
+        <div class="loggedin">
+            <section class="me">
+                <img class="mypic" src="images/anyone.png">
+                <p class="name">Me me: </p>
+                <p class="status">Online</p>
+            </section>
+            <section class="others">
+            </section>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+
+    <!--<div id="message_box" style="width: 400px ; height: 400px ; overflow: scroll"></div>-->
+
+
 
 </div>
 <div class="grass"></div>
 
 <script>
+
+    var SkipToConfig =  {
+        "settings": {
+            "skipTo": {
+                "headings": "h1 ,h2, h3",
+                "landmarks": "[role=navigation],[role=search]",
+                "sections": "nav , main",
+                "ids" : "#homePage, #library, #chat, #agenda ,#name, #message, #send-btn ",
+                "accesskey": "0",
+                "wrap": "true",
+                "visibility": "onLoad",
+                "customClass": "custom",
+                "attachElement": ".SkipToAttach"
+            }
+        }
+    };
 
     var accessibilityOption = {
 
@@ -92,36 +149,79 @@
     var menuOptions = {
         link1: {
             href: "homePage.html",
-//            id: "navW3School",
-//            target: "_self",
+            id: "Homepage",
+            target: "_self",
             text: "Homepage",
             commandTrigger: "דף הבית"
         },
         link2: {
             href: "library.html",
-//            id: "navHomePage",
-//            target: "_self",
+            id: "library",
+            target: "_self",
             text: "Library",
             commandTrigger: "ספריה"
 
         },
         link3: {
             href: "chat.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "chat",
+            target: "_self",
             text: "Chat",
             commandTrigger: "חדר שיחה"
 
         },
         link4: {
             href: "agenda.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "agenda",
+            target: "_self",
             text: "Agenda",
             commandTrigger: "לוח מודעות"
-
         }
 
+    }
+
+    var buttonChat = {
+        buttonAttribute : {
+            id : "send-btn",
+            class : "send"
+        },
+        buttonValue : "send",
+        commands: {
+            'submit': {
+                name: 'שלח', func: function () {
+                    console.log("send");
+                    console.log('inside send');
+                    document.getElementById('send-btn').click();
+                }
+            }
+        }
+    }
+
+
+    var inputChat = {
+        inputAttribute : {
+            type: "text",
+            min : "1",
+            max : "5",
+            class : "text",
+            id : "message",
+            name : "message",
+            placeholder : "compose message"
+        },
+        commands: {
+            'message': {
+                name: 'הודעה *search', func: function (contents) {
+                    console.log("message");
+                    console.log('inside message');
+                    //set content
+                    document.querySelector("#message").value = contents;
+//                  get content and speak it
+                    var contents = document.querySelector("#message").value;
+//                        textToSpeak(contents);
+                }
+            },
+
+        }
     }
 
 
@@ -163,10 +263,18 @@
 
     var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
     var twoGatherApi = new Gatherapi(options);
-//    twoGatherApi.middleware.init();
+    //    twoGatherApi.middleware.init();
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-    twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
+//    twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+    twoGatherApi.objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0]);
+    twoGatherApi.objectFactories.buttonFactory.createObject(document.getElementsByTagName("tg-button")[0]);
+
+    var chatUtil = new ChatUtil();
+    chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php");
+
 </script>
 </body>
+<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
+<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </html>

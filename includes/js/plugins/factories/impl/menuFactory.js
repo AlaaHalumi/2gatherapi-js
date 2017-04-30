@@ -12,9 +12,13 @@ class MenuFactory extends PluginFactory{
     }
 
     createPlugin(domElement){
+
         let menu = new Menu(domElement);
         this.options = eval(domElement.getAttribute("options"));
-        this.initUtils();
+        if(sessionStorage.getItem("disability") != "hearing"){
+            this.initUtils();
+        }
+
         menu.draw();
         return menu;
     }

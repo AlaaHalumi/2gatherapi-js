@@ -27,6 +27,8 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/boxModal.js"></script>
+    <script src="includes/js/utils/impl/userDetails.js"></script>
 
     <!--Plugins-->
 
@@ -52,12 +54,18 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
+    <script src="includes/js/objects/impl/image.js"></script>
 
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
 <body>
 
@@ -95,6 +103,7 @@
 
 <script>
 
+    var twoGatherApi;
     var accessibilityOption = {
 
     }
@@ -128,6 +137,39 @@
         }
     }
 
+    var checkUser = function(){
+        var url = 'config.json';
+        var jsonData;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                jsonData = JSON.parse(this.responseText);
+
+                var name = document.querySelector("[type='text']").value;
+                var password = document.querySelector("[type='password']").value;
+                for(var index = 0 ; index < jsonData.length ; index++){
+                    if(jsonData[index]["name"] == name && jsonData[index]["password"] == password){
+                        console.log("yeahhhhhhhhhhhhhhhh");
+//                        twoGatherApi = new Gatherapi({disability : jsonData[index]["disability"] ,device : jsonData[index]["device"] });
+                        sessionStorage.disability = jsonData[index]["disability"];
+                        sessionStorage.device = jsonData[index]["device"];
+                        sessionStorage.disability = jsonData[index]["disability"];
+                        window.location.replace("homePage.html");
+                    }
+
+                }
+
+
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+//                    window.location.replace("homePage.html");
+
+    };
+
     var loginOptions = {
         labels: {
             nickname: "Nick Name",
@@ -138,30 +180,34 @@
             'submit': {
                 name: 'התחבר', func: function () {
                     console.log("login");
-                    window.location.replace("homePage.html");
+                    checkUser();
+
                 }
             },
             'username': {
                 name: 'שם *search', func: function (contents) {
                     console.log("username");
-                    document.querySelector(".login-username > label > input").value = contents;
+                    document.querySelector("[type='text']").value = contents;
                 }
             },
 
             'moveToPassword': {
                 name: 'סיסמא *search', func: function (contents) {
-                    document.querySelector(".login-password > label > input").value = contents;
+                    document.querySelector("[type='password']").value = contents;
                 }
             }
         }
     }
 
-    var options = {voiceToTextLanguage: "hebrew", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
+//    var options = {voiceToTextLanguage: "hebrew", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
+    var twoGatherApi = new Gatherapi();
 //    twoGatherApi.middleware.init();
     twoGatherApi.objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0],null);
     twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+
+
 
 </script>
 

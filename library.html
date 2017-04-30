@@ -29,6 +29,8 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/boxModal.js"></script>
 
     <!--Plugins-->
 
@@ -54,12 +56,18 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
+    <script src="includes/js/objects/impl/image.js"></script>
 
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 
 </head>
 <body>
@@ -97,6 +105,22 @@
 
 
 <script>
+
+    var SkipToConfig =  {
+        "settings": {
+            "skipTo": {
+                "headings": "h1 ,h2, h3",
+                "landmarks": "[role=navigation],[role=search]",
+                "sections": "nav , main",
+                "ids" : "#homePage, #library, #chat, #agenda ",
+                "accesskey": "0",
+                "wrap": "true",
+                "visibility": "onLoad",
+                "customClass": "custom",
+                "attachElement": ".SkipToAttach"
+            }
+        }
+    };
 
     var accessibilityOption = {
 

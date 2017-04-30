@@ -24,6 +24,8 @@ class ButtonReaderStart extends Object {
 
         let button = document.createElement("button");
         let path;
+
+        button.style.cursor = "pointer";
         if(this.options.buttonAttribute){
             for (let attribute in this.options.buttonAttribute) {
                 console.log("attribute: " + attribute + " " + this.options.buttonAttribute[attribute]);

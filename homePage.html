@@ -5,6 +5,9 @@
     <!--tsamid css -->
     <link rel="stylesheet" type="text/css" href="includes/style.css">
 
+    <!--skip to css-->
+    <link rel="stylesheet" type="text/css" href="includes/SkipTo.css">
+
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 
@@ -13,6 +16,7 @@
 
     <!--third-party-->
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
 
     <title>Tsamid</title>
     <!--2gatherAPI-->
@@ -25,7 +29,7 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
-
+    <script src="includes/js/utils/impl/boxModal.js"></script>
     <!--Plugins-->
 
     <script src="includes/js/plugins/plugin.js"></script>
@@ -50,23 +54,34 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
+    <script src="includes/js/objects/impl/image.js"></script>
 
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
-<body>
+<body >
 
 <tg-accessibility options="accessibilityOption">
 </tg-accessibility>
 
 <header>
     <div class="headerContainer">
+
+        <section  class="SkipToAttach" aria-labelledby="id1">
+        </section>
+
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
         </div>
+
 
         <tg-menu options="menuOptions">
 
@@ -146,14 +161,14 @@
     var menuOptions = {
         link1: {
             href: "homePage.html",
-            id: "navW3School",
+            id: "homePage",
             target: "_self",
             text: "Homepage",
             commandTrigger: "דף הבית"
         },
         link2: {
             href: "library.html",
-            id: "navHomePage",
+            id: "library",
             target: "_self",
             text: "Library",
             commandTrigger: "ספריה"
@@ -161,7 +176,7 @@
         },
         link3: {
             href: "chat.html",
-            id: "navTsamid",
+            id: "chat",
             target: "_self",
             text: "Chat",
             commandTrigger: "חדר שיחה"
@@ -169,7 +184,7 @@
         },
         link4: {
             href: "agenda.html",
-            id: "navTsamid",
+            id: "agenda",
             target: "_self",
             text: "Agenda",
             commandTrigger: "לוח מודעות"
@@ -184,6 +199,73 @@
 //    twoGatherApi.objectFactories.linkFactory.createObject(document.getElementsByTagName("tg-a")[0]);
     twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+
+    var SkipToConfig =  {
+        "settings": {
+            "skipTo": {
+                "headings": "h1 ,h2, h3",
+                "landmarks": "[role=navigation],[role=search]",
+                "sections": "nav , main",
+                "ids" : "#homePage, #library, #chat, #agenda ",
+                "accesskey": "0",
+                "wrap": "true",
+                "visibility": "onLoad",
+                "customClass": "custom",
+                "attachElement": ".SkipToAttach"
+            }
+        }
+    };
+
+    var mouseDown = 0;
+    var mouseDown = 0;
+    document.body.onmousedown = function() {
+        mouseDown++;
+        console.log(mouseDown);
+    }
+    document.body.onmouseup = function() {
+//        mouseDown--;
+        console.log(mouseDown);
+    }
+
+    function blink(link) {
+        if(mouseDown==1){
+            console.log("down");
+            window.location.replace(link);
+        }
+        else{
+            link.style.border = "";
+        }
+    }
+
+    function myBlick(button){
+        console.log("inside blink: " + button);
+        var link = document.querySelector('[href="'+button+'"]');
+        link.style.border = "thick solid #0000FF";
+        setTimeout(blink,5000,link);
+    }
+
+    function run(){
+        var buttons = document.getElementsByTagName("a")
+        console.log(buttons.length);
+        var i = 0;
+        (function loop(){
+            if (i++ > buttons.length) return;
+            setTimeout(function(){
+                myBlick(buttons[i].getAttribute("href"));
+                loop();
+            }, 8000);
+        })();
+
+
+    }
+
+//    run();
+
+    setTimeout(run,5000);
+//
+
 </script>
+<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
+<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </body>
 </html>
