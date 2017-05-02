@@ -317,3 +317,7 @@ chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/i
 <h3>init object</h3>
 <p>"2GatherAPI Instance".pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);</p>
 </div>
+
+<p> 
+In each html page you need firsttable init 2GatherAPI object and plugin and then create Gatherapi instance;
+</p>
