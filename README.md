@@ -15,7 +15,7 @@ tg-buttonreaderstart<br>
 tg-buttonreaderstop<br>
 tg-img<br>
 tg-input<br>
-tg-link<br>
+tg-a<br>
 tg-paragraph<br>
 
 Our Plugins Elements:
@@ -259,7 +259,7 @@ tg-menu<br>
 <h4>commands - initial voice coomand for start speach the text</h4>
 
 <h3>init object</h3>
-"2GatherAPI Instance".pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
+"2GatherAPI Instance".pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);<br>
 
 Alternatively is to create chat from two input one with message id and the second with name id and button with btn-send id.
 and you need create chatUtil instance and call initChat with chat ws as paramater
@@ -269,3 +269,51 @@ and you need create chatUtil instance and call initChat with chat ws as paramate
 var chatUtil = new ChatUtil();<br>
 chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php");
 </p>
+
+<div>
+<h2>tg-library: </h2>
+<p>library plugin create img with modal box for the text and two buttons for start read the text and the second for stop reader</p>
+<h3>Object Property:</h3>
+<h4>path - book path for read the text</h4>
+<h4>bookName - the name of the book</h4>
+<h4>img - book image</h4>
+<h4>commandTrigger - initial voice coomand</h4>
+
+<h3>Example:</h3>
+<p> 
+&nbsp var libraryOption = { <br>
+&nbsp&nbsp&nbsp&nbsp book1 : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp path : "includes/library/The Hare and the Tortoise" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp bookName : "The Hare and the Tortoise" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp img : "includes/library/The Hare and the Tortoise.jpg"
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp commandTrigger :"The Hare and the Tortoise" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp} <br>
+</p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);</p>
+</div>
+
+<div>
+<h2>tg-menu: </h2>
+<p>menu plugin contain a elemnts and this plugin support voice command each link can be init with any attributes</p>
+<h3>Object Property:</h3>
+<h4>text - link name</h4>
+<h4>commandTrigger - initial voice coomand</h4>
+
+
+<h3>Example:</h3>
+<p> 
+&nbsp var menuOption = { <br>
+&nbsp&nbsp&nbsp&nbsp link1 : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp href : "homePage.html" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp text : "Homepage" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp commandTrigger :"homePage" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp} <br>
+</p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);</p>
+</div>
