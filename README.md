@@ -251,3 +251,21 @@ tg-menu<br>
 <h3>init object</h3>
 <p>"2GatherAPI Instance".pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);;</p>
 </div>
+
+<h2>tg-chat: </h2>
+<p>chat plugin contain 2 input one with name id and the second with message id and button init with btn-send id. this plugin support voice command </p><br>
+<h3>Plugin Property:</h3>
+<h4>wsURL - initial the url of chat ws</h4>
+<h4>commands - initial voice coomand for start speach the text</h4>
+
+<h3>init object</h3>
+"2GatherAPI Instance".pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
+
+Alternatively is to create chat from two input one with message id and the second with name id and button with btn-send id.
+and you need create chatUtil instance and call initChat with chat ws as paramater
+
+<h3>Example:</h3>
+<p> 
+var chatUtil = new ChatUtil();<br>
+chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php");
+</p>
