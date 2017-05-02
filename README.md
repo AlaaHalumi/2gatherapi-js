@@ -187,3 +187,24 @@ tg-menu<br>
 <h3>init object</h3>
 <p>"2GatherAPI Instance".objectFactories.linkFactory.createObject(document.getElementsByTagName("tg-a")[0]);;</p>
 </div>
+
+<div>
+<h2>tg-paragraph: </h2>
+<p>paragraph element with text reader option</p>
+<h3>Object Property:</h3>
+<h4>content - paragraph text</h4>
+<h4>commandTrigger - initial voice coomand for start speach the text</h4>
+
+<h3>Example:</h3>
+<p> 
+&nbsp var myParagraph = { <br>
+&nbsp&nbsp&nbsp&nbsp commands : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp content : "This is a beautiful day" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp commandTrigger : "start read paragraph" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp} <br>
+</p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".objectFactories.paragraphFactory.createObject(document.getElementsByTagName("tg-paragraph")[0]);;</p>
+</div>
