@@ -27,6 +27,7 @@ tg-menu<br>
 
 <p> all our elements needs to set with options attrubute</p>
 
+<h1>2GatherAPI objects:</h1>
 <div>
 <h2>tg-button: </h2>
 <p>button element with voice command option </p>
@@ -207,4 +208,46 @@ tg-menu<br>
 
 <h3>init object</h3>
 <p>"2GatherAPI Instance".objectFactories.paragraphFactory.createObject(document.getElementsByTagName("tg-paragraph")[0]);;</p>
+</div>
+
+<h1>2GatherAPI plugins:</h1>
+
+<div>
+<h2>tg-login: </h2>
+<p>login plugin contain two inputs one in type text and the second in type password. in addition the plugin contain one button. this plugin support voice command</p><br>
+<h3>Plugin Property:</h3>
+<h4>labels - initial the input lables</h4>
+<h4>buttonValue - initial the button text value</h4>
+<h4>commands - initial voice coomand for start speach the text</h4>
+
+<h3>Example:</h3>
+<p> 
+&nbsp var loginOptions = { <br>
+&nbsp&nbsp&nbsp&nbsp labels: {
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp nickname: "Nick Name",<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp password: "Password",<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp }, <br>
+&nbsp&nbsp&nbsp&nbsp buttonValue:"Sigin in",
+&nbsp&nbsp&nbsp&nbsp commands: { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 'submit': { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp name: 'התחבר', func: function () {<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp checkUser(); <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp } <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }, <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 'username': { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp name: 'שם *search', func: function (contents) {<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp document.querySelector("[type='text']").value = contents; <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp } <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }, <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 'password': { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp name: 'סיסמא *search', func: function (contents) { {<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp document.querySelector("[type='password']").value = contents; <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp } <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }, <br>
+&nbsp&nbsp &nbsp&nbsp} <br>
+&nbsp} <br>
+</p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);;</p>
 </div>
