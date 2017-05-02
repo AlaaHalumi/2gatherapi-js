@@ -86,8 +86,8 @@ tg-menu<br>
 </div>
 
 <div>
-<h2>tg-buttonreaderstopt: </h2>
-<p>when click on button text convert to voice</p>
+<h2>tg-buttonreaderstop: </h2>
+<p>abort speach</p>
 <h3>Object Property:</h3>
 <h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
