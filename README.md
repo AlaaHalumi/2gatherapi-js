@@ -29,6 +29,7 @@ tg-menu<br>
 
 <div>
 <h2>tg-button: </h2>
+<p>button element with voice command option </p>
 <h3>Object Property:</h3>
 <h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
@@ -136,4 +137,30 @@ tg-menu<br>
 
 <h3>init object</h3>
 <p>"2GatherAPI Instance".objectFactories.imgFactory.createObject(document.getElementsByTagName("tg-img")[0]);</p>
+</div>
+
+<div>
+<h2>tg-input: </h2>
+<p>input element with voice command options</p>
+<h3>Object Property:</h3>
+<h4>inputAttribute - initial input attribute</h4>
+<h4>commands - initial voice coomand</h4>
+
+<h3>Example:</h3>
+<p> 
+&nbsp var imgModal = { <br>
+&nbsp&nbsp&nbsp&nbsp imgAttribute : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp type : "text" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp&nbsp&nbsp commands: { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 'message': { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp name: 'message', func: function () { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp document.querySelector("#message").value = contents; <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp } <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp } <br>
+&nbsp&nbsp} <br>
+</p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0]);</p>
 </div>
