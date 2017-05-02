@@ -51,3 +51,6 @@ tg-menu<br>
 &nbsp&nbsp &nbsp&nbsp} <br>
 &nbsp} <br>
 </p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".objectFactories.buttonFactory.createObject(document.getElementsByTagName("tg-button")[0]);</p>
