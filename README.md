@@ -8,19 +8,19 @@ give them the ability to watch, hear and navigate indepentently.
 
 # refereance API
 
-Our Objects:
+Our Objects Elements:
 
-'<'tg-button'>'
-<tg-buttonStart>
-<tg-buttonStop>
-<tg-img>
-<tg-input>
-<tg-link>
-<tg-paragraph>
+tg-button
+tg-buttonStart
+tg-buttonStop
+tg-img
+tg-input
+tg-link
+tg-paragraph
 
-Our Plugins:
+Our Plugins Elements:
 
-<tg-login>
-<tg-chat>
-<tg-library>
-<tg-menu>
+tg-login
+tg-chat
+tg-library>
+tg-menu
