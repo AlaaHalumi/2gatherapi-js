@@ -10,7 +10,7 @@ give them the ability to watch, hear and navigate indepentently.
 
 Our Objects:
 
-"<tg-button>"
+"<"tg-button">"
 <tg-buttonStart>
 <tg-buttonStop>
 <tg-img>
