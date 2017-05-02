@@ -30,7 +30,7 @@ tg-menu<br>
 <div>
 <h2>tg-button: </h2>
 <h3>Object Property:</h3>
-<h4>buttonAttribute - initial the button attribute</h4>
+<h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
 <h4>commands - initial voice coomand</h4>
 
@@ -60,7 +60,7 @@ tg-menu<br>
 <h2>tg-buttonreaderstart: </h2>
 <p>when click on button text convert to voice</p>
 <h3>Object Property:</h3>
-<h4>buttonAttribute - initial the button attribute</h4>
+<h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
 <h4>triggerCommand - initial voice coomand</h4>
 <h4>path - specify file location</h4>
@@ -89,7 +89,7 @@ tg-menu<br>
 <h2>tg-buttonreaderstopt: </h2>
 <p>when click on button text convert to voice</p>
 <h3>Object Property:</h3>
-<h4>buttonAttribute - initial the button attribute</h4>
+<h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
 <h4>triggerCommand - initial voice coomand</h4>
 <h4>imgID - specify the image id of the book for unmark the choosen img </h4>
@@ -109,5 +109,31 @@ tg-menu<br>
 </p>
 
 <h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.buttonReaderStartFactory.createObject(document.getElementsByTagName("tg-buttonreaderstop")[0]);</p
+<p>"2GatherAPI Instance".objectFactories.buttonReaderStartFactory.createObject(document.getElementsByTagName("tg-buttonreaderstop")[0]);</p>
+</div>
+
+<div>
+<h2>tg-img: </h2>
+<p>this element allowing create img with box modal that display specify text </p>
+<h3>Object Property:</h3>
+<h4>imgAttribute - initial img attribute</h4>
+<h4>path - path of the text that display in box modal</h4>
+<h4>img - img location</h4>
+
+
+<h3>Example:</h3>
+<p> 
+&nbsp var imgModal = { <br>
+&nbsp&nbsp&nbsp&nbsp imgAttribute : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp id : "imgReader", <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp class : "img" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp&nbsp&nbsp path : includes/library/The Hare and the Tortoise.txt <br>
+&nbsp&nbsp&nbsp&nbsp img : includes/library/The Hare and the Tortoise.jpg <br>
+&nbsp&nbsp &nbsp&nbsp} <br>
+&nbsp} <br>
+</p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".objectFactories.imgFactory.createObject(document.getElementsByTagName("tg-img")[0]);</p>
 </div>
