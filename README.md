@@ -10,17 +10,17 @@ give them the ability to watch, hear and navigate indepentently.
 
 Our Objects Elements:
 
-tg-button
-tg-buttonStart
-tg-buttonStop
-tg-img
-tg-input
-tg-link
-tg-paragraph
+tg-button<br>
+tg-buttonStart<br>
+tg-buttonStop<br>
+tg-img<br>
+tg-input<br>
+tg-link<br>
+tg-paragraph<br>
 
 Our Plugins Elements:
 
-tg-login
-tg-chat
-tg-library>
-tg-menu
+tg-login<br>
+tg-chat<br>
+tg-library<br>
+tg-menu<br>
