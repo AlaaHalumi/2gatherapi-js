@@ -149,7 +149,7 @@ tg-menu<br>
 <h3>Example:</h3>
 <p> 
 &nbsp var imgModal = { <br>
-&nbsp&nbsp&nbsp&nbsp imgAttribute : { <br>
+&nbsp&nbsp&nbsp&nbsp inputAttribute : { <br>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp type : "text" <br>
 &nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
 &nbsp&nbsp&nbsp&nbsp commands: { <br>
@@ -163,4 +163,27 @@ tg-menu<br>
 
 <h3>init object</h3>
 <p>"2GatherAPI Instance".objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0]);</p>
+</div>
+
+<div>
+<h2>tg-a: </h2>
+<p>link element with voice command options</p>
+<h3>Object Property:</h3>
+<h4>linkAttribute - initial input attribute</h4>
+<h4>text - initial string value for a element</h4>
+<h4>commandTrigger - initial voice coomand</h4>
+
+<h3>Example:</h3>
+<p> 
+&nbsp var linkHomePage = { <br>
+&nbsp&nbsp&nbsp&nbsp linkAttribute : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp href : "homePage.html" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp text : "homePage" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp commandTrigger : "go to home page" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp} <br>
+</p>
+
+<h3>init object</h3>
+<p>"2GatherAPI Instance".objectFactories.linkFactory.createObject(document.getElementsByTagName("tg-a")[0]);;</p>
 </div>
