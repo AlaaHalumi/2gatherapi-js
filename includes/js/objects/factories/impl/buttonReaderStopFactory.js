@@ -19,7 +19,9 @@ class ButtonReaderStopFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             buttonReader = new ButtonReaderStop(domElement);
             buttonReader.draw();
-            this.initUtils();
+            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+                this.initUtils();
+            }
         }
         else{
             this.options = options;

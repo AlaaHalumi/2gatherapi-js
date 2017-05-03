@@ -15,7 +15,9 @@ class LibraryFactory extends PluginFactory{
         let library = new Library(domElement);
         this.options = eval(domElement.getAttribute("options"));
         library.draw();
-        this.initUtils();
+        if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            this.initUtils();
+        }
         return library;
     }
 

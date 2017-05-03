@@ -150,8 +150,6 @@
                 var password = document.querySelector("[type='password']").value;
                 for(var index = 0 ; index < jsonData.length ; index++){
                     if(jsonData[index]["name"] == name && jsonData[index]["password"] == password){
-                        console.log("yeahhhhhhhhhhhhhhhh");
-//                        twoGatherApi = new Gatherapi({disability : jsonData[index]["disability"] ,device : jsonData[index]["device"] });
                         sessionStorage.disability = jsonData[index]["disability"];
                         sessionStorage.device = jsonData[index]["device"];
                         sessionStorage.disability = jsonData[index]["disability"];

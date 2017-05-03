@@ -217,52 +217,74 @@
     };
 
     var mouseDown = 0;
-    var mouseDown = 0;
     document.body.onmousedown = function() {
         mouseDown++;
         console.log(mouseDown);
     }
-    document.body.onmouseup = function() {
-//        mouseDown--;
-        console.log(mouseDown);
+
+    function blink(element,selector) {
+        if(selector == "a"){
+            if(mouseDown==1){
+                console.log("down");
+                window.location.replace(element);
+            }
+            else{
+                element.style.border = "";
+            }
+
+        }
+        else {
+            if (mouseDown == 1) {
+                console.log("down");
+                mouseDown--;
+                element.click();
+                element.style.border = "";
+                console.log(mouseDown);
+            }
+        }
     }
 
-    function blink(link) {
-        if(mouseDown==1){
-            console.log("down");
-            window.location.replace(link);
+    function myBlink(element,selector){
+
+        console.log("inside blink: " + element);
+        if(selector=="a"){
+            var link = document.querySelector('[href="'+element+'"]');
+            link.style.border = "thick solid #0000FF";
+            setTimeout(blink,5000,link,"a");
         }
         else{
-            link.style.border = "";
+            element.style.border = "thick solid #0000FF";
+            setTimeout(blink,5000,element,"button");
         }
-    }
 
-    function myBlick(button){
-        console.log("inside blink: " + button);
-        var link = document.querySelector('[href="'+button+'"]');
-        link.style.border = "thick solid #0000FF";
-        setTimeout(blink,5000,link);
     }
 
     function run(){
-        var buttons = document.getElementsByTagName("a")
-        console.log(buttons.length);
+        var buttons = document.getElementsByTagName("button");
         var i = 0;
         (function loop(){
             if (i++ > buttons.length) return;
             setTimeout(function(){
-                myBlick(buttons[i].getAttribute("href"));
+                myBlink(buttons[i],"button");
                 loop();
             }, 8000);
         })();
 
 
+        var links = document.getElementsByTagName("a");
+        console.log(links.length);
+        var i = 0;
+        (function loop(){
+            if (i++ > links.length) return;
+            setTimeout(function(){
+                myBlink(links[i].getAttribute("href"),"a");
+                loop();
+            }, 8000);
+        })();
     }
 
-//    run();
-
     setTimeout(run,5000);
-//
+
 
 </script>
 <script src="includes/js/third-parties/skipTo/skipTo.js"></script>

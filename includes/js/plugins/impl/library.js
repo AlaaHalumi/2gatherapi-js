@@ -54,13 +54,21 @@ class Library extends Object{
                 rawFile.send(null);
             }
 
+            //get the id of the button's img
+            // let currentImg = document.getElementById(this.options["imgID"]);
+
             buttonStop.onclick = function(){
+                // currentImg.style.border = "";
                 let speaker = new SpeechUtil();
                 speaker.cancelSpeak();
                 console.log("stop stop speaker");
             }
 
-            buttonStart.onclick = function(){
+
+
+            buttonStart.onclick = function() {
+
+                // currentImg.style.border = "thick solid red";
 
                 let path = options[propertyName]["path"];
                 console.log("path " + path);

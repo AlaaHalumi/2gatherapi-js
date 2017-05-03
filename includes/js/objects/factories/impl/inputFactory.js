@@ -20,7 +20,9 @@ class InputFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             inputText = new InputText(domElement);
             inputText.draw(null);
-            this.initUtils();
+            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                this.initUtils();
+            }
         }
         else{
             this.options = options;

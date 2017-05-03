@@ -19,7 +19,10 @@ class ButtonFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             button = new Button(domElement);
             button.draw();
-            this.initUtils();
+            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+                this.initUtils();
+            }
+
         }
         else{
             this.options = options;

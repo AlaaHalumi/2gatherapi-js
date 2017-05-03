@@ -15,7 +15,7 @@ class MenuFactory extends PluginFactory{
 
         let menu = new Menu(domElement);
         this.options = eval(domElement.getAttribute("options"));
-        if(sessionStorage.getItem("disability") != "hearing"){
+        if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
             this.initUtils();
         }
 

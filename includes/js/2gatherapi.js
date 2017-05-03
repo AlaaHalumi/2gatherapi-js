@@ -10,18 +10,21 @@ class Gatherapi {
             chatUtil  : new ChatUtil(),
             textToVoice : new SpeechUtil(),
             boxModal : new BoxModelUtil(),
+            // circleObject : new CircleObjectUtil()
         };
-        // this.utilsConfiguration(options);
+
         this.objectFactories = {inputFactory : new InputFactory() , buttonFactory: new ButtonFactory ,linkFactory : new LinkFactory()
                                 ,paragraphFactory : new ParagraphFactory() , buttonReaderStartFactory : new ButtonReaderStartFactory()
                                 , buttonReaderStopFactory : new ButtonReaderStopFactory() , imgFactory : new ImgFactory()};
         this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(),
              menuFactory: new MenuFactory(), paragraphFactory: new ParagraphFactory(), libraryFactory: new LibraryFactory(),
             accessibilityFactory : new AccessibilityFactory() };
+        this.utilsConfiguration(options);
     }
 
     utilsConfiguration(options){
         // this.utils.annyangUtil.setLanguage(options["voiceToTextLanguage"]);
         // this.utils.textToVoice.setLanguage(options["textToVoice"]);
+        // this.utils.circleObject.initCircleObject();
     }
 }

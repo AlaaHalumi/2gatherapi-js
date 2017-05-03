@@ -19,7 +19,9 @@ class LinkFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             link = new Link(domElement);
             link.draw(null);
-            this.initUtils();
+            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+                this.initUtils();
+            }
         }
         else{
             this.options = options;
@@ -31,7 +33,7 @@ class LinkFactory extends ObjectFactory {
 
     }
 
-    initUtils() {
+    initUtils(){
         this.initAnnyang();
     }
 

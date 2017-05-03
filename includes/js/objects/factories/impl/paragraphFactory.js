@@ -20,7 +20,9 @@ class ParagraphFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             paragraph = new Paragraph(domElement);
             paragraph.draw(null);
-            this.initUtils();
+            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+                this.initUtils();
+            }
         }
         else{
             this.options = options;
@@ -31,7 +33,7 @@ class ParagraphFactory extends ObjectFactory {
         return paragraph;
     }
 
-    initUtils() {
+    initUtils(){
         this.initAnnyang();
     }
 
