@@ -215,6 +215,11 @@ tg-menu<br>
 <div>
 <h2>tg-login: </h2>
 <p>login plugin contain two inputs one in type text and the second in type password. in addition the plugin contain one button. this plugin support voice command</p><br>
+<p>the developer need to initial sessionStorage with 2 property:<br>
+1.sessionStorage.disability<br>
+2.sessionStorage.device<br>
+</p>
+
 <h3>Plugin Property:</h3>
 <h4>labels - initial the input lables</h4>
 <h4>buttonValue - initial the button text value</h4>
