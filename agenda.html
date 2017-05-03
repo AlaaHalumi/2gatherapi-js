@@ -92,11 +92,11 @@
 
         <h1> News</h1>
 
-        <tg-a options="linkOne"></tg-a>
 
         <section  class="rowNews" >
             <tg-paragraph options="paragraphOne"></tg-paragraph>
-            <tg-button options="buttonOptionsAdd" id="buttonAdd"></tg-button>
+            <tg-button options="buttonOptionsAdd" ></tg-button>
+            <tg-button options="buttonOptionsRemove" ></tg-button>
             <!--<tg-button options="buttonOptionsRemove" id="buttonRemove"></tg-button>-->
         </section>
 
@@ -133,7 +133,7 @@
     var paragraphOne = {
         commands: {
             'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'פסקה ראשונה'
+            'commandTrigger': 'one'
         }
     }
 
@@ -159,57 +159,49 @@
     }
 
 
-    var linkOne = {
-        link1: {
-            href: "homePage.html",
-            id: "myHomePage",
-            target: "_self",
-            text: "Homepage",
-            commandTrigger: "דף הבית"
-        }
-    }
-
 
     var menuOptions = {
         link1: {
             href: "homePage.html",
-            id: "navW3School",
+            id: "homePage",
             target: "_self",
             text: "Homepage",
-            commandTrigger: "דף הבית"
+            commandTrigger: "home page"
         },
         link2: {
             href: "library.html",
-            id: "navHomePage",
+            id: "library",
             target: "_self",
             text: "Library",
-            commandTrigger: "ספריה"
+            commandTrigger: "library"
 
         },
         link3: {
             href: "chat.html",
-            id: "navTsamid",
+            id: "chat",
             target: "_self",
             text: "Chat",
-            commandTrigger: "חדר שיחה"
+            commandTrigger: "chat"
 
         },
         link4: {
             href: "agenda.html",
-            id: "navTsamid",
+            id: "agenda",
             target: "_self",
             text: "Agenda",
-            commandTrigger: "לוח מודעות"
-
+            commandTrigger: "agenda"
         }
 
     }
 
     var buttonOptionsAdd = {
-        buttonValue:"add",
+        buttonAttribute : {
+            class : "addCalender"
+        },
+        buttonValue:"Add",
         commands: {
             'submit': {
-                name: 'הוסף', func: function () {
+                name: 'add', func: function () {
                     console.log("add");
                 }
             }
@@ -218,10 +210,13 @@
     }
 
     var buttonOptionsRemove = {
-        buttonValue:"remove",
+        buttonAttribute : {
+            class : "addCalender"
+        },
+        buttonValue:"Remove",
         commands: {
             'submit': {
-                name: 'הסר', func: function () {
+                name: 'remove', func: function () {
                     console.log("the message remove from calendar");
                 }
             }
@@ -229,15 +224,11 @@
     }
 
 
-    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
+//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
 //    twoGatherApi.middleware.init();
-    twoGatherApi.objectFactories.linkFactory.createObject(document.getElementsByTagName("tg-a")[0]);
-    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-    twoGatherApi.objectFactories.paragraphFactory.createObject(document.getElementsByTagName("tg-paragraph")[0]);
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+    var twoGatherApi = new Gatherapi();
 
-    twoGatherApi.objectFactories.buttonFactory.createObject(document.getElementsByTagName("tg-button")[0]);
 
 </script>
 </body>

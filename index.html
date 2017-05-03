@@ -91,50 +91,15 @@
     <tg-login options="loginOptions" >
     </tg-login>
 
-    <label>street:<tg-input options="inputOptions" id="name"></tg-input></label>
-
-    <!--<tg-input options="input1Options" id="name1">-->
-    <!--</tg-input>-->
-
-
 </div>
 
 <div class="grass"></div>
 
 <script>
 
-    var twoGatherApi;
+
     var accessibilityOption = {
 
-    }
-
-    var input1Options = {
-        commands: {
-            'username': {
-                name: 'טלפון *search', func: function (contents) {
-                    console.log("phone");
-                    document.querySelector("#name1 > input").value = contents;
-                }
-            }
-        }
-    }
-
-
-    var inputOptions = {
-        inputAttribute : {
-            type: "password",
-            min : "1",
-            max : "5"
-        },
-        commands: {
-            'username': {
-                name: 'כתובת *search', func: function (contents) {
-                    console.log("address");
-                    document.querySelector("#name > input").value = contents;
-                }
-            },
-
-        }
     }
 
     var checkUser = function(){
@@ -152,7 +117,6 @@
                     if(jsonData[index]["name"] == name && jsonData[index]["password"] == password){
                         sessionStorage.disability = jsonData[index]["disability"];
                         sessionStorage.device = jsonData[index]["device"];
-                        sessionStorage.disability = jsonData[index]["disability"];
                         window.location.replace("homePage.html");
                     }
 
@@ -176,21 +140,21 @@
         buttonValue:"Sigin in",
         commands: {
             'submit': {
-                name: 'התחבר', func: function () {
+                name: 'login', func: function () {
                     console.log("login");
                     checkUser();
 
                 }
             },
             'username': {
-                name: 'שם *search', func: function (contents) {
+                name: 'name *search', func: function (contents) {
                     console.log("username");
                     document.querySelector("[type='text']").value = contents;
                 }
             },
 
             'moveToPassword': {
-                name: 'סיסמא *search', func: function (contents) {
+                name: 'pass *search', func: function (contents) {
                     document.querySelector("[type='password']").value = contents;
                 }
             }
@@ -201,9 +165,7 @@
 //    var twoGatherApi = new Gatherapi(options);
     var twoGatherApi = new Gatherapi();
 //    twoGatherApi.middleware.init();
-    twoGatherApi.objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0],null);
-    twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+
 
 
 

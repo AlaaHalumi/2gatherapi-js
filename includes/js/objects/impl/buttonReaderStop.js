@@ -26,7 +26,6 @@ class ButtonReaderStop extends Object {
         button.style.cursor = "pointer";
         if(this.options.buttonAttribute){
             for (let attribute in this.options.buttonAttribute) {
-                console.log("attribute: " + attribute + " " + this.options.buttonAttribute[attribute]);
                 button.setAttribute(attribute,this.options.buttonAttribute[attribute]);
             }
         }

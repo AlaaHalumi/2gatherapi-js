@@ -33,11 +33,9 @@ class Img extends Object {
             }
         }
         if (this.options.img) {
-            console.log("img-object: there is img value");
             img.setAttribute("src", this.options["img"]);
         }
         if (this.options.path) {
-            console.log("img-object: there is path");
 
             let path = this.options["path"];
             // When the user clicks the button, open the modal

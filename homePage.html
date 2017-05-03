@@ -82,14 +82,8 @@
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
         </div>
 
-
         <tg-menu options="menuOptions">
-
         </tg-menu>
-
-        <tg-a options="linkOptions">
-
-        </tg-a>
 
     </div>
     <div class="clear"></div>
@@ -148,15 +142,6 @@
     var accessibilityOption = {
     }
 
-    var linkOptions = {
-        link1: {
-            href: "homePage.html",
-            id: "myHomePage",
-            target: "_self",
-            text: "Homepage",
-            commandTrigger: "דף הבית"
-        }
-    }
 
     var menuOptions = {
         link1: {
@@ -164,14 +149,14 @@
             id: "homePage",
             target: "_self",
             text: "Homepage",
-            commandTrigger: "דף הבית"
+            commandTrigger: "home page"
         },
         link2: {
             href: "library.html",
             id: "library",
             target: "_self",
             text: "Library",
-            commandTrigger: "ספריה"
+            commandTrigger: "library"
 
         },
         link3: {
@@ -179,7 +164,7 @@
             id: "chat",
             target: "_self",
             text: "Chat",
-            commandTrigger: "חדר שיחה"
+            commandTrigger: "chat"
 
         },
         link4: {
@@ -187,18 +172,16 @@
             id: "agenda",
             target: "_self",
             text: "Agenda",
-            commandTrigger: "לוח מודעות"
-
+            commandTrigger: "agenda"
         }
 
     }
 
-    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
+//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
 //    twoGatherApi.middleware.init();
-//    twoGatherApi.objectFactories.linkFactory.createObject(document.getElementsByTagName("tg-a")[0]);
-    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+    var twoGatherApi = new Gatherapi();
+
 
     var SkipToConfig =  {
         "settings": {
@@ -215,75 +198,6 @@
             }
         }
     };
-
-    var mouseDown = 0;
-    document.body.onmousedown = function() {
-        mouseDown++;
-        console.log(mouseDown);
-    }
-
-    function blink(element,selector) {
-        if(selector == "a"){
-            if(mouseDown==1){
-                console.log("down");
-                window.location.replace(element);
-            }
-            else{
-                element.style.border = "";
-            }
-
-        }
-        else {
-            if (mouseDown == 1) {
-                console.log("down");
-                mouseDown--;
-                element.click();
-                element.style.border = "";
-                console.log(mouseDown);
-            }
-        }
-    }
-
-    function myBlink(element,selector){
-
-        console.log("inside blink: " + element);
-        if(selector=="a"){
-            var link = document.querySelector('[href="'+element+'"]');
-            link.style.border = "thick solid #0000FF";
-            setTimeout(blink,5000,link,"a");
-        }
-        else{
-            element.style.border = "thick solid #0000FF";
-            setTimeout(blink,5000,element,"button");
-        }
-
-    }
-
-    function run(){
-        var buttons = document.getElementsByTagName("button");
-        var i = 0;
-        (function loop(){
-            if (i++ > buttons.length) return;
-            setTimeout(function(){
-                myBlink(buttons[i],"button");
-                loop();
-            }, 8000);
-        })();
-
-
-        var links = document.getElementsByTagName("a");
-        console.log(links.length);
-        var i = 0;
-        (function loop(){
-            if (i++ > links.length) return;
-            setTimeout(function(){
-                myBlink(links[i].getAttribute("href"),"a");
-                loop();
-            }, 8000);
-        })();
-    }
-
-    setTimeout(run,5000);
 
 
 </script>

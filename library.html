@@ -129,34 +129,33 @@
     var menuOptions = {
         link1: {
             href: "homePage.html",
-//            id: "navW3School",
-//            target: "_self",
+            id: "homePage",
+            target: "_self",
             text: "Homepage",
-            commandTrigger: "דף הבית"
+            commandTrigger: "home page"
         },
         link2: {
             href: "library.html",
-//            id: "navHomePage",
-//            target: "_self",
+            id: "library",
+            target: "_self",
             text: "Library",
-            commandTrigger: "ספריה"
+            commandTrigger: "library"
 
         },
         link3: {
             href: "chat.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "chat",
+            target: "_self",
             text: "Chat",
-            commandTrigger: "חדר שיחה"
+            commandTrigger: "chat"
 
         },
         link4: {
             href: "agenda.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "agenda",
+            target: "_self",
             text: "Agenda",
-            commandTrigger: "לוח מודעות"
-
+            commandTrigger: "agenda"
         }
 
     }
@@ -166,7 +165,7 @@
             path: "includes/library/The Hare and the Tortoise",
             bookName : "The Hare and the Tortoise",
             img : "includes/library/The Hare and the Tortoise.jpg",
-            triggerCommand : "ספר ראשון"
+            triggerCommand : "one"
         },
         book2 : {
             path: "includes/library/The Lion and the Mouse",
@@ -216,12 +215,11 @@
     }
 
 
-    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
+//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
+    var twoGatherApi = new Gatherapi();
 //    twoGatherApi.middleware.init();
-    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-    twoGatherApi.pluginFactories.libraryFactory.createPlugin(document.getElementsByTagName("tg-library")[0]);
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+
 
 </script>
 </body>

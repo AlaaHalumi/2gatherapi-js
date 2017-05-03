@@ -92,17 +92,13 @@
 </header>
 
 <div id="wrapper">
-
-    <button>hello</button>
     <div class="chatmain">
         <div class="messages">
             <div class="above"  id="message_box">
                 <div class="bellow">
-                    <!--create chat with 2 inputs and button and div with id "message box"-->
-                    <input class="text" type="text" id="name" >
-                    <tg-input options="inputChat"></tg-input>
-                    <tg-button options="buttonChat"></tg-button>
-
+                    <tg-input options="inputName"></tg-input>
+                    <tg-input options="inputMessage"></tg-input>
+                    <tg-button options="buttonSend"></tg-button>
                 </div>
             </div>
         </div>
@@ -118,10 +114,7 @@
         <div class="clear"></div>
     </div>
 
-
     <!--<div id="message_box" style="width: 400px ; height: 400px ; overflow: scroll"></div>-->
-
-
 
 </div>
 <div class="grass"></div>
@@ -151,17 +144,17 @@
     var menuOptions = {
         link1: {
             href: "homePage.html",
-            id: "Homepage",
+            id: "homePage",
             target: "_self",
             text: "Homepage",
-            commandTrigger: "דף הבית"
+            commandTrigger: "home page"
         },
         link2: {
             href: "library.html",
             id: "library",
             target: "_self",
             text: "Library",
-            commandTrigger: "ספריה"
+            commandTrigger: "library"
 
         },
         link3: {
@@ -169,7 +162,7 @@
             id: "chat",
             target: "_self",
             text: "Chat",
-            commandTrigger: "חדר שיחה"
+            commandTrigger: "chat"
 
         },
         link4: {
@@ -177,12 +170,13 @@
             id: "agenda",
             target: "_self",
             text: "Agenda",
-            commandTrigger: "לוח מודעות"
+            commandTrigger: "agenda"
         }
 
     }
 
-    var buttonChat = {
+
+    var buttonSend = {
         buttonAttribute : {
             id : "send-btn",
             class : "send"
@@ -190,7 +184,7 @@
         buttonValue : "send",
         commands: {
             'submit': {
-                name: 'שלח', func: function () {
+                name: 'send', func: function () {
                     console.log("send");
                     console.log('inside send');
                     document.getElementById('send-btn').click();
@@ -199,8 +193,31 @@
         }
     }
 
+    var inputName = {
+        inputAttribute : {
+            class:"text",
+            type: "text",
+            id : "name",
+            placeholder : "your name"
+        },
+        commands: {
+            'message': {
+                name: 'name *search', func: function (contents) {
+                    console.log("message");
+                    console.log('inside message');
+                    //set content
+                    document.querySelector("#name").value = contents;
+//                  get content and speak it
+                    var contents = document.querySelector("#message").value;
+//                        textToSpeak(contents);
+                }
+            },
 
-    var inputChat = {
+        }
+
+    }
+
+    var inputMessage = {
         inputAttribute : {
             type: "text",
             min : "1",
@@ -212,7 +229,7 @@
         },
         commands: {
             'message': {
-                name: 'הודעה *search', func: function (contents) {
+                name: 'message *search', func: function (contents) {
                     console.log("message");
                     console.log('inside message');
                     //set content
@@ -226,51 +243,10 @@
         }
     }
 
-
-    var chatOptions = {
-        wsURL : "ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php",
-        commands: {
-            'name': {
-                name: 'שם *search', func: function (contents) {
-                    console.log("name");
-                    console.log('inside fillName');
-                    //set content
-                    document.querySelector("#name").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#name").value;
-//                        textToSpeak(contents);
-
-                }
-            },
-            'message': {
-                name: 'הודעה *search', func: function (contents) {
-                    console.log("message");
-                    console.log('inside message');
-                    //set content
-                    document.querySelector("#message").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#message").value;
-//                        textToSpeak(contents);
-                }
-            },
-            'submit': {
-                name: 'שלח', func: function () {
-                    console.log("send");
-                    console.log('inside send');
-                    document.getElementById('send-btn').click();
-                }
-            }
-        }
-    }
-
-    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
+//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
+    var twoGatherApi = new Gatherapi();
     //    twoGatherApi.middleware.init();
-    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-//    twoGatherApi.pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
-    twoGatherApi.objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0]);
-    twoGatherApi.objectFactories.buttonFactory.createObject(document.getElementsByTagName("tg-button")[0]);
 
     var chatUtil = new ChatUtil();
     chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/index.php");

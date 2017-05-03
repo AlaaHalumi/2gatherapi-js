@@ -105,7 +105,16 @@
 
                 <tg-buttonReaderStop options="buttonStopOne">
                 </tg-buttonReaderStop>
+            </div>
+             <div class="tg-library-story">
 
+                <tg-img options="imgTextTwo"></tg-img>
+
+                <tg-buttonreaderStart options="buttonReadTwo">
+                </tg-buttonreaderStart>
+
+                <tg-buttonReaderStop options="buttonStopTwo">
+                </tg-buttonReaderStop>
             </div>
         </div>
 
@@ -168,10 +177,10 @@
 
     var buttonReadOne = {
         buttonAttribute : {
-            id : "startButton",
+            id : "startButtonOne",
             class : "tg-library-startButton"
         },
-        triggerCommand : "התחל להקריא",
+        triggerCommand : "book one",
         path: "includes/library/The Hare and the Tortoise",
         buttonValue : "start",
         imgID : "imgReader"
@@ -180,7 +189,7 @@
 
     var buttonStopOne = {
         buttonAttribute : {
-            id : "stopButton",
+            id : "stopButtonOne",
             class : "tg-library-stopButton"
         },
         triggerCommand : "stop",
@@ -188,70 +197,44 @@
         imgID : "imgReader"
     }
 
-    var libraryOption = {
-        book1 : {
-            path: "includes/library/The Hare and the Tortoise",
-            bookName : "The Hare and the Tortoise",
-            img : "includes/library/The Hare and the Tortoise.jpg",
-            triggerCommand : "ספר ראשון"
-        },
-        book2 : {
-            path: "includes/library/The Lion and the Mouse",
-            bookName : "The Lion and the Mouse",
-            img : "includes/library/The Lion and the Mouse.jpg",
-            triggerCommand : "ספר שני"
-        },
-        book3 : {
-            path: "includes/library/The Goose with the Golden Eggs",
-            bookName : "The Goose with the Golden Eggs",
-            img : "includes/library/The Goose with the Golden Eggs.jpg",
-            triggerCommand : "ספר שלישי"
-        },
-        book4 : {
-            path: "includes/library/The Milkmaid and her Pail",
-            bookName : "The Milkmaid and her Pail",
-            img : "includes/library/The Milkmaid and her Pail.jpg",
-            triggerCommand : "ספר רביעי"
-        },
-        book5 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "A Christmas Surprise",
-            img : "includes/library/A Christmas Surprise.jpg",
-            triggerCommand : "ספר חמישי"
-        },
-        book6 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "The Ant and the Grasshopper",
-            img : "includes/library/The Ant and the Grasshopper.jpg",
-            triggerCommand : "ספר שישי"
-        },
-        book7 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "Three Sons and a Bundle of Sticks",
-            img : "includes/library/Three Sons and a Bundle of Sticks.jpg",
-            triggerCommand : "ספר שביעי"
-        },
-        book8 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "The Fox and the Grapes",
-            img : "includes/library/The Fox and the Grapes.jpg",
-            triggerCommand : "ספר שמיני"
-        },
 
+    var imgTextTwo = {
+        imgAttribute : {
+            id : "imgReaderTwo",
+            class : "tg-library-img"
+        },
+        path: "includes/library/The Lion and the Mouse",
+        img : "includes/library/The Lion and the Mouse.jpg"
+    }
 
+    var buttonReadTwo = {
+        buttonAttribute : {
+            id : "startButtonTwo",
+            class : "tg-library-startButton"
+        },
+        triggerCommand : "book two",
+        path: "includes/library/The Lion and the Mouse",
+        buttonValue : "start",
+        imgID : "imgReaderTwo"
 
     }
 
+    var buttonStopTwo = {
+        buttonAttribute : {
+            id : "stopButtonTwo",
+            class : "tg-library-stopButton"
+        },
+        triggerCommand : "stop",
+        buttonValue : "stop",
+        imgID : "imgReaderTwo"
+    }
 
-    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
+
+
+//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
+    var twoGatherApi = new Gatherapi();
     //    twoGatherApi.middleware.init();
-    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-//    twoGatherApi.pluginFactories.libraryFactory.createPlugin(document.getElementsByTagName("tg-library")[0]);
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
-    twoGatherApi.objectFactories.imgFactory.createObject(document.getElementsByTagName("tg-img")[0]);
-    twoGatherApi.objectFactories.buttonReaderStartFactory.createObject(document.getElementsByTagName("tg-buttonreaderStart")[0]);
-    twoGatherApi.objectFactories.buttonReaderStopFactory.createObject(document.getElementsByTagName("tg-buttonreaderStop")[0]);
 </script>
 </body>
 </html>

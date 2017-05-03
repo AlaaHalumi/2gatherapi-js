@@ -20,6 +20,18 @@ class ButtonReaderStart extends Object {
         this.domElement.appendChild(buttonReader);
     }
 
+    readChunk(element){
+        console.log("before========================");
+        console.log(element);
+        let content = element.trim();
+        // console.log(content);
+        let u = new SpeechSynthesisUtterance(content);
+        u.lang = 'en-US';
+        let speaker = new SpeechUtil();
+        speaker.startSpeak(u);
+        console.log("after========================");
+    }
+
     initButtonReader(){
 
         let button = document.createElement("button");
@@ -28,12 +40,10 @@ class ButtonReaderStart extends Object {
         button.style.cursor = "pointer";
         if(this.options.buttonAttribute){
             for (let attribute in this.options.buttonAttribute) {
-                console.log("attribute: " + attribute + " " + this.options.buttonAttribute[attribute]);
                 button.setAttribute(attribute,this.options.buttonAttribute[attribute]);
             }
         }
         if(this.options.buttonValue) {
-            console.log("button-object: there is button value");
             button.innerHTML = this.options.buttonValue;
         }
         if(this.options.triggerCommand) {
@@ -45,6 +55,7 @@ class ButtonReaderStart extends Object {
 
         //get the id of the button's img
         let currentImg = document.getElementById(this.options["imgID"]);
+        var self = this;
 
         button.onclick = function() {
 
@@ -65,18 +76,20 @@ class ButtonReaderStart extends Object {
                             arr.push(txt.match(pattRegex)[0]);
                             txt = txt.substring(arr[arr.length - 1].length);
                         }
-                        arr.forEach(function (element) {
-
-                            console.log("before========================");
-                            console.log(element);
-                            let content = element.trim();
-                            // console.log(content);
-                            let u = new SpeechSynthesisUtterance(content);
-                            u.lang = 'en-US';
-                            let speaker = new SpeechUtil();
-                            speaker.startSpeak(u);
-                            console.log("after========================");
-                        });
+                        var i = 0;
+                        self.readChunk(arr[i]);
+                        // arr.forEach(function (element) {
+                        //
+                        //     console.log("before========================");
+                        //     console.log(element);
+                        //     let content = element.trim();
+                        //     // console.log(content);
+                        //     let u = new SpeechSynthesisUtterance(content);
+                        //     u.lang = 'en-US';
+                        //     let speaker = new SpeechUtil();
+                        //     speaker.startSpeak(u);
+                        //     console.log("after========================");
+                        // });
                     }
                 }
             }

@@ -72,7 +72,7 @@ class Login extends Plugin {
             //     }
             // }
 
-            this.buttonFactory.createObject(button, options);
+            // this.buttonFactory.createObject(button, options);
 
         }
     }

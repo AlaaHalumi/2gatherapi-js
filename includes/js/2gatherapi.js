@@ -7,8 +7,12 @@ class Gatherapi {
         //     this.middleware = new Middleware(options.middlewareDevices, options.middleInterval ? options.middleInterval : 10000);
         // }
 
-        this.objectToObjectFactoryMap = {inputText:"inputFactory"};
-        this.pluginToPluginFactoryMap = {loginFactory:"loginFactory"};
+        this.objectToObjectFactoryMap = {inputFactory :"tg-input",buttonFactory : "tg-button",linkFactory : "tg-a",
+                                         paragraphFactory : "tg-paragraph",imgFactory : "tg-img", buttonReaderStartFactory : "tg-buttonreaderStart",
+                                         buttonReaderStopFactory : "tg-buttonreaderStop", };
+
+        this.pluginToPluginFactoryMap = {loginFactory:"tg-login",menuFactory:"tg-menu",accessibilityFactory : "tg-accessibility",
+                                         chatFactory : "tg-chat",libraryFactory : "tg-library"};
 
         this.utils = {
             annyangUtil : new AnnyangUtil(),
@@ -18,14 +22,16 @@ class Gatherapi {
             // circleObject : new CircleObjectUtil()
         };
 
-        this.objectFactories = {inputFactory : new InputFactory() , buttonFactory: new ButtonFactory ,linkFactory : new LinkFactory()
+        this.objectFactories = {inputFactory : new InputFactory() ,imgFactory : new ImgFactory() , buttonFactory: new ButtonFactory ,linkFactory : new LinkFactory()
                                 ,paragraphFactory : new ParagraphFactory() , buttonReaderStartFactory : new ButtonReaderStartFactory()
-                                , buttonReaderStopFactory : new ButtonReaderStopFactory() , imgFactory : new ImgFactory()};
+                                , buttonReaderStopFactory : new ButtonReaderStopFactory()};
+
         this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(),
-             menuFactory: new MenuFactory(), paragraphFactory: new ParagraphFactory(), libraryFactory: new LibraryFactory(),
+             menuFactory: new MenuFactory(), libraryFactory: new LibraryFactory(),
             accessibilityFactory : new AccessibilityFactory() };
-        this.utilsConfiguration(options);
-        // this.scanForPluginsOrObjects();
+
+        // this.utilsConfiguration(options);
+        this.scanForPluginsOrObjects();
     }
 
     utilsConfiguration(options){
@@ -35,24 +41,25 @@ class Gatherapi {
     }
 
     scanForPluginsOrObjects(){
-        this.scanPlugins();
         this.scanObjects();
+        this.scanPlugins();
+
     }
 
     scanObjects(){
         for(var objectToObjectFactoryKey in this.objectToObjectFactoryMap){
-            var elements = document.getElementsByTagName(objectToObjectFactoryKey);
-            for(var element in elements){
-                this.objectFactories[this.objectToObjectFactoryMap[objectToObjectFactoryKey]].createObject(element);
+            var elements = document.getElementsByTagName(this.objectToObjectFactoryMap[objectToObjectFactoryKey]);
+            for(var index=0; index < elements.length ; index++){
+                this.objectFactories[objectToObjectFactoryKey].createObject(elements[index]);
             }
         }
     }
 
     scanPlugins(){
         for(var pluginToPluginFactoryKey in this.pluginToPluginFactoryMap){
-            var elements = document.getElementsByTagName(pluginToPluginFactoryKey);
-            for(var element in elements){
-                this.pluginFactories[this.pluginToPluginFactoryMap[pluginToPluginFactoryKey]].createPlugin(element);
+            var elements = document.getElementsByTagName(this.pluginToPluginFactoryMap[pluginToPluginFactoryKey]);
+            for(var index=0; index < elements.length ; index++){
+                this.pluginFactories[pluginToPluginFactoryKey].createPlugin(elements[index]);
             }
         }
     }
