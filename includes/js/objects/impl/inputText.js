@@ -23,7 +23,6 @@ class InputText extends Object{
         let input = document.createElement("input");
         if(this.options.inputAttribute){
             for (let attribute in this.options.inputAttribute) {
-                console.log("attribute: " + attribute + " " + this.options.inputAttribute[attribute]);
                 input.setAttribute(attribute,this.options.inputAttribute[attribute]);
             }
         }

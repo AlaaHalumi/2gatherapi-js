@@ -28,7 +28,6 @@ class Img extends Object {
 
         if (this.options.imgAttribute) {
             for (let attribute in this.options.imgAttribute) {
-                console.log("attribute: " + attribute + " " + this.options.imgAttribute[attribute]);
                 img.setAttribute(attribute, this.options.imgAttribute[attribute]);
             }
         }
@@ -43,7 +42,6 @@ class Img extends Object {
 
                 document.getElementsByClassName("content-paragraph").innerHTML += "";
 
-                console.log("path " + path);
                 let rawFile = new XMLHttpRequest();
                 rawFile.open("GET", path, false);
                 rawFile.onreadystatechange = function () {

@@ -1,19 +1,19 @@
 	
 	 [{
-		 "name": "steve",
-		 "password" : "12345",
+		 "name": "Steve",
+		 "password" : "123",
 		 "disability" : "motor",
 		 "device" : "clicker"
 		},
 		{
-		  "name":"john",
-		  "password" : "hello world",
+		  "name":"John",
+		  "password" : "123",
 		  "disability" : "blind",
 		  "device" : "tobi"
 		},
 		{
-		  "name":"albert",
-		  "password" : "12345",
+		  "name":"Albert",
+		  "password" : "123",
 		  "disability" : "hearing",
 		  "device" : ""
 		}

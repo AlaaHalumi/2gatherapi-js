@@ -57,13 +57,14 @@ class ChatUtil extends Util{
             {
                 $('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
                 //voice to text only what the other says
-                if(uname != myname){
-                    let u = new SpeechSynthesisUtterance(uname + "say" + umsg);
-                    u.lang = 'en-US';
-                    let speaker = new SpeechUtil();
-                    speaker.startSpeak(u);
+                if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                    if(uname != myname){
+                        let u = new SpeechSynthesisUtterance(uname + "say" + umsg);
+                        u.lang = 'en-US';
+                        let speaker = new SpeechUtil();
+                        speaker.startSpeak(u);
+                    }
                 }
-
             }
             if(type == 'system' && umsg != null)
             {

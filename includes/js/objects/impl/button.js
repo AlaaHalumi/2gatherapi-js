@@ -32,11 +32,9 @@ class Button extends Object{
             }
         }
         if(this.options.buttonValue) {
-            console.log("button-object: there is button value");
             button.innerHTML = this.options.buttonValue;
         }
         if(this.options.commands) {
-            console.log("button-object: there is button command");
             if(this.options.hasOwnProperty("buttonAttribute")){
                 if (this.options.buttonAttribute.hasOwnProperty("id")) {
                     if (this.options.buttonAttribute["id"] == 'send-btn') {
