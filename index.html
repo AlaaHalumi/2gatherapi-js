@@ -12,37 +12,128 @@
     <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
 
     <title>Tsamid</title>
-    <script src="dist/2gatherapi.js"></script>
+    <!--<script src="dist/2gatherapi.js"></script>-->
+
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
+    <!--2gatherAPI-->
+    <script src="includes/js/2gatherapi.js"></script>
+    <script src="includes/js/middleware.js"></script>
+    <!--Utils-->
+
+    <script src="includes/js/utils/util.js"></script>
+    <script src="includes/js/utils/impl/annyangUtil.js"></script>
+    <script src="includes/js/utils/impl/chatUtil.js"></script>
+    <script src="includes/js/utils/impl/ttv.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+
+    <!--Plugins-->
+    <script src="includes/js/plugins/impl/button.js"></script>
+    <script src="includes/js/plugins/impl/menu.js"></script>
+
+
+    <script src="includes/js/plugins/plugin.js"></script>
+    <script src="includes/js/plugins/impl/chat.js"></script>
+    <script src="includes/js/plugins/impl/login.js"></script>
+    <script src="includes/js/plugins/impl/paragraph.js"></script>
+    <script src="includes/js/plugins/impl/library.js"></script>
+    <script src="includes/js/plugins/impl/accessibility.js"></script>
+
+    <script src="includes/js/plugins/factories/pluginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+
+    <!--Objects-->
+    <script src="includes/js/objects/object.js"></script>
+    <script src="includes/js/objects/impl/inputText.js"></script>
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
 
 </head>
-<body>
+<body onmousedown="doubleclick(this, event, leftClickFunction, rightClickFunction, chooseFunction)">
 
-<tg-accessibility options="accessibilityOption">
+<tg-accessibility options="accessibilityOption" class="markable">
 </tg-accessibility>
 
 <header>
     <div class="headerContainer">
-        <div class="headerD">
+        <div class="headerD markable">
             <a href="index.html"><img src="images/heart.png"> Tsamid</a>
         </div>
     </div>
     <div class="clear"></div>
 </header>
 
-<div class="welcome">
+<div class="welcome markable">
     <h1>Welcome to Tsamid!</h1>
     <h3>Where you can Watch, Hear and Navigate in your content.</h3>
 </div>
 
 
 <div id="signin">
-    <tg-login options="loginOptions" >
+    <tg-login options="loginOptions" class="markable">
     </tg-login>
 </div>
 
-<div class="grass"></div>
+<div class="grass" class="markable"></div>
 
 <script>
+
+    var blockContextMenu, myElement;
+    blockContextMenu = function (evt) {
+        evt.preventDefault();
+    };
+
+    myElement = document.querySelector('body');
+    myElement.addEventListener('contextmenu', blockContextMenu);
+    function doubleclick(el, event, onLeftClick, onRightClick, ondouble) {
+        console.log(event);
+        if (el.getAttribute("data-dblclick") == null) {
+            el.setAttribute("data-dblclick", 1);
+            setTimeout(function () {
+                if (el.getAttribute("data-dblclick") == 1) {
+                    if(event.button == 0) {
+                        onRightClick();
+                    }else{
+                        onLeftClick();
+                    }
+                }
+                el.removeAttribute("data-dblclick");
+            }, 300);
+        } else {
+            el.removeAttribute("data-dblclick");
+            ondouble();
+        }
+    }
+
+    function leftClickFunction() {
+        if(i == 1){
+            i = markables.length - 1;
+        }
+        i--;
+        var mark = markables[i];
+        console.log(mark);
+        mark.focus();
+    }
+
+    function rightClickFunction() {
+        if(i == markables.length - 1){
+            i = -1;
+        }
+        i++;
+        var mark = markables[i];
+        console.log(mark);
+        mark.focus();
+    }
+
+    function chooseFunction() {
+        $(markables[i]).click();
+    }
 
     var accessibilityOption = {
 
@@ -74,9 +165,13 @@
 
     var options = {voiceToTextLanguage: "hebrew", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
     var twoGatherApi = new Gatherapi(options);
-    twoGatherApi.middleware.init();
+//    twoGatherApi.middleware.init();
     twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
     twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+
+    var markables = document.querySelectorAll("input,a,select,button,textarea");
+    var i = 0;
+    markables[0].focus();
 </script>
 
 </body>
