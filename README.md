@@ -1,7 +1,10 @@
 # 2gatherAPI
 
-2GatherAPI is an API which will allow different developers around the world to add a variety of 2GatherAPI
-features to own application.
+2GatherAPI is a simple API, which will allow different developers around the world to use it by embedding the suitable features to their own application to turn it to be more accessible for people with disabilities. 
+
+Why we made it?
+We think it necessary for most application to be accessible, since 20% of our society is people with different disabilities, like deaf, blind or people with motor disabilities which can't move any part of their bodies. We want them to be part of this community, so they could feel it, watch it, heart it and navigate independently in every website.
+
 Use the API to connect your users with different disabilities,
 give them the ability to watch, hear and navigate indepentently.
 
