@@ -1,16 +1,19 @@
-# 2gatherAPI
+# What is 2gatherAPI:
 
-2GatherAPI is an API which will allow different developers around the world to add a variety of 2GatherAPI
-features to own application.
-Use the API to connect your users with different disabilities,
-give them the ability to watch, hear and navigate indepentently.
+<p>
+2GatherAPI is a simple API, which will allow different developers around the world to use it by embedding the suitable features to their own application to turn it to be more accessible for people with disabilities. 
+</p>
+<p>
+Why we made it?
+We think it necessary for most application to be accessible, since 20% of our society is people with different disabilities, like deaf, blind or people with motor disabilities which can't move any part of their bodies. We want them to be part of this community, so they could feel it, watch it, heart it and navigate independently in every website.
+</p>
 
+<h2>What we give:</h2>
+Different objects and plugins for different useage.<br> 
+# Reference API
 
-# refereance API
-
-Our Objects Elements:
-
-tg-button<br>
+Objects Elements:
+tg-button<br> 
 tg-buttonreaderstart<br>
 tg-buttonreaderstop<br>
 tg-img<br>
@@ -18,19 +21,22 @@ tg-input<br>
 tg-a<br>
 tg-paragraph<br>
 
-Our Plugins Elements:
+Plugins Elements:
 
 tg-login<br>
 tg-chat<br>
 tg-library<br>
 tg-menu<br>
 
-<p> all our elements needs to set with options attrubute</p>
+<h2> How to use it? </h2>
+<p> All our elements needs to be set up with "options" attribute, and the value attribute is an object you can rename which will initial the element.</p>
+<h3>Example:</h3>
+<p> tg-button options="loginOptions" /tg-button</p>
 
 <h1>2GatherAPI objects:</h1>
 <div>
 <h2>tg-button: </h2>
-<p>button element with voice command option </p>
+<p>Button element with voice command option </p>
 <h3>Object Property:</h3>
 <h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
@@ -58,7 +64,7 @@ tg-menu<br>
 
 <div>
 <h2>tg-buttonreaderstart: </h2>
-<p>when click on button text convert to voice</p>
+<p>Button for converting text to voice</p>
 <h3>Object Property:</h3>
 <h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
@@ -85,7 +91,7 @@ tg-menu<br>
 
 <div>
 <h2>tg-buttonreaderstop: </h2>
-<p>abort speach</p>
+<p>Stop converting text to voice Button</p>
 <h3>Object Property:</h3>
 <h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
@@ -110,12 +116,11 @@ tg-menu<br>
 
 <div>
 <h2>tg-img: </h2>
-<p>this element allowing create img with box modal that display specify text </p>
+<p>This element is an image for a book, after you click on it it'll open a modal with the text for this spicific book. </p>
 <h3>Object Property:</h3>
 <h4>imgAttribute - initial img attribute</h4>
 <h4>path - path of the text that display in box modal</h4>
 <h4>img - img location</h4>
-
 
 <h3>Example:</h3>
 <p> 
@@ -197,11 +202,11 @@ tg-menu<br>
 </div>
 
 <h1>2GatherAPI plugins:</h1>
-
+<p> Our Plugins are made of different objects together in one place. </p>
 <div>
 <h2>tg-login: </h2>
-<p>login plugin contain two inputs one in type text and the second in type password. in addition the plugin contain one button. this plugin support voice command</p><br>
-<p>the developer need to initial sessionStorage with 2 property:<br>
+<p>login plugin contain two inputs one of type text, and the second is of type password. In addition the plugin contains one button to login.<br> This plugin supports voice command option</p><br>
+<p>How to use it? The developer needs to initial sessionStorage with 2 properties:<br>
 1.sessionStorage.disability<br>
 2.sessionStorage.device<br>
 </p>
@@ -242,16 +247,13 @@ tg-menu<br>
 </div>
 
 <h2>tg-chat: </h2>
-<p>chat plugin contain 2 input one with name id and the second with message id and button init with btn-send id. this plugin support voice command </p><br>
+<p>Chat plugin contains 2 labels with 2 inputs one is with "name id" and the second is with "message id", and a button (Send message) init with "btn-send id". This plugin supports voice command option </p><br>
 <h3>Plugin Property:</h3>
 <h4>wsURL - initial the url of chat ws</h4>
-<h4>commands - initial voice coomand for start speach the text</h4>
+<h4>commands - initial voice coomand.</h4>
 
-<h3>init object</h3>
-"2GatherAPI Instance".pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);<br>
-
-Alternatively is to create chat from two input one with message id and the second with name id and button with btn-send id.
-and you need create chatUtil instance and call initChat with chat ws as paramater
+An alternative, is to create the chat from two different inputs seperately one is with "message id" and the second is with "name id", and button with "btn-send id".
+In addition, you need to create chatUtil instance and call initChat with "chat ws" as a paramater.
 
 <h3>Example:</h3>
 <p> 
@@ -261,7 +263,7 @@ chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/i
 
 <div>
 <h2>tg-library: </h2>
-<p>library plugin create img with modal box for the text and two buttons for start read the text and the second for stop reader</p>
+<p>With library plugin you can create many books in one place, all you need is: img contains modal box to show the text, and two different buttons one is to start reading the text and the second is to stop reading</p>
 <h3>Object Property:</h3>
 <h4>path - book path for read the text</h4>
 <h4>bookName - the name of the book</h4>
@@ -283,7 +285,7 @@ chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/i
 
 <div>
 <h2>tg-menu: </h2>
-<p>menu plugin contain a elemnts and this plugin support voice command each link can be init with any attributes</p>
+<p>Menu plugin contains elements to navigate with different links, this plugin supports voice command, each link can be init with any attributes</p>
 <h3>Object Property:</h3>
 <h4>text - link name</h4>
 <h4>commandTrigger - initial voice coomand</h4>
