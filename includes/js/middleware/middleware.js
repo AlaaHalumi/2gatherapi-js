@@ -2,16 +2,16 @@
 
 class Middleware {
 
-    constructor(devices, interval) {
+    constructor(devices) {
         this.devices = devices;
-        this.interval = interval;
         this.connectedDevices = {};
+        this.externalInputs = {
+            clickers: new Clickers()
+        }
     }
 
     init(){
-        var sleep = time => new Promise(resolve => setTimeout(resolve, time))
-        var poll = (promiseFn, time) => promiseFn().then(sleep(time).then(() => poll(promiseFn, time)))
-        poll(() => new Promise(() => this.checkForConnectedDevices(JSON.stringify(this.devices))), this.interval)
+        this.checkForConnectedDevices(JSON.stringify(this.devices));
     }
 
     checkForConnectedDevices(data){
@@ -20,6 +20,16 @@ class Middleware {
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
                 self.connectedDevices = JSON.parse(xmlhttp.responseText);
+                for(var externalInput in self.externalInputs){
+                    var ei = self.externalInputs[externalInput];
+                    for(var connectedDevice in self.connectedDevices){
+                        if(self.connectedDevices[connectedDevice].productId == ei.deviceInfo.productId &&
+                            self.connectedDevices[connectedDevice].vendorId == ei.deviceInfo.vendorId){
+                            ei.connectExternalInput();
+                            break;
+                        }
+                    }
+                }
             }
         };
 

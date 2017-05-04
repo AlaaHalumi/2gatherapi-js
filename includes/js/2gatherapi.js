@@ -3,9 +3,10 @@
 class Gatherapi {
     constructor(options) {
 
-        // if(options.middlewareDevices) {
-        //     this.middleware = new Middleware(options.middlewareDevices, options.middleInterval ? options.middleInterval : 10000);
-        // }
+        if(options.middlewareDevices) {
+            this.middleware = new Middleware(options.middlewareDevices);
+            this.middleware.init();
+        }
 
         this.objectToObjectFactoryMap = {inputFactory :"tg-input",buttonFactory : "tg-button",linkFactory : "tg-a",
                                          paragraphFactory : "tg-paragraph",imgFactory : "tg-img", buttonReaderStartFactory : "tg-buttonreaderStart",
