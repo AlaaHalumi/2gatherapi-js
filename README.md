@@ -54,8 +54,6 @@ tg-menu<br>
 &nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.buttonFactory.createObject(document.getElementsByTagName("tg-button")[0]);</p>
 </div>
 
 <div>
@@ -83,8 +81,6 @@ tg-menu<br>
 &nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.buttonReaderStartFactory.createObject(document.getElementsByTagName("tg-buttonreaderStart")[0]);</p>
 </div>
 
 <div>
@@ -110,8 +106,6 @@ tg-menu<br>
 &nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.buttonReaderStartFactory.createObject(document.getElementsByTagName("tg-buttonreaderstop")[0]);</p>
 </div>
 
 <div>
@@ -136,8 +130,6 @@ tg-menu<br>
 &nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.imgFactory.createObject(document.getElementsByTagName("tg-img")[0]);</p>
 </div>
 
 <div>
@@ -162,8 +154,6 @@ tg-menu<br>
 &nbsp&nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.inputFactory.createObject(document.getElementsByTagName("tg-input")[0]);</p>
 </div>
 
 <div>
@@ -185,8 +175,6 @@ tg-menu<br>
 &nbsp&nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.linkFactory.createObject(document.getElementsByTagName("tg-a")[0]);;</p>
 </div>
 
 <div>
@@ -206,8 +194,6 @@ tg-menu<br>
 &nbsp&nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".objectFactories.paragraphFactory.createObject(document.getElementsByTagName("tg-paragraph")[0]);;</p>
 </div>
 
 <h1>2GatherAPI plugins:</h1>
@@ -253,8 +239,6 @@ tg-menu<br>
 &nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);;</p>
 </div>
 
 <h2>tg-chat: </h2>
@@ -296,9 +280,6 @@ chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/i
 &nbsp&nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".pluginFactories.chatFactory.createPlugin(document.getElementsByTagName("tg-chat")[0]);</p>
-</div>
 
 <div>
 <h2>tg-menu: </h2>
@@ -319,10 +300,7 @@ chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/i
 &nbsp&nbsp} <br>
 </p>
 
-<h3>init object</h3>
-<p>"2GatherAPI Instance".pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);</p>
-</div>
 
 <p> 
-In each html page you need firsttable init 2GatherAPI object and plugin and then create Gatherapi instance;
+In each html page you need firsttable init 2GatherAPI object
 </p>
