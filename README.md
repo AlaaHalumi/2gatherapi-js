@@ -10,7 +10,7 @@ We think it necessary for most application to be accessible, since 20% of our so
 
 <h2>What we give:</h2>
 Different objects and plugins for different useage.<br> 
-# Reference API
+# Reference API<br>
 
 Objects Elements:<br>
 tg-button<br> 
