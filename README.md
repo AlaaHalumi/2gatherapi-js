@@ -12,7 +12,7 @@ We think it necessary for most application to be accessible, since 20% of our so
 Different objects and plugins for different useage.<br> 
 # Reference API
 
-Objects Elements:
+Objects Elements:<br>
 tg-button<br> 
 tg-buttonreaderstart<br>
 tg-buttonreaderstop<br>
