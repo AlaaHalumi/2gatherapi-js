@@ -1,6 +1,6 @@
 # 2gatherAPI
 
-2GatherAPI is a API that allwing developer to add a variety of 2GatherAPI
+2GatherAPI is an API which will allow different developers around the world to add a variety of 2GatherAPI
 features to own application.
 Use the API to connect your users with different disabilities,
 give them the ability to watch, hear and navigate indepentently.
