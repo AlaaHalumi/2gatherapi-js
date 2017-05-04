@@ -14,48 +14,59 @@
     <title>Tsamid</title>
 
     <!--2gatherAPI.js-->
-    <script src="dist/2gatherapi.js"></script>
+    <!--<script src="dist/2gatherapi.js"></script>-->
 
-    <!--&lt;!&ndash;third-party&ndash;&gt;-->
-    <!--<script src="includes/js/third-parties/annyang/annyang.js"></script>-->
+    <!--third-party-->
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
 
-    <!--&lt;!&ndash;2gatherAPI&ndash;&gt;-->
-    <!--<script src="includes/js/2gatherapi.js"></script>-->
-    <!--<script src="includes/js/middleware.js"></script>-->
-    <!--&lt;!&ndash;Utils&ndash;&gt;-->
+    <!--2gatherAPI-->
+    <script src="includes/js/2gatherapi.js"></script>
+    <script src="includes/js/middleware.js"></script>
+    <!--Utils-->
 
-    <!--<script src="includes/js/utils/util.js"></script>-->
-    <!--<script src="includes/js/utils/impl/annyangUtil.js"></script>-->
-    <!--<script src="includes/js/utils/impl/chatUtil.js"></script>-->
-    <!--<script src="includes/js/utils/impl/ttv.js"></script>-->
-    <!--<script src="includes/js/utils/impl/accessibilityUtil.js"></script>-->
+    <script src="includes/js/utils/util.js"></script>
+    <script src="includes/js/utils/impl/annyangUtil.js"></script>
+    <script src="includes/js/utils/impl/chatUtil.js"></script>
+    <script src="includes/js/utils/impl/ttv.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/boxModal.js"></script>
 
-    <!--&lt;!&ndash;Plugins&ndash;&gt;-->
-    <!--<script src="includes/js/plugins/impl/button.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/menu.js"></script>-->
+    <!--Plugins-->
 
+    <script src="includes/js/plugins/plugin.js"></script>
+    <script src="includes/js/plugins/impl/chat.js"></script>
+    <script src="includes/js/plugins/impl/login.js"></script>
+    <script src="includes/js/plugins/impl/library.js"></script>
+    <script src="includes/js/plugins/impl/accessibility.js"></script>
+    <script src="includes/js/plugins/impl/menu.js"></script>
 
-    <!--<script src="includes/js/plugins/plugin.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/chat.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/login.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/paragraph.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/library.js"></script>-->
-    <!--<script src="includes/js/plugins/impl/accessibility.js"></script>-->
-
-    <!--<script src="includes/js/plugins/factories/pluginFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/loginFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/chatFactory.js"></script>-->
+    <script src="includes/js/plugins/factories/pluginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
     <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/menuFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/paragraphFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>-->
-    <!--<script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>-->
+    <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
 
-    <!--&lt;!&ndash;Objects&ndash;&gt;-->
-    <!--<script src="includes/js/objects/object.js"></script>-->
-    <!--<script src="includes/js/objects/impl/inputText.js"></script>-->
-    <!--<script src="includes/js/objects/factories/objectFactory.js"></script>-->
-    <!--<script src="includes/js/objects/factories/impl/inputFactory.js"></script>-->
+
+    <!--Objects-->
+    <script src="includes/js/objects/object.js"></script>
+    <script src="includes/js/objects/impl/inputText.js"></script>
+    <script src="includes/js/objects/impl/button.js"></script>
+    <script src="includes/js/objects/impl/link.js"></script>
+    <script src="includes/js/objects/impl/paragraph.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
+    <script src="includes/js/objects/impl/image.js"></script>
+
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
 <body>
 
@@ -80,29 +91,34 @@
     <div class="news">
 
         <h1> News</h1>
+
+
         <section  class="rowNews" >
             <tg-paragraph options="paragraphOne"></tg-paragraph>
+            <tg-button options="buttonOptionsAdd" ></tg-button>
+            <tg-button options="buttonOptionsRemove" ></tg-button>
+            <!--<tg-button options="buttonOptionsRemove" id="buttonRemove"></tg-button>-->
+        </section>
+
+        <section  class="rowNews" >
+            <!--<tg-paragraph options="paragraphTwo"></tg-paragraph>-->
             <button class="addCalender">Add</button>
             <button class="addCalender">Remove</button>
         </section>
 
         <section  class="rowNews" >
-            <tg-paragraph options="paragraphTwo"></tg-paragraph>
+            <!--<tg-paragraph options="paragraphThree"></tg-paragraph>-->
             <button class="addCalender">Add</button>
             <button class="addCalender">Remove</button>
         </section>
 
         <section  class="rowNews" >
-            <tg-paragraph options="paragraphThree"></tg-paragraph>
+            <!--<tg-paragraph options="paragraphFour"></tg-paragraph>-->
             <button class="addCalender">Add</button>
             <button class="addCalender">Remove</button>
         </section>
-
-        <section  class="rowNews" >
-            <tg-paragraph options="paragraphFour"></tg-paragraph>
-            <button class="addCalender">Add</button>
-            <button class="addCalender">Remove</button>
-        </section>
+        <tg-link options="link1"></tg-link>
+        <tg-link options="link2"></tg-link>
 
     </div>
 </div>
@@ -117,73 +133,102 @@
     var paragraphOne = {
         commands: {
             'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'זברה'
+            'commandTrigger': 'one'
         }
     }
 
     var paragraphTwo = {
         commands: {
             'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'זברה'
+            'commandTrigger': 'פסקה שניה'
         }
     }
 
     var paragraphThree = {
         commands: {
             'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'זברה'
+            'commandTrigger': 'פסקה שלישית'
         }
     }
 
     var paragraphFour = {
         commands: {
             'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'זברה'
+            'commandTrigger': 'פסקה רביעית'
         }
     }
+
 
 
     var menuOptions = {
         link1: {
             href: "homePage.html",
-//            id: "navW3School",
-//            target: "_self",
+            id: "homePage",
+            target: "_self",
             text: "Homepage",
-            commandTrigger: "דף הבית"
+            commandTrigger: "home page"
         },
         link2: {
             href: "library.html",
-//            id: "navHomePage",
-//            target: "_self",
+            id: "library",
+            target: "_self",
             text: "Library",
-            commandTrigger: "ספריה"
+            commandTrigger: "library"
 
         },
         link3: {
             href: "chat.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "chat",
+            target: "_self",
             text: "Chat",
-            commandTrigger: "חדר שיחה"
+            commandTrigger: "chat"
 
         },
         link4: {
             href: "agenda.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "agenda",
+            target: "_self",
             text: "Agenda",
-            commandTrigger: "לוח מודעות"
-
+            commandTrigger: "agenda"
         }
 
     }
 
-    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
-    twoGatherApi.middleware.init();
-    twoGatherApi.pluginFactories.menuFactory.createPlugin(document.getElementsByTagName("tg-menu")[0]);
-    twoGatherApi.pluginFactories.paragraphFactory.createPlugin(document.getElementsByTagName("tg-paragraph"));
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+    var buttonOptionsAdd = {
+        buttonAttribute : {
+            class : "addCalender"
+        },
+        buttonValue:"Add",
+        commands: {
+            'submit': {
+                name: 'add', func: function () {
+                    console.log("add");
+                }
+            }
+
+        }
+    }
+
+    var buttonOptionsRemove = {
+        buttonAttribute : {
+            class : "addCalender"
+        },
+        buttonValue:"Remove",
+        commands: {
+            'submit': {
+                name: 'remove', func: function () {
+                    console.log("the message remove from calendar");
+                }
+            }
+        }
+    }
+
+
+//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
+//    twoGatherApi.middleware.init();
+    var twoGatherApi = new Gatherapi();
+
 
 </script>
 </body>

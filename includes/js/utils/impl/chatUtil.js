@@ -10,9 +10,8 @@ class ChatUtil extends Util{
         return chatUtilInstance;
     }
 
-    initChat(){
-
-        var wsUri = "ws://ec2-54-191-75-104.us-west-2.compute.amazonaws.com:8080/index.php"
+    initChat(wsChatServer){
+        var wsUri = wsChatServer;
         var websocket = new WebSocket(wsUri);
         var myname;
 
@@ -40,7 +39,7 @@ class ChatUtil extends Util{
             var msg = {
                 message: mymessage,
                 name: myname,
-                // color : '<?php echo $colours[$user_colour]; ?>'
+                color : '<?php echo $colours[$user_colour]; ?>'
             };
             //convert and send data to server
             websocket.send(JSON.stringify(msg));
@@ -54,19 +53,20 @@ class ChatUtil extends Util{
             var uname = msg.name; //user name
             var ucolor = msg.color; //color
 
-            if(type == 'usermsg')
+            if(type == 'usermsg' && uname != null)
             {
                 $('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
                 //voice to text only what the other says
-                if(uname != myname){
-                    let u = new SpeechSynthesisUtterance(uname + "say" + umsg);
-                    u.lang = 'en-US';
-                    let speaker = new SpeechUtil();
-                    speaker.startSpeak(u);
+                if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                    if(uname != myname){
+                        let u = new SpeechSynthesisUtterance(uname + "say" + umsg);
+                        u.lang = 'en-US';
+                        let speaker = new SpeechUtil();
+                        speaker.startSpeak(u);
+                    }
                 }
-
             }
-            if(type == 'system')
+            if(type == 'system' && umsg != null)
             {
                 $('#message_box').append("<div class=\"system_msg\">"+umsg+"</div>");
             }

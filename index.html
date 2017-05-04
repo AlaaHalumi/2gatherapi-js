@@ -12,8 +12,60 @@
     <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
 
     <title>Tsamid</title>
-    <script src="dist/2gatherapi.js"></script>
+    <!--<script src="dist/2gatherapi.js"></script>-->
 
+    <!--third-party-->
+    <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
+    <!--2gatherAPI-->
+    <script src="includes/js/2gatherapi.js"></script>
+    <script src="includes/js/middleware.js"></script>
+    <!--Utils-->
+
+    <script src="includes/js/utils/util.js"></script>
+    <script src="includes/js/utils/impl/annyangUtil.js"></script>
+    <script src="includes/js/utils/impl/chatUtil.js"></script>
+    <script src="includes/js/utils/impl/ttv.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/boxModal.js"></script>
+    <script src="includes/js/utils/impl/userDetails.js"></script>
+
+    <!--Plugins-->
+
+    <script src="includes/js/plugins/plugin.js"></script>
+    <script src="includes/js/plugins/impl/chat.js"></script>
+    <script src="includes/js/plugins/impl/login.js"></script>
+    <script src="includes/js/plugins/impl/library.js"></script>
+    <script src="includes/js/plugins/impl/accessibility.js"></script>
+    <script src="includes/js/plugins/impl/menu.js"></script>
+
+    <script src="includes/js/plugins/factories/pluginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
+    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
+    <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+
+
+    <!--Objects-->
+    <script src="includes/js/objects/object.js"></script>
+    <script src="includes/js/objects/impl/inputText.js"></script>
+    <script src="includes/js/objects/impl/button.js"></script>
+    <script src="includes/js/objects/impl/link.js"></script>
+    <script src="includes/js/objects/impl/paragraph.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
+    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
+    <script src="includes/js/objects/impl/image.js"></script>
+
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
 <body>
 
@@ -38,45 +90,85 @@
 <div id="signin">
     <tg-login options="loginOptions" >
     </tg-login>
+
 </div>
 
 <div class="grass"></div>
 
 <script>
 
+
     var accessibilityOption = {
 
     }
 
+    var checkUser = function(){
+        var url = 'config.json';
+        var jsonData;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                jsonData = JSON.parse(this.responseText);
+
+                var name = document.querySelector("[type='text']").value;
+                var password = document.querySelector("[type='password']").value;
+                for(var index = 0 ; index < jsonData.length ; index++){
+                    if(jsonData[index]["name"] == name && jsonData[index]["password"] == password){
+                        sessionStorage.disability = jsonData[index]["disability"];
+                        sessionStorage.device = jsonData[index]["device"];
+                        window.location.replace("homePage.html");
+                    }
+
+                }
+
+
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+//                    window.location.replace("homePage.html");
+
+    };
+
     var loginOptions = {
+        labels: {
+            nickname: "Nick Name",
+            password: "Password",
+        },
         buttonValue:"Sigin in",
         commands: {
             'submit': {
-                name: 'התחבר', func: function () {
+                name: 'login', func: function () {
                     console.log("login");
-                    window.location.replace("homePage.html");
+                    checkUser();
+
                 }
             },
             'username': {
-                name: 'שם *search', func: function (contents) {
+                name: 'name *search', func: function (contents) {
                     console.log("username");
-                    document.querySelector(".login-username > label > input").value = contents;
+                    document.querySelector("[type='text']").value = contents;
                 }
             },
 
             'moveToPassword': {
-                name: 'סיסמא *search', func: function (contents) {
-                    document.querySelector(".login-password > label > input").value = contents;
+                name: 'password *search', func: function (contents) {
+                    document.querySelector("[type='password']").value = contents;
                 }
             }
         }
     }
 
-    var options = {voiceToTextLanguage: "hebrew", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-    var twoGatherApi = new Gatherapi(options);
-    twoGatherApi.middleware.init();
-    twoGatherApi.pluginFactories.loginFactory.createPlugin(document.getElementsByTagName("tg-login")[0]);
-    twoGatherApi.pluginFactories.accessibilityFactory.createPlugin(document.getElementsByTagName("tg-accessibility")[0]);
+//    var options = {voiceToTextLanguage: "hebrew", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+//    var twoGatherApi = new Gatherapi(options);
+    var twoGatherApi = new Gatherapi();
+//    twoGatherApi.middleware.init();
+
+
+
+
 </script>
 
 </body>

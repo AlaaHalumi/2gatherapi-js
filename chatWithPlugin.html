@@ -5,9 +5,6 @@
     <!--tsamid css -->
     <link rel="stylesheet" type="text/css" href="includes/style.css">
 
-    <!--skip to css-->
-    <link rel="stylesheet" type="text/css" href="includes/SkipTo.css">
-
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 
@@ -16,7 +13,6 @@
 
     <!--third-party-->
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
-
 
     <title>Tsamid</title>
     <!--2gatherAPI-->
@@ -29,7 +25,7 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
-    <script src="includes/js/utils/impl/boxModal.js"></script>
+
     <!--Plugins-->
 
     <script src="includes/js/plugins/plugin.js"></script>
@@ -54,30 +50,20 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
-    <script src="includes/js/objects/impl/image.js"></script>
 
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
-<body >
+<body>
 
 <tg-accessibility options="accessibilityOption">
 </tg-accessibility>
 
 <header>
     <div class="headerContainer">
-
-        <section  class="SkipToAttach" aria-labelledby="id1">
-        </section>
-
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
         </div>
@@ -90,49 +76,9 @@
 </header>
 
 <div id="wrapper">
-    <div class="row_activity">
 
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="#">Games</a>
-        </div>
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="library.html">Library</a>
-        </div>
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="zula.html">Zula</a>
-        </div>
-    </div>
-
-    <div class="row_activity">
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="chat.html">Chat</a>
-        </div>
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="agenda.html">Agenda</a>
-        </div>
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="#">Calender</a>
-
-        </div>
-
-    </div>
+    <tg-chat options="chatOptions">
+    </tg-chat>
 
 </div>
 <div class="grass"></div>
@@ -140,67 +86,85 @@
 <script>
 
     var accessibilityOption = {
-    }
 
+    }
 
     var menuOptions = {
         link1: {
             href: "homePage.html",
-            id: "homePage",
-            target: "_self",
+//            id: "navW3School",
+//            target: "_self",
             text: "Homepage",
-            commandTrigger: "home page"
+            commandTrigger: "דף הבית"
         },
         link2: {
             href: "library.html",
-            id: "library",
-            target: "_self",
+//            id: "navHomePage",
+//            target: "_self",
             text: "Library",
-            commandTrigger: "library"
+            commandTrigger: "ספריה"
 
         },
         link3: {
             href: "chat.html",
-            id: "chat",
-            target: "_self",
+//            id: "navTsamid",
+//            target: "_self",
             text: "Chat",
-            commandTrigger: "chat"
+            commandTrigger: "חדר שיחה"
 
         },
         link4: {
             href: "agenda.html",
-            id: "agenda",
-            target: "_self",
+//            id: "navTsamid",
+//            target: "_self",
             text: "Agenda",
-            commandTrigger: "agenda"
+            commandTrigger: "לוח מודעות"
+
         }
 
     }
 
-//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-//    var twoGatherApi = new Gatherapi(options);
-//    twoGatherApi.middleware.init();
-    var twoGatherApi = new Gatherapi();
 
+    var chatOptions = {
+        wsURL : "ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php",
+        commands: {
+            'name': {
+                name: 'שם *search', func: function (contents) {
+                    console.log("name");
+                    console.log('inside fillName');
+                    //set content
+                    document.querySelector("#name").value = contents;
+//                  get content and speak it
+                    var contents = document.querySelector("#name").value;
+//                        textToSpeak(contents);
 
-    var SkipToConfig =  {
-        "settings": {
-            "skipTo": {
-                "headings": "h1 ,h2, h3",
-                "landmarks": "[role=navigation],[role=search]",
-                "sections": "nav , main",
-                "ids" : "#homePage, #library, #chat, #agenda ",
-                "accesskey": "0",
-                "wrap": "true",
-                "visibility": "onLoad",
-                "customClass": "custom",
-                "attachElement": ".SkipToAttach"
+                }
+            },
+            'message': {
+                name: 'הודעה *search', func: function (contents) {
+                    console.log("message");
+                    console.log('inside message');
+                    //set content
+                    document.querySelector("#message").value = contents;
+//                  get content and speak it
+                    var contents = document.querySelector("#message").value;
+//                        textToSpeak(contents);
+                }
+            },
+            'submit': {
+                name: 'שלח', func: function () {
+                    console.log("send");
+                    console.log('inside send');
+                    document.getElementById('send-btn').click();
+                }
             }
         }
-    };
+    }
+
+//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+    var twoGatherApi = new Gatherapi();
+//    twoGatherApi.middleware.init();
 
 </script>
-<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
-<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </body>
 </html>
