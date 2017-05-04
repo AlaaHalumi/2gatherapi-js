@@ -7,14 +7,29 @@ class InputFactory extends ObjectFactory{
         if(!inputFactoryInstance){
             inputFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
-            this.initUtils();
+
         }
         return inputFactoryInstance;
     }
-    
-    createObject(domElement){
-        let inputText = new InputText(domElement);
-        inputText.draw();
+
+    createObject(domElement, options){
+
+        let inputText;
+
+        if(options == null || options == undefined ){
+            this.options = eval(domElement.getAttribute("options"));
+            inputText = new InputText(domElement);
+            inputText.draw(null);
+            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                this.initUtils();
+            }
+        }
+        else{
+            this.options = options;
+            inputText = new InputText(domElement);
+            inputText.draw(this.options);
+        }
+
         return inputText;
     }
 
@@ -22,12 +37,12 @@ class InputFactory extends ObjectFactory{
         this.initAnnyang();
     }
 
-    initAnnyang(){
-        let commands = {
-            'מחק הכל': function(){
-                document.activeElement.value = "";
-            }
-        };
+    initAnnyang() {
+        console.log("inside annyang");
+        let commands = {};
+        for(let command in this.options.commands){
+            commands[this.options.commands[command].name] = this.options.commands[command].func;
+        }
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
     }

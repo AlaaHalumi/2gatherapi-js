@@ -15,7 +15,9 @@ class LibraryFactory extends PluginFactory{
         let library = new Library(domElement);
         this.options = eval(domElement.getAttribute("options"));
         library.draw();
-        this.initUtils();
+        if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            this.initUtils();
+        }
         return library;
     }
 
@@ -27,6 +29,11 @@ class LibraryFactory extends PluginFactory{
 
         let commands = {};
 
+        commands["עצור"] = function(){
+            console.log("stop stop speaker");
+            let speaker = new SpeechUtil();
+            speaker.cancelSpeak();
+        }
         for(let propertyName in this.options) {
 
             let dataCommand = this.options[propertyName]["triggerCommand"];

@@ -14,8 +14,10 @@ class ChatFactory extends PluginFactory{
     createPlugin(domElement){
         let chat = new Chat(domElement);
         this.options = eval(domElement.getAttribute("options"));
-        this.initUtils();
-        chat.draw();
+        if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            this.initUtils();
+        }
+        chat.draw(this.options.wsURL);
         return chat;
     }
 

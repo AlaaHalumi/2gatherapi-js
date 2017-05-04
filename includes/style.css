@@ -24,7 +24,7 @@ header{
     color: #FFF;
 }
 .headerD{
-    float: left;
+    float: right;
     height: 1.875rem;
     margin: 0.375rem 2.5rem 0 0;
 }
@@ -48,9 +48,11 @@ header{
     clear:both;
 }
 nav{
-    float: left;
+    /*float: left;*/
     margin-left: 3%;
     padding: 0;
+    left: 34%;
+    position: relative;
 }
 
 /*changed from menu to tg-ul*/
@@ -248,7 +250,7 @@ nav{
 }
 .tg-library-startButton:before {
     z-index: 2;
-    top: 16em;
+    top: 14.5em;
     width: 0;
     height: 0;
     border: 1.4em solid transparent;
@@ -256,7 +258,7 @@ nav{
     border-left-width: 2.6em;
 }
 .tg-library-stopButton:before{
-    top: 16.2em;
+    top: 14.5em;
     left: 10.4em;
     width: 2.3em;
     height: 2.3em;
@@ -414,6 +416,7 @@ width: 78%;
     left: 10px;
     border-radius: 10px;
     float: left;
+
 }
 .system_msg,.system_error{
     top: -135px;
@@ -440,6 +443,7 @@ width: 78%;
     border-radius: 10px;
     float: left;
     border: 2px solid #e2e2e2;
+    overflow: scroll;
 }
 .bellow{
     width: 97%;
@@ -548,6 +552,35 @@ width: 78%;
 .rowNews p{
     direction: rtl;
 }
+
+#buttonRemove{
+    width: 7%;
+    height: 40px;
+    top: -20px;
+    position: relative;
+    float: left;
+    background: #fd6ca3;
+    color: #fff;
+    border-radius: 15px;
+    border: #e2e2e2 3px solid;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
+#buttonAdd{
+    width: 7%;
+    height: 40px;
+    top: -20px;
+    position: relative;
+    float: left;
+    background: #fd6ca3;
+    color: #fff;
+    border-radius: 15px;
+    border: #e2e2e2 3px solid;
+    margin: 0.5em;
+    cursor: pointer;
+}
+
 .addCalender{
     width: 7%;
     height: 40px;
