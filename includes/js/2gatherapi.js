@@ -5,7 +5,6 @@ class Gatherapi {
 
         if(options.middlewareDevices) {
             this.middleware = new Middleware(options.middlewareDevices);
-            this.middleware.init();
         }
 
         this.objectToObjectFactoryMap = {inputFactory :"tg-input",buttonFactory : "tg-button",linkFactory : "tg-a",
@@ -33,6 +32,9 @@ class Gatherapi {
 
         // this.utilsConfiguration(options);
         this.scanForPluginsOrObjects();
+        if(this.middleware){
+            this.middleware.init();
+        }
     }
 
     utilsConfiguration(options){
