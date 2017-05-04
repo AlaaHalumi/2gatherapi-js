@@ -27,6 +27,7 @@ tg-login<br>
 tg-chat<br>
 tg-library<br>
 tg-menu<br>
+tg-accessibilitytool<br>
 
 <h2> How to use it? </h2>
 <p> All our elements needs to be set up with "options" attribute, and the value attribute is an object you can rename which will initial the element.</p>
