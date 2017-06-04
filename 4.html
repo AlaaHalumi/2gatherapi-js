@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Virtual Keyboard Basic Demo</title>
+
+	<!-- demo -->
+
+	<!-- jQuery & jQuery UI + theme (required) -->
+	<link href="jquery-ui.min.css" rel="stylesheet">
+	<script src="jquery-latest.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+
+	<!-- keyboard widget css & script (required) -->
+	<link href="keyboard.css" rel="stylesheet">
+	<script src="jquery.keyboard.js"></script>
+
+	<script src="keyboard-layouts-greywyvern.js" charset="utf-8"></script>
+	<link href="demo.css" rel="stylesheet">
+
+	<script>
+
+		//en-int
+		//he
+		//er
+
+        $(function(){
+            $('#multi').keyboard({
+                layout:"en-int"
+            })
+            $('#multi2').keyboard({
+                layout:"he",
+            })
+            $('#multi3').keyboard({
+                layout:"ar"
+            })
+        });
+	</script>
+</head>
+<body>
+
+
+<div id="page-wrap">
+
+	<input id="multi1" type="text" />
+	<div class="block2">
+		<input id="multi" type="text" />
+	</div>
+	<div class="block2">
+		<input id="multi2" type="text" />
+	</div>
+	<div class="block2">
+		<input id="multi3" type="text" />
+	</div>
+</div>
+
+</body>
+</html>

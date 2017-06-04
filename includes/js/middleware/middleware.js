@@ -10,25 +10,29 @@ class Middleware {
         }
     }
 
-    init(){
-        this.checkForConnectedDevices(JSON.stringify(this.devices));
+    init(callback){
+        this.checkForConnectedDevices(JSON.stringify(this.devices),callback);
     }
 
-    checkForConnectedDevices(data){
+    checkForConnectedDevices(data,callback){
         var xmlhttp = new XMLHttpRequest();
         var self = this;
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-                self.connectedDevices = JSON.parse(xmlhttp.responseText);
-                for(var externalInput in self.externalInputs){
-                    var ei = self.externalInputs[externalInput];
-                    for(var connectedDevice in self.connectedDevices){
-                        if(self.connectedDevices[connectedDevice].productId == ei.deviceInfo.productId &&
-                            self.connectedDevices[connectedDevice].vendorId == ei.deviceInfo.vendorId){
-                            ei.connectExternalInput();
-                            break;
+                try {
+                    self.connectedDevices = JSON.parse(xmlhttp.responseText);
+                    for(var externalInput in self.externalInputs){
+                        var ei = self.externalInputs[externalInput];
+                        for(var connectedDevice in self.connectedDevices){
+                            if(self.connectedDevices[connectedDevice].productId == ei.deviceInfo.productId &&
+                                self.connectedDevices[connectedDevice].vendorId == ei.deviceInfo.vendorId){
+                                ei.connectExternalInput();
+                                break;
+                            }
                         }
                     }
+                }catch(err) {
+                    callback();
                 }
             }
         };
