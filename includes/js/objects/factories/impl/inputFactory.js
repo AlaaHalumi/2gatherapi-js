@@ -20,7 +20,7 @@ class InputFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             inputText = new InputText(domElement);
             inputText.draw(null);
-            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+            if( !sessionStorage.hasOwnProperty("utils") || sessionStorage.getItem("utils").indexOf("voice command")!= -1 ){
                 this.initUtils();
             }
         }
@@ -28,6 +28,9 @@ class InputFactory extends ObjectFactory{
             this.options = options;
             inputText = new InputText(domElement);
             inputText.draw(this.options);
+            if( !sessionStorage.hasOwnProperty("utils") || sessionStorage.getItem("utils").indexOf("voice command")!= -1 ){
+                this.initUtils();
+            }
         }
 
         return inputText;
@@ -38,8 +41,11 @@ class InputFactory extends ObjectFactory{
     }
 
     initAnnyang() {
-        console.log("inside annyang");
+
+
+        console.log("inside inputText annyang");
         let commands = {};
+
         for(let command in this.options.commands){
             commands[this.options.commands[command].name] = this.options.commands[command].func;
         }

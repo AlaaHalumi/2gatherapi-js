@@ -19,7 +19,7 @@ class ButtonReaderStopFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             buttonReader = new ButtonReaderStop(domElement);
             buttonReader.draw();
-            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
                 this.initUtils();
             }
         }
@@ -27,6 +27,9 @@ class ButtonReaderStopFactory extends ObjectFactory{
             this.options = options;
             buttonReader = new ButtonReaderStop(domElement);
             buttonReader.draw(this.options);
+            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                this.initUtils();
+            }
         }
         return buttonReader;
 
@@ -36,15 +39,32 @@ class ButtonReaderStopFactory extends ObjectFactory{
         this.initAnnyang();
     }
 
-    initAnnyang(){
+    initAnnyang() {
         let commands = {};
-        commands[this.options["triggerCommand"]] = function () {
-            let speaker = new SpeechUtil();
-            speaker.cancelSpeak();
-            console.log("stop stop speaker");
-        };
 
+        //if user define voice command
+        if (this.options.triggerCommand) {
+            commands[this.options["triggerCommand"]] = function () {
+                let speaker = new SpeechUtil();
+                speaker.cancelSpeak();
+                console.log("stop stop speaker");
+            }
+        }
+        //we define 2Gather keyWord for voice command
+        else{
+            let langObj = this.annyangUtil.getLangObj();
+            for (let langCommand in langObj) {
+                if (langObj[langCommand].hasOwnProperty("buttonReaderStop")) {
+                    commands[langObj[langCommand]["buttonReaderStop"]] = function () {
+                        let speaker = new SpeechUtil();
+                        speaker.cancelSpeak();
+                        console.log("stop stop speaker");
+                    }
+                }
+            }
+        }
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
+
     }
 }

@@ -17,7 +17,7 @@ class Button extends Object{
             this.options = options;
             button = this.initButton()
         }
-
+        console.log(this.domElement)
         this.domElement.appendChild(button);
     }
 
@@ -34,22 +34,13 @@ class Button extends Object{
         if(this.options.buttonValue) {
             button.innerHTML = this.options.buttonValue;
         }
-        if(this.options.commands) {
-            if(this.options.hasOwnProperty("buttonAttribute")){
-                if (this.options.buttonAttribute.hasOwnProperty("id")) {
-                    if (this.options.buttonAttribute["id"] == 'send-btn') {
-
-                    }
-                    else{
-                        button.onclick = this.options.commands.submit.func;
-                    }
-                }
-                else{
-                    button.onclick = this.options.commands.submit.func;
-                }
-
-            }
+        if(this.options.onClickFunc) {
+            button.onclick = this.options.onClickFunc.func;
         }
+        else if(this.options.commands){
+            button.onclick = this.options.commands.submit.func;
+        }
+
         return button;
     }
 }

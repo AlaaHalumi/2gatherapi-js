@@ -3,10 +3,11 @@
 let boxModalUtilInstance = null;
 class BoxModelUtil extends Util {
     constructor() {
+
         super();
         if (!boxModalUtilInstance) {
+            this.annyangUtil = new AnnyangUtil();
             this.divModel = document.createElement("div");
-            ;
             this.divContent = document.createElement("div");
             this.spanClose = document.createElement("span");
             this.pararpghText = document.createElement("p");
@@ -15,6 +16,7 @@ class BoxModelUtil extends Util {
         }
         return boxModalUtilInstance;
     }
+
 
     initModal() {
         <!-- The Modal -->
@@ -28,7 +30,7 @@ class BoxModelUtil extends Util {
         this.spanClose.setAttribute("class", "close");
         this.spanClose.innerHTML = "&times";
         // let pararpghText = document.createElement("p");
-        this.pararpghText.setAttribute("class", "content-paragraph");
+        this.pararpghText.setAttribute("class", "content-paragraph modal-scroll");
         this.pararpghText.innerHTML = "";
         this.divContent.appendChild(this.spanClose);
         this.divContent.appendChild(this.pararpghText);
@@ -52,21 +54,25 @@ class BoxModelUtil extends Util {
             let modal = document.getElementById('myModal');
             if (event.target == modal) {
                 modal.style.display = "none";
+                sessionStorage.scrollPosition = 0;
+                $(".modal-content").scrollTop(0);
             }
         }
+
     }
-        setText(allText)
-        {
-            this.pararpghText.innerHTML = "";
-            // By lines
-            var lines = allText.split('\n');
-            console.log(" lines.length" + lines.length);
-            for (var line = 0; line < lines.length; line++) {
-                this.pararpghText.innerHTML += lines[line];
-                this.pararpghText.innerHTML += "<br>";
-            }
-            this.divModel.style.display = "block";
+
+    setText(allText)
+    {
+
+        this.pararpghText.innerHTML = "";
+        // By lines
+        var lines = allText.split('\n');
+        for (var line = 0; line < lines.length; line++) {
+            this.pararpghText.innerHTML += lines[line];
+            this.pararpghText.innerHTML += "<br>";
         }
+        this.divModel.style.display = "block";
+    }
 
 }
 

@@ -22,15 +22,15 @@ class Gatherapi {
             // circleObject : new CircleObjectUtil()
         };
 
-        this.objectFactories = {inputFactory : new InputFactory() ,imgFactory : new ImgFactory() , buttonFactory: new ButtonFactory ,linkFactory : new LinkFactory()
-                                ,paragraphFactory : new ParagraphFactory() , buttonReaderStartFactory : new ButtonReaderStartFactory()
-                                , buttonReaderStopFactory : new ButtonReaderStopFactory()};
+        this.objectFactories = {inputFactory : new InputFactory() ,imgFactory : new ImgFactory() , buttonFactory: new ButtonFactory
+            ,paragraphFactory : new ParagraphFactory(),linkFactory : new LinkFactory(), buttonReaderStartFactory : new ButtonReaderStartFactory()
+            , buttonReaderStopFactory : new ButtonReaderStopFactory()};
 
         this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(),
              menuFactory: new MenuFactory(), libraryFactory: new LibraryFactory(),
             accessibilityFactory : new AccessibilityFactory() };
 
-        // this.utilsConfiguration(options);
+        this.utilsConfiguration(options);
         this.scanForPluginsOrObjects();
         if(this.middleware){
             this.middleware.init();
@@ -38,9 +38,11 @@ class Gatherapi {
     }
 
     utilsConfiguration(options){
-        // this.utils.annyangUtil.setLanguage(options["voiceToTextLanguage"]);
+        this.utils.annyangUtil.initLangObj();
+        this.utils.annyangUtil.initAnnyang();
         // this.utils.textToVoice.setLanguage(options["textToVoice"]);
         // this.utils.circleObject.initCircleObject();
+        this.utils.annyangUtil.addExitCommand();
     }
 
     scanForPluginsOrObjects(){

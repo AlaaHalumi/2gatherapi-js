@@ -19,7 +19,7 @@ class LinkFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             link = new Link(domElement);
             link.draw(null);
-            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            if( sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
                 this.initUtils();
             }
         }
@@ -27,6 +27,9 @@ class LinkFactory extends ObjectFactory {
             this.options = options;
             link = new Link(domElement);
             link.draw(this.options);
+            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                this.initUtils();
+            }
         }
 
         return link;
@@ -39,17 +42,33 @@ class LinkFactory extends ObjectFactory {
 
     initAnnyang() {
 
+
         let commands = {};
-        console.log("inside link factory annyang");
+        console.log("inside link factory annyang " );
+
         for(let propertyName in this.options) {
-            console.log(propertyName);
-            for(let attribute in this.options[propertyName]) {
-                if (attribute == "commandTrigger") {
-                    let webPage =  this.options[propertyName].href;
-                    commands[this.options[propertyName][attribute]] = function () {   window.location.replace(webPage);};
+
+            if(this.options[propertyName]["commandTrigger"]){
+                console.log("there is a commandTrigger attribute");
+                let webPage =  this.options[propertyName].href;
+                commands[this.options[propertyName]["commandTrigger"]] = function () {   window.location.replace(webPage);};
+
+            }
+            else{
+                if(this.options[propertyName]["href"]){
+                    let langObj = this.annyangUtil.getLangObj();
+                    for(let langCommand in langObj){
+                        if(langObj[langCommand].hasOwnProperty("link")){
+                            let webPage = this.options[propertyName]["href"];
+                            commands[langObj[langCommand]["link"]+ " " + this.options[propertyName]["text"]] = function () {   window.location.replace(webPage);};
+                        }
+
+                    }
 
                 }
+
             }
+
         }
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
