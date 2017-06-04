@@ -3,12 +3,14 @@
 		 "name": "Steve",
 		 "password" : "123",
 		 "disability" : "motor",
+		 "lang" : "hebrew",
 		 "device" : "clicker"
 		},
 		{
 		  "name":"John",
 		  "password" : "123",
 		  "disability" : "blind",
+		  "lang" : "english",
 		  "device" : "tobi"
 		},
 		{

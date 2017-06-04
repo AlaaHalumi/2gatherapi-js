@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 <head>
     <meta charset="UTF-8">
     <!--tsamid css -->
@@ -22,6 +22,8 @@
     <!--2gatherAPI-->
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware/middleware.js"></script>
+    <script src="includes/js/middleware/external-inputs/external-input.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -29,9 +31,11 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
-    <script src="includes/js/utils/impl/boxModal.js"></script>
 
     <!--Plugins-->
+    <script src="includes/js/utils/impl/boxModal.js"></script>
+    <script src="includes/js/utils/impl/userDetails.js"></script>
+
 
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
@@ -43,11 +47,13 @@
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
-    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
 
+    <!--Objects-->
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
 
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
@@ -59,14 +65,13 @@
     <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
 
-    <script src="includes/js/objects/factories/objectFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
+
 </head>
 <body>
 
@@ -83,6 +88,16 @@
 
         </tg-menu>
 
+        <nav id="adminMenu">
+            <ul class="tg-ul">
+                <li><a href="adminPanel.html">ניהול תוכן</a></li>
+                <li><a href="homePage.html">דף הבית</a></li>
+                <li><a href="library.html">ספריה</a></li>
+                <li><a href="chat.html">חדר שיחה</a></li>
+                <li><a href="agenda.html">לוח חדשות</a></li>
+                <li><a href="eventRegistration.html">רישום לאירועים</a></li>
+            </ul>
+        </nav>
     </div>
     <div class="clear"></div>
 </header>
@@ -90,35 +105,14 @@
 <div id="wrapper">
     <div class="news">
 
-        <h1> News</h1>
+        <h1>לוח החדשות</h1>
+
+        <div id="news">
 
 
-        <section  class="rowNews" >
-            <tg-paragraph options="paragraphOne"></tg-paragraph>
-            <tg-button options="buttonOptionsAdd" ></tg-button>
-            <tg-button options="buttonOptionsRemove" ></tg-button>
-            <!--<tg-button options="buttonOptionsRemove" id="buttonRemove"></tg-button>-->
-        </section>
+        </div>
 
-        <section  class="rowNews" >
-            <!--<tg-paragraph options="paragraphTwo"></tg-paragraph>-->
-            <button class="addCalender">Add</button>
-            <button class="addCalender">Remove</button>
-        </section>
 
-        <section  class="rowNews" >
-            <!--<tg-paragraph options="paragraphThree"></tg-paragraph>-->
-            <button class="addCalender">Add</button>
-            <button class="addCalender">Remove</button>
-        </section>
-
-        <section  class="rowNews" >
-            <!--<tg-paragraph options="paragraphFour"></tg-paragraph>-->
-            <button class="addCalender">Add</button>
-            <button class="addCalender">Remove</button>
-        </section>
-        <tg-link options="link1"></tg-link>
-        <tg-link options="link2"></tg-link>
 
     </div>
 </div>
@@ -126,108 +120,199 @@
 
 <script>
 
+    (function(){
+
+        //display menu with admin option
+        if(sessionStorage.displayAdmin == 1){
+            console.log("admin");
+            //remove tg-menu from dom
+            $( "tg-menu" ).remove();
+            $('#adminMenu').show();
+
+        }
+        else{
+            console.log("not admin");
+            $('#adminMenu').hide();
+
+            window["menuOptions"] = {
+                link1: {
+                    href: "homePage.html",
+                    id: "homePage",
+                    target: "_self",
+                    text: "דף הבית",
+//          commandTrigger: "home page"
+                },
+                link2: {
+                    href: "library.html",
+                    id: "library",
+                    target: "_self",
+                    text: "ספריה",
+//            commandTrigger: "library"
+                },
+                link3: {
+                    href: "chat.html",
+                    id: "chat",
+                    target: "_self",
+                    text: "חדר שיחה",
+                    commandTrigger: "חדר שיחה"
+                },
+                link4: {
+                    href: "agenda.html",
+                    id: "לוח חדשות",
+                    target: "_self",
+                    text: "לוח חדשות",
+                    commandTrigger: "לוח חדשות"
+                },
+                link5: {
+                    href: "eventRegistration.html",
+                    id: "event",
+                    target: "_self",
+                    text: "רישום לאירועים",
+//            commandTrigger: "agenda"
+                }
+
+            }
+        }
+
+
+        var url = 'http://localhost:3030/tsamid/getMessages';
+        var jsonData;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                jsonData = JSON.parse(this.responseText);
+                console.log("json " + jsonData["data"].length)
+                //container for all paragraphs
+                var divNews = document.getElementById("news")
+
+                for(var index = 0 ; index < jsonData["data"].length ; index++){
+
+                    //contain one paragraph and link if exist
+                    var divContainer = document.createElement("section");
+                    divContainer.setAttribute("class","rowNews");
+                    var tgParagraph = document.createElement("tg-paragraph");
+
+                    //create var options for tg element
+                    window['paragraph'+index] = {
+                        commands: {
+                            'content' : jsonData["data"][index]["paragraph"],
+                            'commandTrigger': jsonData["data"][index]["command"]
+                        }
+                    }
+
+                    tgParagraph.setAttribute("options",'paragraph'+index)
+
+                    if(jsonData["data"][index]["linkExist"] == "yes"){
+
+                        var tgA = document.createElement("tg-a");
+
+                        window['link'+index] = {
+                            link: {
+                                href : jsonData["data"][index]["url"],
+                                text: jsonData["data"][index]["urlName"],
+//                                target: "_blank"
+                            }
+                        }
+
+                        tgA.setAttribute("options",'link'+index);
+                        divContainer.appendChild(tgParagraph);
+                        divContainer.insertBefore(tgA, divContainer.firstChild);
+                        divNews.appendChild(divContainer);
+
+                    }
+                    divContainer.appendChild(tgParagraph);
+                    divNews.appendChild(divContainer);
+
+                }
+                var twoGatherApi = new Gatherapi(options);
+
+
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+    })();
+
+
+
     var accessibilityOption = {
 
     }
 
+
     var paragraphOne = {
         commands: {
-            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
+            'content' : 'Hello boys and girls, this Thursday we are making a party to celebrate birthdays of the month, so everyone who have a birthday this month speak with us! others are invited! ',
             'commandTrigger': 'one'
         }
     }
 
-    var paragraphTwo = {
-        commands: {
-            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'פסקה שניה'
-        }
-    }
-
-    var paragraphThree = {
-        commands: {
-            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'פסקה שלישית'
-        }
-    }
-
-    var paragraphFour = {
-        commands: {
-            'content' : 'ביום חמישי ה-11.6 בשעה 17:00 מתקיים הפנינג בפנימיית בית הנער בעין ורד, הכנסותיו ייתרמו לעמותת וריאטי כולם מוזמנים!' ,
-            'commandTrigger': 'פסקה רביעית'
-        }
-    }
-
-
-
-    var menuOptions = {
-        link1: {
-            href: "homePage.html",
-            id: "homePage",
-            target: "_self",
-            text: "Homepage",
-            commandTrigger: "home page"
-        },
-        link2: {
-            href: "library.html",
-            id: "library",
-            target: "_self",
-            text: "Library",
-            commandTrigger: "library"
-
-        },
-        link3: {
-            href: "chat.html",
-            id: "chat",
-            target: "_self",
-            text: "Chat",
-            commandTrigger: "chat"
-
-        },
-        link4: {
-            href: "agenda.html",
-            id: "agenda",
-            target: "_self",
-            text: "Agenda",
-            commandTrigger: "agenda"
-        }
-
-    }
-
-    var buttonOptionsAdd = {
-        buttonAttribute : {
-            class : "addCalender"
-        },
-        buttonValue:"Add",
-        commands: {
-            'submit': {
-                name: 'add', func: function () {
-                    console.log("add");
-                }
+    var options = {
+        voiceToTextLanguage: "hebrew",
+        middlewareDevices:[
+            {
+                vendorId:"0781",
+                productId:"5567"
+            },
+            {
+                vendorId:"07c1",
+                productId:"08a1"
             }
+        ]
+    };
 
-        }
-    }
-
-    var buttonOptionsRemove = {
-        buttonAttribute : {
-            class : "addCalender"
-        },
-        buttonValue:"Remove",
-        commands: {
-            'submit': {
-                name: 'remove', func: function () {
-                    console.log("the message remove from calendar");
-                }
-            }
-        }
-    }
-
-
-//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
 //    var twoGatherApi = new Gatherapi(options);
-//    twoGatherApi.middleware.init();
-    var twoGatherApi = new Gatherapi();
+    var markables = document.querySelectorAll("input,a,select,button,textarea");
+    var i = 0;
+    markables[0].focus();
+
+    function doubleclick(event) {
+        console.log(event);
+        var el = document.querySelector('body');
+        if (el.getAttribute("data-dblclick") == null) {
+            el.setAttribute("data-dblclick", 1);
+            setTimeout(function () {
+                if (el.getAttribute("data-dblclick") == 1) {
+                    if(event.button == 0) {
+                        rightClickFunction();
+                    }else{
+                        leftClickFunction();
+                    }
+                }
+                el.removeAttribute("data-dblclick");
+            }, 300);
+        } else {
+            el.removeAttribute("data-dblclick");
+            chooseFunction();
+        }
+    }
+
+    function leftClickFunction() {
+        if(i == 1){
+            i = markables.length - 1;
+        }
+        i--;
+        var mark = markables[i];
+        console.log(mark);
+        mark.focus();
+    }
+
+    function rightClickFunction() {
+        if(i == markables.length - 1){
+            i = -1;
+        }
+        i++;
+        var mark = markables[i];
+        console.log(mark);
+        mark.focus();
+    }
+
+    function chooseFunction() {
+        $(markables[i]).click();
+    }
 
 
 </script>

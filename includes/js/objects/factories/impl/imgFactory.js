@@ -19,7 +19,7 @@ class ImgFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             img = new Img(domElement);
             img.draw();
-            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            if( sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
                 this.initUtils();
             }
         }

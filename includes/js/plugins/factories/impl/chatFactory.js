@@ -6,7 +6,6 @@ class ChatFactory extends PluginFactory{
         super();
         if(!chatFactoryInstance){
             chatFactoryInstance = this;
-            this.annyangUtil = new AnnyangUtil();
         }
         return chatFactoryInstance;
     }
@@ -14,23 +13,12 @@ class ChatFactory extends PluginFactory{
     createPlugin(domElement){
         let chat = new Chat(domElement);
         this.options = eval(domElement.getAttribute("options"));
-        if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
-            this.initUtils();
-        }
         chat.draw(this.options.wsURL);
         return chat;
     }
 
-    initUtils(){
-        this.initAnnyang();
-    }
+    // initUtils(){
+    //
+    // }
 
-    initAnnyang(){
-        let commands = {};
-        for(let command in this.options.commands){
-            commands[this.options.commands[command].name] = this.options.commands[command].func;
-        }
-        let annyangOptions = {commands: commands};
-        this.annyangUtil.addAnnyangCommands(annyangOptions);
-    }
 }

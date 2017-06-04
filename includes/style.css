@@ -5,7 +5,8 @@ article, header, main, nav, footer, section, aside{ display:block;}
 body{
     background-image: url(../images/pattern.png);
     background-repeat: repeat-x;
-    position: fixed;
+    /*position: fixed;*/
+    overflow-x: hidden;
     background-color: #e2e2e2;;
     width:100%;
     font-family: calibri;
@@ -53,6 +54,66 @@ nav{
     padding: 0;
     left: 34%;
     position: relative;
+}
+
+.rowNews a {
+    display: block;
+}
+
+#news p {
+    display: inline-block;
+}
+
+#formEvent{
+    width: 64%;
+    margin-top: 2%;
+}
+
+
+.modal-content {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
+.content-paragraph{
+    font-size: 1.5em;
+}
+
+/*admin css*/
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-shadow: none;
+    color: #999;
+}
+
+ul li{
+    display: block;
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+li a{
+    display: block;
+    margin: 0 !important;
+    border: none;
+    text-decoration: none;
+    height: 1.25rem;
+    padding: 0.625rem 2.813rem 1.25rem 0.3125rem;
+    white-space: nowrap;
+    color: #ffffff;
+    font-size: 2rem;
+    line-height: 1rem;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+ul a:hover{
+    color: #fd6ca3;;
 }
 
 /*changed from menu to tg-ul*/
@@ -549,9 +610,9 @@ width: 78%;
     border-bottom: 2px solid #e2e2e2;
     margin-top: 20px;
 }
-.rowNews p{
-    direction: rtl;
-}
+/*.rowNews p{*/
+    /*direction: rtl;*/
+/*}*/
 
 #buttonRemove{
     width: 7%;

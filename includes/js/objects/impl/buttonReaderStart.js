@@ -20,17 +20,6 @@ class ButtonReaderStart extends Object {
         this.domElement.appendChild(buttonReader);
     }
 
-    readChunk(element){
-        console.log("before========================");
-        console.log(element);
-        let content = element.trim();
-        // console.log(content);
-        let u = new SpeechSynthesisUtterance(content);
-        u.lang = 'en-US';
-        let speaker = new SpeechUtil();
-        speaker.startSpeak(u);
-        console.log("after========================");
-    }
 
     initButtonReader(){
 
@@ -49,18 +38,21 @@ class ButtonReaderStart extends Object {
         if(this.options.triggerCommand) {
             button.setAttribute("data-command",this.options["triggerCommand"]);
         }
+        //for keyWord vocie command
+        if(this.options.header) {
+            button.setAttribute("data-command",this.options["header"]);
+        }
         if(this.options.path){
             path = this.options["path"];
         }
 
         //get the id of the button's img
-        let currentImg = document.getElementById(this.options["imgID"]);
+        // let currentImg = document.getElementById(this.options["imgID"]);
         var self = this;
 
         button.onclick = function() {
 
-            currentImg.style.border = "thick solid red";
-
+            // currentImg.style.border = "thick solid red";
             let rawFile = new XMLHttpRequest();
             rawFile.open("GET", path, false);
             rawFile.onreadystatechange = function () {

@@ -20,7 +20,7 @@ class ParagraphFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             paragraph = new Paragraph(domElement);
             paragraph.draw(null);
-            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            if( sessionStorage.getItem("utils").indexOf("voice command")!= -1 ){
                 this.initUtils();
             }
         }

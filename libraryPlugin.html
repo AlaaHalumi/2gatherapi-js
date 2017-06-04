@@ -32,6 +32,7 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
+    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
     <script src="includes/js/utils/impl/boxModal.js"></script>
 
     <!--Plugins-->
@@ -43,10 +44,10 @@
     <script src="includes/js/plugins/impl/accessibility.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
 
-
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
+    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
@@ -70,6 +71,7 @@
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
+
 </head>
 <body>
 
@@ -97,29 +99,9 @@
 
 
     <div class="main">
+        <tg-library options="libraryOption">
 
-        <div class="tg-library-books">
-            <div class="tg-library-story">
-
-                <tg-img options="imgText"></tg-img>
-
-                <tg-buttonreaderStart options="buttonReadOne">
-                </tg-buttonreaderStart>
-
-                <tg-buttonReaderStop options="buttonStopOne">
-                </tg-buttonReaderStop>
-            </div>
-             <div class="tg-library-story">
-
-                <tg-img options="imgTextTwo"></tg-img>
-
-                <tg-buttonreaderStart options="buttonReadTwo">
-                </tg-buttonreaderStart>
-
-                <tg-buttonReaderStop options="buttonStopTwo">
-                </tg-buttonReaderStop>
-            </div>
-        </div>
+        </tg-library>
 
     </div>
 
@@ -130,118 +112,116 @@
 
 <script>
 
+
     var accessibilityOption = {
 
     }
 
-
     var menuOptions = {
         link1: {
             href: "homePage.html",
-//            id: "navW3School",
-//            target: "_self",
+            id: "homePage",
+            target: "_self",
             text: "Homepage",
-            commandTrigger: "דף הבית"
+            commandTrigger: "home page"
         },
         link2: {
             href: "library.html",
-//            id: "navHomePage",
-//            target: "_self",
+            id: "library",
+            target: "_self",
             text: "Library",
-            commandTrigger: "ספריה"
+            commandTrigger: "library"
 
         },
         link3: {
             href: "chat.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "chat",
+            target: "_self",
             text: "Chat",
-            commandTrigger: "חדר שיחה"
+            commandTrigger: "chat"
 
         },
         link4: {
             href: "agenda.html",
-//            id: "navTsamid",
-//            target: "_self",
+            id: "agenda",
+            target: "_self",
             text: "Agenda",
-            commandTrigger: "לוח מודעות"
-
+            commandTrigger: "agenda"
+        },
+        link5: {
+            href: "eventRegistration.html",
+            id: "event",
+            target: "_self",
+            text: "רישום לאירועים",
+//            commandTrigger: "agenda"
         }
 
     }
 
-    var imgText = {
-        imgAttribute : {
-            id : "imgReader",
-            class : "tg-library-img"
+    var libraryOption = {
+        book1 : {
+            path: "includes/library/The Hare and the Tortoise",
+            bookName : "The Hare and the Tortoise",
+            img : "includes/library/The Hare and the Tortoise.jpg",
+            triggerCommand : "one",
+            id : "The Hare and the Tortoise"
         },
-        path: "includes/library/The Hare and the Tortoise",
-        img : "includes/library/The Hare and the Tortoise.jpg",
-        id : "agenda,#The Hare and the Tortoise"
-    }
-
-    var buttonReadOne = {
-        buttonAttribute : {
-            id : "startButtonOne",
-            class : "tg-library-startButton"
+        book2 : {
+            path: "includes/library/The Lion and the Mouse",
+            bookName : "The Lion and the Mouse",
+            img : "includes/library/The Lion and the Mouse.jpg",
+            triggerCommand : "two",
+            id : "The Lion and the Mouse"
         },
-        triggerCommand : "book one",
-        path: "includes/library/The Hare and the Tortoise",
-        buttonValue : "start",
-        imgID : "imgReader",
-        id : "The Hare and the Tortoise"
-
-    }
-
-    var buttonStopOne = {
-        buttonAttribute : {
-            id : "stopButtonOne",
-            class : "tg-library-stopButton"
+        book3 : {
+            path: "includes/library/The Goose with the Golden Eggs",
+            bookName : "The Goose with the Golden Eggs",
+            img : "includes/library/The Goose with the Golden Eggs.jpg",
+            triggerCommand : "three",
+            id : "The Goose with the Golden Eggs"
         },
-        triggerCommand : "stop",
-        buttonValue : "stop",
-        imgID : "imgReader"
-    }
+        book4 : {
+            path: "includes/library/The Milkmaid and her Pail",
+            bookName : "The Milkmaid and her Pail",
+            img : "includes/library/The Milkmaid and her Pail.jpg",
+            triggerCommand : "four",
+            id : "The Milkmaid and her Pail"
 
-
-    var imgTextTwo = {
-        imgAttribute : {
-            id : "imgReaderTwo",
-            class : "tg-library-img"
         },
-        path: "includes/library/The Lion and the Mouse",
-        img : "includes/library/The Lion and the Mouse.jpg"
-    }
-
-    var buttonReadTwo = {
-        buttonAttribute : {
-            id : "startButtonTwo",
-            class : "tg-library-startButton"
+        book5 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "A Christmas Surprise",
+            img : "includes/library/A Christmas Surprise.jpg",
+            triggerCommand : "ספר חמישי"
         },
-        triggerCommand : "book two",
-        path: "includes/library/The Lion and the Mouse",
-        buttonValue : "start",
-        imgID : "imgReaderTwo"
-
-    }
-
-    var buttonStopTwo = {
-        buttonAttribute : {
-            id : "stopButtonTwo",
-            class : "tg-library-stopButton"
+        book6 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "The Ant and the Grasshopper",
+            img : "includes/library/The Ant and the Grasshopper.jpg",
+            triggerCommand : "ספר שישי"
         },
-        triggerCommand : "stop",
-        buttonValue : "stop",
-        imgID : "imgReaderTwo"
-    }
+        book7 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "Three Sons and a Bundle of Sticks",
+            img : "includes/library/Three Sons and a Bundle of Sticks.jpg",
+            triggerCommand : "ספר שביעי"
+        },
+        book8 : {
+            path: "includes/library/A Christmas Surprise",
+            bookName : "The Fox and the Grapes",
+            img : "includes/library/The Fox and the Grapes.jpg",
+            triggerCommand : "ספר שמיני"
+        },
 
+
+
+    }
 
 
 //    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
 //    var twoGatherApi = new Gatherapi(options);
     var twoGatherApi = new Gatherapi();
-    //    twoGatherApi.middleware.init();
-
+//    twoGatherApi.middleware.init();
 
     var SkipToConfig =  {
         "settings": {

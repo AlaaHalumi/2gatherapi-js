@@ -19,14 +19,17 @@ class ButtonReaderStartFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             buttonReader = new ButtonReaderStart(domElement);
             buttonReader.draw();
-            if(sessionStorage.getItem("disability").indexOf("hearing") == -1){
+            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
                 this.initUtils();
             }
         }
         else{
             this.options = options;
-            buttonReader = new ButtonReader(domElement);
+            buttonReader = new ButtonReaderStart(domElement);
             buttonReader.draw(this.options);
+            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                this.initUtils();
+            }
         }
         return buttonReader;
 
@@ -39,13 +42,27 @@ class ButtonReaderStartFactory extends ObjectFactory{
     initAnnyang(){
         let commands = {};
 
-        let dataCommand = this.options["triggerCommand"];
-        commands[this.options["triggerCommand"]] = function () {
-            let button = document.querySelector("[data-command='"+dataCommand+"']");
-            button.click();
-        };
+        if(this.options["triggerCommand"]){
+            let dataCommand = this.options["triggerCommand"];
+            commands[this.options["triggerCommand"]] = function () {
+                let button = document.querySelector("[data-command='"+dataCommand+"']");
+                button.click();
+            };
+        }
+        else if(this.options["header"]){
+            let dataCommand = this.options["header"];
+            let langObj = this.annyangUtil.getLangObj();
+            for (let langCommand in langObj) {
+                if (langObj[langCommand].hasOwnProperty("buttonReaderStart")) {
+                    commands[langObj[langCommand]["buttonReaderStart"] + " " + dataCommand] = function () {
+                        let button = document.querySelector("[data-command='"+dataCommand+"']");
+                        button.click();
+                    }
+                }
+            }
+        }
 
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
     }
-}1
+}

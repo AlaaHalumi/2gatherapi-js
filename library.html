@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 <head>
     <meta charset="UTF-8">
     <!--tsamid css -->
@@ -18,13 +18,11 @@
     <!--third-party-->
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
 
-    <title>Tsamid</title>
-    <!--third-party-->
-    <script src="includes/js/third-parties/annyang/annyang.js"></script>
-
     <!--2gatherAPI-->
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware/middleware.js"></script>
+    <script src="includes/js/middleware/external-inputs/external-input.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -32,10 +30,11 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
-    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
-    <script src="includes/js/utils/impl/boxModal.js"></script>
 
     <!--Plugins-->
+    <script src="includes/js/utils/impl/boxModal.js"></script>
+    <script src="includes/js/utils/impl/userDetails.js"></script>
+
 
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
@@ -47,10 +46,13 @@
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
-    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+
+    <!--Objects-->
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
 
 
     <!--Objects-->
@@ -63,15 +65,12 @@
     <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
 
-    <script src="includes/js/objects/factories/objectFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
-
 </head>
 <body>
 
@@ -90,18 +89,31 @@
         <tg-menu options="menuOptions">
         </tg-menu>
 
+        <nav id="adminMenu">
+            <ul class="tg-ul">
+                <li><a href="adminPanel.html">ניהול תוכן</a></li>
+                <li><a href="homePage.html">דף הבית</a></li>
+                <li><a href="library.html">ספריה</a></li>
+                <li><a href="chat.html">חדר שיחה</a></li>
+                <li><a href="agenda.html">לוח חדשות</a></li>
+                <li><a href="eventRegistration.html">רישום לאירועים</a></li>
+            </ul>
+        </nav>
+
     </div>
     <div class="clear"></div>
 </header>
 
 <div id="wrapper">
 
-
-
     <div class="main">
-        <tg-library options="libraryOption">
+        <h1  style="text-align: center">סיפורים לילדים</h1>
+        <h2 style="text-align: center">כאן תוכלו למצוא שפע סיפורים לילדים, לשימושכם החופשי:</h2>
+        <h2 style="text-align: center"> סיפורים קצרים, סיפור לפני השינה, סיפורי עם, אגדות לילדים, מעשיות.</h2>
 
-        </tg-library>
+        <div class="tg-library-books" id="libraryContainer">
+
+        </div>
 
     </div>
 
@@ -113,108 +125,272 @@
 <script>
 
 
+    (function(){
+
+        //display menu with admin option
+        if(sessionStorage.displayAdmin == 1){
+            console.log("admin");
+            //remove tg-menu from dom
+            $( "tg-menu" ).remove();
+            $('#adminMenu').show();
+
+        }
+        else{
+            console.log("not admin");
+            $('#adminMenu').hide();
+
+            window["menuOptions"] = {
+                link1: {
+                    href: "homePage.html",
+                    id: "homePage",
+                    target: "_self",
+                    text: "דף הבית",
+//          commandTrigger: "home page"
+                },
+                link2: {
+                    href: "library.html",
+                    id: "library",
+                    target: "_self",
+                    text: "ספריה",
+//            commandTrigger: "library"
+                },
+                link3: {
+                    href: "chat.html",
+                    id: "chat",
+                    target: "_self",
+                    text: "חדר שיחה",
+                    commandTrigger: "חדר שיחה"
+                },
+                link4: {
+                    href: "agenda.html",
+                    id: "לוח חדשות",
+                    target: "_self",
+                    text: "לוח חדשות",
+                    commandTrigger: "לוח חדשות"
+                },
+                link5: {
+                    href: "eventRegistration.html",
+                    id: "event",
+                    target: "_self",
+                    text: "רישום לאירועים",
+//            commandTrigger: "agenda"
+                }
+
+            }
+        }
+
+
+        var url = 'http://localhost:3030/tsamid/getStories';
+        var jsonData;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                jsonData = JSON.parse(this.responseText);
+                console.log("json " + jsonData["data"].length)
+                //container for all paragraphs
+                var divLibrary = document.getElementById("libraryContainer")
+
+                for(var index = 0 ; index < jsonData["data"].length ; index++){
+
+                    //contain one paragraph and link if exist
+                    var divStory = document.createElement("div");
+                    divStory.setAttribute("class","tg-library-story");
+                    var tgImg = document.createElement("tg-img");
+                    var header = document.createElement("h2");
+                    header.innerHTML+=jsonData["data"][index]["header"];
+
+                    //create var options for tg element
+                    window['img'+index] = {
+                        imgAttribute : {
+                            id : 'img'+index,
+                            class : "tg-library-img",
+                            height : "150",
+                            width : "150"
+                        },
+                        path: jsonData["data"][index]["storyURL"],
+                        img : jsonData["data"][index]["imgURL"],
+                        voiceCommand : jsonData["data"][index]["header"]
+                    }
+
+                    tgImg.setAttribute("options",'img'+index)
+
+                    divStory.appendChild(header);
+                    divStory.appendChild(tgImg);
+
+                    //create ttv button
+//                    if(jsonData["data"][index]["ttv"] == "yes") {
+//
+//                        var tgButtonStart = document.createElement("tg-buttonreaderstart");
+//
+//                        window['buttonReader' + index] = {
+//                            buttonAttribute: {
+//                                id: "startButtonOne",
+//                                class: "tg-library-startButton"
+//                            },
+//                            header: jsonData["data"][index]["header"],
+//                            path: jsonData["data"][index]["storyURL"],
+//                            buttonValue: "start",
+////                            imgID : "imgReader",
+////                            id : "The Hare and the Tortoise"
+//                        }
+//
+//                        tgButtonStart.setAttribute("options", 'buttonReader' + index);
+//                        divStory.appendChild(tgButtonStart);
+//                    }
+                    divLibrary.appendChild(divStory);
+
+                }
+                var twoGatherApi = new Gatherapi(options);
+
+
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+    })();
+
+
+
     var accessibilityOption = {
 
     }
 
-    var menuOptions = {
-        link1: {
-            href: "homePage.html",
-            id: "homePage",
-            target: "_self",
-            text: "Homepage",
-            commandTrigger: "home page"
-        },
-        link2: {
-            href: "library.html",
-            id: "library",
-            target: "_self",
-            text: "Library",
-            commandTrigger: "library"
-
-        },
-        link3: {
-            href: "chat.html",
-            id: "chat",
-            target: "_self",
-            text: "Chat",
-            commandTrigger: "chat"
-
-        },
-        link4: {
-            href: "agenda.html",
-            id: "agenda",
-            target: "_self",
-            text: "Agenda",
-            commandTrigger: "agenda"
-        }
-
-    }
-
-    var libraryOption = {
-        book1 : {
-            path: "includes/library/The Hare and the Tortoise",
-            bookName : "The Hare and the Tortoise",
-            img : "includes/library/The Hare and the Tortoise.jpg",
-            triggerCommand : "one",
-            id : "The Hare and the Tortoise"
-        },
-        book2 : {
-            path: "includes/library/The Lion and the Mouse",
-            bookName : "The Lion and the Mouse",
-            img : "includes/library/The Lion and the Mouse.jpg",
-            triggerCommand : "two",
-            id : "The Lion and the Mouse"
-        },
-        book3 : {
-            path: "includes/library/The Goose with the Golden Eggs",
-            bookName : "The Goose with the Golden Eggs",
-            img : "includes/library/The Goose with the Golden Eggs.jpg",
-            triggerCommand : "three",
-            id : "The Goose with the Golden Eggs"
-        },
-        book4 : {
-            path: "includes/library/The Milkmaid and her Pail",
-            bookName : "The Milkmaid and her Pail",
-            img : "includes/library/The Milkmaid and her Pail.jpg",
-            triggerCommand : "four",
-            id : "The Milkmaid and her Pail"
-
-        },
-        book5 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "A Christmas Surprise",
-            img : "includes/library/A Christmas Surprise.jpg",
-            triggerCommand : "ספר חמישי"
-        },
-        book6 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "The Ant and the Grasshopper",
-            img : "includes/library/The Ant and the Grasshopper.jpg",
-            triggerCommand : "ספר שישי"
-        },
-        book7 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "Three Sons and a Bundle of Sticks",
-            img : "includes/library/Three Sons and a Bundle of Sticks.jpg",
-            triggerCommand : "ספר שביעי"
-        },
-        book8 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "The Fox and the Grapes",
-            img : "includes/library/The Fox and the Grapes.jpg",
-            triggerCommand : "ספר שמיני"
-        },
 
 
 
-    }
+//    var imgText = {
+//        imgAttribute : {
+//            id : "imgReader",
+//            class : "tg-library-img"
+//        },
+//        path: "includes/library/The Hare and the Tortoise",
+//        img : "includes/library/The Hare and the Tortoise.jpg",
+//        id : "imgReader"
+//    }
+//
+//    var buttonReadOne = {
+//        buttonAttribute : {
+//            id : "startButtonOne",
+//            class : "tg-library-startButton"
+//        },
+//        triggerCommand : "book one",
+//        path: "includes/library/The Hare and the Tortoise",
+//        buttonValue : "start",
+//        imgID : "imgReader",
+//        id : "The Hare and the Tortoise"
+//
+//    }
+//
+//    var buttonStopOne = {
+//        buttonAttribute : {
+//            id : "stopButtonOne",
+//            class : "tg-library-stopButton"
+//        },
+//        triggerCommand : "stop",
+//        buttonValue : "stop",
+//        imgID : "imgReader"
+//    }
+//
+//
+//    var imgTextTwo = {
+//        imgAttribute : {
+//            id : "imgReaderTwo",
+//            class : "tg-library-img"
+//        },
+//        path: "includes/library/The Lion and the Mouse",
+//        img : "includes/library/The Lion and the Mouse.jpg"
+//    }
+//
+//    var buttonReadTwo = {
+//        buttonAttribute : {
+//            id : "startButtonTwo",
+//            class : "tg-library-startButton"
+//        },
+////        triggerCommand : "book two",
+//        path: "includes/library/The Lion and the Mouse",
+//        buttonValue : "start",
+//        imgID : "imgReaderTwo",
+//        header : "עכבר"
+//
+//    }
+//
+//    var buttonStopTwo = {
+//        buttonAttribute : {
+//            id : "stopButtonTwo",
+//            class : "tg-library-stopButton"
+//        },
+////        triggerCommand : "stop",
+//        buttonValue : "stop",
+//        imgID : "imgReaderTwo"
+//    }
 
 
-//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
+
+    var options = {
+        voiceToTextLanguage: "hebrew",
+        middlewareDevices:[
+            {
+                vendorId:"0781",
+                productId:"5567"
+            },
+            {
+                vendorId:"07c1",
+                productId:"08a1"
+            }
+        ]
+    };
 //    var twoGatherApi = new Gatherapi(options);
-    var twoGatherApi = new Gatherapi();
-//    twoGatherApi.middleware.init();
+    var markables = document.querySelectorAll("input,a,select,button,textarea");
+    var i = 0;
+    markables[0].focus();
+
+    function doubleclick(event) {
+        console.log(event);
+        var el = document.querySelector('body');
+        if (el.getAttribute("data-dblclick") == null) {
+            el.setAttribute("data-dblclick", 1);
+            setTimeout(function () {
+                if (el.getAttribute("data-dblclick") == 1) {
+                    if(event.button == 0) {
+                        rightClickFunction();
+                    }else{
+                        leftClickFunction();
+                    }
+                }
+                el.removeAttribute("data-dblclick");
+            }, 300);
+        } else {
+            el.removeAttribute("data-dblclick");
+            chooseFunction();
+        }
+    }
+
+    function leftClickFunction() {
+        if(i == 1){
+            i = markables.length - 1;
+        }
+        i--;
+        var mark = markables[i];
+        console.log(mark);
+        mark.focus();
+    }
+
+    function rightClickFunction() {
+        if(i == markables.length - 1){
+            i = -1;
+        }
+        i++;
+        var mark = markables[i];
+        console.log(mark);
+        mark.focus();
+    }
+
+    function chooseFunction() {
+        $(markables[i]).click();
+    }
 
     var SkipToConfig =  {
         "settings": {
