@@ -19,11 +19,9 @@ class BoxModelUtil extends Util {
 
 
     initModal() {
-        <!-- The Modal -->
         // let divModel = document.createElement("div");
         this.divModel.setAttribute("id", "myModal");
         this.divModel.setAttribute("class", "modal");
-        <!-- Modal content -->
         // let divContent = document.createElement("div");
         this.divContent.setAttribute("class", "modal-content");
         // let spanClose = document.createElement("span");
