@@ -55,6 +55,7 @@
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
 
+
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
@@ -64,6 +65,7 @@
     <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
     <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
+    <script src="includes/js/objects/impl/li.js"></script>
 
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
@@ -71,11 +73,12 @@
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/liFactory.js"></script>
 
 </head>
 <body>
 
-<tg-accessibility options="accessibilityOption">
+<tg-accessibility>
 </tg-accessibility>
 
 <header>
@@ -106,13 +109,7 @@
     <div class="news">
 
         <h1>לוח החדשות</h1>
-
-        <div id="news">
-
-
-        </div>
-
-
+        <div id="news"></div>
 
     </div>
 </div>
@@ -237,19 +234,6 @@
     })();
 
 
-
-    var accessibilityOption = {
-
-    }
-
-
-    var paragraphOne = {
-        commands: {
-            'content' : 'Hello boys and girls, this Thursday we are making a party to celebrate birthdays of the month, so everyone who have a birthday this month speak with us! others are invited! ',
-            'commandTrigger': 'one'
-        }
-    }
-
     var options = {
         voiceToTextLanguage: "hebrew",
         middlewareDevices:[
@@ -264,7 +248,6 @@
         ]
     };
 
-//    var twoGatherApi = new Gatherapi(options);
     var markables = document.querySelectorAll("input,a,select,button,textarea");
     var i = 0;
     markables[0].focus();

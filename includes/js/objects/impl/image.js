@@ -61,7 +61,6 @@ class Img extends Object {
 
         }
         //init voice command
-        if(sessionStorage.getItem("utils").indexOf("ttv") != -1){
             let commands = {};
         if( sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
 
@@ -114,7 +113,6 @@ class Img extends Object {
             let annyangOptions = {commands: commands};
             this.annyangUtil.addAnnyangCommands(annyangOptions);
 
-        }
         return img;
     }
 

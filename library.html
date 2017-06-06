@@ -64,6 +64,7 @@
     <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
     <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
+    <script src="includes/js/objects/impl/li.js"></script>
 
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
@@ -71,16 +72,15 @@
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/liFactory.js"></script>
 </head>
 <body>
 
-<tg-accessibility options="accessibilityOption">
+<tg-accessibility>
 </tg-accessibility>
 
 <header>
     <div class="headerContainer">
-        <section  class="SkipToAttach" aria-labelledby="id1">
-        </section>
 
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
@@ -88,17 +88,6 @@
 
         <tg-menu options="menuOptions">
         </tg-menu>
-
-        <nav id="adminMenu">
-            <ul class="tg-ul">
-                <li><a href="adminPanel.html">ניהול תוכן</a></li>
-                <li><a href="homePage.html">דף הבית</a></li>
-                <li><a href="library.html">ספריה</a></li>
-                <li><a href="chat.html">חדר שיחה</a></li>
-                <li><a href="agenda.html">לוח חדשות</a></li>
-                <li><a href="eventRegistration.html">רישום לאירועים</a></li>
-            </ul>
-        </nav>
 
     </div>
     <div class="clear"></div>
@@ -121,12 +110,9 @@
     <div class="clear"></div>
 </div><!--  End of wrapper -->
 
-
 <script>
 
-
-    (function(){
-
+    (function () {
         //display menu with admin option
         if(sessionStorage.displayAdmin == 1){
             console.log("admin");
@@ -177,8 +163,59 @@
                 }
 
             }
+
+            var options = {
+                voiceToTextLanguage: "hebrew",
+                middlewareDevices:[
+                    {
+                        vendorId:"0781",
+                        productId:"5567"
+                    },
+                    {
+                        vendorId:"07c1",
+                        productId:"08a1"
+                    }
+                ]
+            };
         }
 
+
+        window["buttonSend"] = {
+            buttonAttribute: {
+                type : "submit",
+                class : "btn btn-basic"
+
+            },
+            buttonValue: "שלח",
+            onClickFunc: {
+                func: function () {
+                    console.log("button clicked");
+                    alert("ההרשמה בוצע בהצלחה!")
+                }
+            }
+        }
+
+        window["inputName"] = {
+            inputAttribute : {
+                type: "text",
+                class : "form-control",
+                name : "name",
+                id : "name",
+                placeholder : "Enter name"
+            },
+            commands: {
+                'message': {
+                    name: 'שם *search', func: function (contents) {
+                        console.log("שם");
+                        console.log('inside שם');
+                        //set content
+                        document.querySelector("#name").value = contents;
+
+                    }
+                },
+
+            }
+        }
 
         var url = 'http://localhost:3030/tsamid/getStories';
         var jsonData;
@@ -219,26 +256,6 @@
                     divStory.appendChild(header);
                     divStory.appendChild(tgImg);
 
-                    //create ttv button
-//                    if(jsonData["data"][index]["ttv"] == "yes") {
-//
-//                        var tgButtonStart = document.createElement("tg-buttonreaderstart");
-//
-//                        window['buttonReader' + index] = {
-//                            buttonAttribute: {
-//                                id: "startButtonOne",
-//                                class: "tg-library-startButton"
-//                            },
-//                            header: jsonData["data"][index]["header"],
-//                            path: jsonData["data"][index]["storyURL"],
-//                            buttonValue: "start",
-////                            imgID : "imgReader",
-////                            id : "The Hare and the Tortoise"
-//                        }
-//
-//                        tgButtonStart.setAttribute("options", 'buttonReader' + index);
-//                        divStory.appendChild(tgButtonStart);
-//                    }
                     divLibrary.appendChild(divStory);
 
                 }
@@ -253,96 +270,6 @@
     })();
 
 
-
-    var accessibilityOption = {
-
-    }
-
-
-
-
-//    var imgText = {
-//        imgAttribute : {
-//            id : "imgReader",
-//            class : "tg-library-img"
-//        },
-//        path: "includes/library/The Hare and the Tortoise",
-//        img : "includes/library/The Hare and the Tortoise.jpg",
-//        id : "imgReader"
-//    }
-//
-//    var buttonReadOne = {
-//        buttonAttribute : {
-//            id : "startButtonOne",
-//            class : "tg-library-startButton"
-//        },
-//        triggerCommand : "book one",
-//        path: "includes/library/The Hare and the Tortoise",
-//        buttonValue : "start",
-//        imgID : "imgReader",
-//        id : "The Hare and the Tortoise"
-//
-//    }
-//
-//    var buttonStopOne = {
-//        buttonAttribute : {
-//            id : "stopButtonOne",
-//            class : "tg-library-stopButton"
-//        },
-//        triggerCommand : "stop",
-//        buttonValue : "stop",
-//        imgID : "imgReader"
-//    }
-//
-//
-//    var imgTextTwo = {
-//        imgAttribute : {
-//            id : "imgReaderTwo",
-//            class : "tg-library-img"
-//        },
-//        path: "includes/library/The Lion and the Mouse",
-//        img : "includes/library/The Lion and the Mouse.jpg"
-//    }
-//
-//    var buttonReadTwo = {
-//        buttonAttribute : {
-//            id : "startButtonTwo",
-//            class : "tg-library-startButton"
-//        },
-////        triggerCommand : "book two",
-//        path: "includes/library/The Lion and the Mouse",
-//        buttonValue : "start",
-//        imgID : "imgReaderTwo",
-//        header : "עכבר"
-//
-//    }
-//
-//    var buttonStopTwo = {
-//        buttonAttribute : {
-//            id : "stopButtonTwo",
-//            class : "tg-library-stopButton"
-//        },
-////        triggerCommand : "stop",
-//        buttonValue : "stop",
-//        imgID : "imgReaderTwo"
-//    }
-
-
-
-    var options = {
-        voiceToTextLanguage: "hebrew",
-        middlewareDevices:[
-            {
-                vendorId:"0781",
-                productId:"5567"
-            },
-            {
-                vendorId:"07c1",
-                productId:"08a1"
-            }
-        ]
-    };
-//    var twoGatherApi = new Gatherapi(options);
     var markables = document.querySelectorAll("input,a,select,button,textarea");
     var i = 0;
     markables[0].focus();
@@ -392,24 +319,9 @@
         $(markables[i]).click();
     }
 
-    var SkipToConfig =  {
-        "settings": {
-            "skipTo": {
-                "headings": "h1 ,h2, h3",
-                "landmarks": "[role=navigation],[role=search]",
-                "sections": "nav , main",
-                "ids" : "#homePage, #library, #chat, #agenda,#The Hare and the Tortoise,#The Lion and the Mouse,#The Milkmaid and her Pail, #The Milkmaid and her Pail ",
-                "accesskey": "0",
-                "wrap": "true",
-                "visibility": "onLoad",
-                "customClass": "custom",
-                "attachElement": ".SkipToAttach"
-            }
-        }
-    };
+
 
 </script>
-<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
-<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
+
 </body>
 </html>

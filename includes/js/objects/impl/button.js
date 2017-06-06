@@ -38,6 +38,7 @@ class Button extends Object{
             button.onclick = this.options.onClickFunc.func;
         }
         else if(this.options.commands){
+            console.log("lalalal")
             button.onclick = this.options.commands.submit.func;
         }
 

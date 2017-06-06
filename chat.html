@@ -5,9 +5,6 @@
     <!--tsamid css -->
     <link rel="stylesheet" type="text/css" href="includes/style.css">
 
-    <!--skipTo css-->
-    <link rel="stylesheet" type="text/css" href="includes/SkipTo.css">
-
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 
@@ -55,6 +52,7 @@
     <script src="includes/js/objects/factories/objectFactory.js"></script>
     <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
 
+
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
@@ -64,6 +62,7 @@
     <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
     <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
+    <script src="includes/js/objects/impl/li.js"></script>
 
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
@@ -71,17 +70,16 @@
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/liFactory.js"></script>
 </head>
 <body>
 
-<tg-accessibility options="accessibilityOption">
+<tg-accessibility >
 </tg-accessibility>
 
 <header>
     <div class="headerContainer">
 
-        <section  class="SkipToAttach" aria-labelledby="id1">
-        </section>
 
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
@@ -203,8 +201,6 @@
             ]
         };
 
-//        var chatUtil = new ChatUtil();
-//        chatUtil.initChat("ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php");
 
         window["chatOptions"] = {
             wsURL: "ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php",
@@ -245,99 +241,82 @@
     })();
 
 
+    //chat from objects
 
-    var SkipToConfig =  {
-        "settings": {
-            "skipTo": {
-                "headings": "h1 ,h2, h3",
-                "landmarks": "[role=navigation],[role=search]",
-                "sections": "nav , main",
-                "ids" : "#homePage, #library, #chat, #agenda ,#name, #message, #send-btn ",
-                "accesskey": "0",
-                "wrap": "true",
-                "visibility": "onLoad",
-                "customClass": "custom",
-                "attachElement": ".SkipToAttach"
-            }
-        }
-    };
+    //        var chatUtil = new ChatUtil();
+    //        chatUtil.initChat("ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php");
 
-    var accessibilityOption = {
-
-    }
-
-
-    var buttonSend = {
-        buttonAttribute : {
-            id : "send-btn",
-            class : "send"
-        },
-        buttonValue : "send",
-        onClickFunc : {
-            func  : function () {
-                document.getElementById('send-btn').click();
-            }
-        },
-//        commands: {
-//            'submit': {
-//                name: 'send', func: function () {
-//                    console.log("send");
-//                    console.log('inside send');
-//                    document.getElementById('send-btn').click();
-//                }
+//    var buttonSend = {
+//        buttonAttribute : {
+//            id : "send-btn",
+//            class : "send"
+//        },
+//        buttonValue : "send",
+//        onClickFunc : {
+//            func  : function () {
+//                document.getElementById('send-btn').click();
 //            }
+//        },
+////        commands: {
+////            'submit': {
+////                name: 'send', func: function () {
+////                    console.log("send");
+////                    console.log('inside send');
+////                    document.getElementById('send-btn').click();
+////                }
+////            }
+////        }
+//    }
+//
+//    var inputName = {
+//        inputAttribute : {
+//            class:"text",
+//            type: "text",
+//            id : "name",
+//            placeholder : "your name"
+//        },
+//        commands: {
+//            'message': {
+//                name: 'name *search', func: function (contents) {
+//                    console.log("message");
+//                    console.log('inside message');
+//                    //set content
+//                    document.querySelector("#name").value = contents;
+////                  get content and speak it
+//                    var contents = document.querySelector("#message").value;
+////                        textToSpeak(contents);
+//                }
+//            },
+//
 //        }
-    }
-
-    var inputName = {
-        inputAttribute : {
-            class:"text",
-            type: "text",
-            id : "name",
-            placeholder : "your name"
-        },
-        commands: {
-            'message': {
-                name: 'name *search', func: function (contents) {
-                    console.log("message");
-                    console.log('inside message');
-                    //set content
-                    document.querySelector("#name").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#message").value;
-//                        textToSpeak(contents);
-                }
-            },
-
-        }
-
-    }
-
-    var inputMessage = {
-        inputAttribute : {
-            type: "text",
-            min : "1",
-            max : "5",
-            class : "text",
-            id : "message",
-            name : "message",
-            placeholder : "compose message"
-        },
-        commands: {
-            'message': {
-                name: 'message *search', func: function (contents) {
-                    console.log("message");
-                    console.log('inside message');
-                    //set content
-                    document.querySelector("#message").value = contents;
-//                  get content and speak it
-                    var contents = document.querySelector("#message").value;
-//                        textToSpeak(contents);
-                }
-            },
-
-        }
-    }
+//
+//    }
+//
+//    var inputMessage = {
+//        inputAttribute : {
+//            type: "text",
+//            min : "1",
+//            max : "5",
+//            class : "text",
+//            id : "message",
+//            name : "message",
+//            placeholder : "compose message"
+//        },
+//        commands: {
+//            'message': {
+//                name: 'message *search', func: function (contents) {
+//                    console.log("message");
+//                    console.log('inside message');
+//                    //set content
+//                    document.querySelector("#message").value = contents;
+////                  get content and speak it
+//                    var contents = document.querySelector("#message").value;
+////                        textToSpeak(contents);
+//                }
+//            },
+//
+//        }
+//    }
 
     var markables = document.querySelectorAll("input,a,select,button,textarea");
     var i = 0;
@@ -388,12 +367,6 @@
         $(markables[i]).click();
     }
 
-
-
-
-
 </script>
 </body>
-<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
-<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </html>

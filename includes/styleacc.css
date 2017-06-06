@@ -18,7 +18,7 @@
     background-color: #fff;
 }
 #acc_panel{
-    /*    display: none;*/
+    display: none;
     position: fixed;
     width: 22%;
     height: 92%;
