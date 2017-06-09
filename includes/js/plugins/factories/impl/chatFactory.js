@@ -17,8 +17,4 @@ class ChatFactory extends PluginFactory{
         return chat;
     }
 
-    // initUtils(){
-    //
-    // }
-
 }

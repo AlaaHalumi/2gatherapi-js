@@ -26,6 +26,9 @@ class Link extends Object{
                 if(attribute == "text"){
                     link.innerHTML = this.options[propertyName][attribute];
                 }
+                else if(attribute == "commandTrigger"){
+
+                }
                 else{
                     link.setAttribute(attribute,this.options[propertyName][attribute]);
                 }

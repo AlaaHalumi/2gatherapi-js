@@ -3,132 +3,67 @@ class Library extends Object{
     constructor(domElement){
         super();
         this.domElement = domElement;
+        this.imgFactory = new ImgFactory();
 
     }
 
     draw(){
-        let options = eval(this.domElement.getAttribute("options"));
+        try{
+            let options = eval(this.domElement.getAttribute("options"));
+            if (this.options == undefined) {
+                throw "Exception: Can't init tg-library, option attribute is undefined"
+            }
 
-        let mainDiv = document.createElement("div");
-        mainDiv.setAttribute("class","tg-library-books");
+            let libraryContainer = document.createElement("div");
+            //our class for this divContainer plugin
+            libraryContainer.setAttribute("class","tg-library-books");
 
-        for(let propertyName in options) {
-            let bookDiv = document.createElement("div");
-            bookDiv.setAttribute("class", "tg-library-story");
-            let bookHeader = document.createElement("h5");
-            let img = document.createElement("img");
-            img.setAttribute("class", "tg-library-img");
-            let buttonStart = document.createElement("button");
-            buttonStart.setAttribute("class", "tg-library-startButton");
-            let buttonStop = document.createElement("button");
-            buttonStop.setAttribute("class", "tg-library-stopButton");
+            for(let propertyName in options) {
 
-            img.setAttribute("src", options[propertyName]["img"]);
-            bookHeader.innerHTML = options[propertyName]["bookName"];
+                let divStory = document.createElement("div");
+                //our class for this divStory plugin
+                divStory.setAttribute("class", "tg-library-story");
 
-            buttonStart.setAttribute("data-command", options[propertyName]["triggerCommand"])
-            buttonStart.innerHTML = "start";
-            buttonStop.innerHTML = "stop";
-            buttonStart.style.cursor = "pointer";
-            buttonStop.style.cursor = "pointer";
+                //our class for this header
+                let bookHeader = document.createElement("h5");
+                bookHeader.setAttribute("class", "tg-library-header");
 
+                let tgImg = document.createElement("tg-img");
 
-            // When the user clicks the button, open the modal
-            img.onclick = function () {
+                let libraryImg = {
+                    imgAttribute : {
 
-                let path = options[propertyName]["path"];
-                console.log("path " + path);
-                let rawFile = new XMLHttpRequest();
-                rawFile.open("GET", path, false);
-                rawFile.onreadystatechange = function () {
-                    if (rawFile.readyState === 4) {
-                        if (rawFile.status === 200 || rawFile.status == 0) {
-                            let allText = rawFile.responseText;
-                            let boxModal = new BoxModelUtil();
-                            boxModal.setText(allText)
-
-                        }
-
-                    }
+                    },
+                    path: "",
+                    img : "",
+                    voiceCommand : ""
                 }
-                rawFile.send(null);
-            }
 
-            //get the id of the button's img
-            // let currentImg = document.getElementById(this.options["imgID"]);
-
-            buttonStop.onclick = function(){
-                // currentImg.style.border = "";
-                let speaker = new SpeechUtil();
-                speaker.cancelSpeak();
-                console.log("stop stop speaker");
-            }
-
-
-
-            buttonStart.onclick = function() {
-
-                // currentImg.style.border = "thick solid red";
-
-                let path = options[propertyName]["path"];
-                console.log("path " + path);
-
-                let rawFile = new XMLHttpRequest();
-                rawFile.open("GET", path, false);
-                rawFile.onreadystatechange = function ()
-                {
-                    if(rawFile.readyState === 4)
-                    {
-                        if(rawFile.status === 200 || rawFile.status == 0)
-                        {
-                            let allText = rawFile.responseText;
-
-                            let chunkLength = 150;
-                            let pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
-                            let arr = [];
-                            let txt = allText;
-                            while (txt.length > 0) {
-                                arr.push(txt.match(pattRegex)[0]);
-                                txt = txt.substring(arr[arr.length - 1].length);
-                            }
-                            arr.forEach(function(element) {
-                                // window.setTimeout(textToVoice(element),150000);
-                                console.log("before========================");
-                                console.log(element);
-                                let content = element.trim();
-                                // console.log(content);
-                                let u = new SpeechSynthesisUtterance(content);
-                                u.lang = 'en-US';
-                                let speaker = new SpeechUtil();
-                                setTimeout(speaker.startSpeak(u),150000);
-                                console.log("after========================");
-                                // window.speechSynthesis.speak(u);
-
-                            });
-                        }
-                    }
+                for(let propertyAtrr in options[propertyName]["imgAttribute"]) {
+                    libraryImg.imgAttribute[propertyAtrr] = options[propertyName]["imgAttribute"][propertyAtrr];
                 }
-                rawFile.send(null);
 
+                libraryImg.path = options[propertyName]["path"];
+                libraryImg.img = options[propertyName]["img"];
+                libraryImg.voiceCommand = options[propertyName]["voiceCommand"];
+                bookHeader.innerHTML += options[propertyName]["voiceCommand"];
+
+                this.imgFactory.createObject(tgImg,libraryImg);
+
+                divStory.appendChild(bookHeader);
+                divStory.appendChild(tgImg);
+                libraryContainer.appendChild(divStory)
             }
 
-            bookDiv.appendChild(bookHeader);
-            bookDiv.appendChild(img);
-            bookDiv.appendChild(buttonStart);
-            bookDiv.appendChild(buttonStop);
-            mainDiv.appendChild(bookDiv)
-        }
-
-        this.domElement.appendChild(mainDiv);
-
-        var textToVoice= function(element){
+            this.domElement.appendChild(libraryContainer);
 
         }
+        catch (e){
+            console.log(e);
+        }
+
+
+
     }
 
-
-    readText(text)
-    {
-
-    }
 }

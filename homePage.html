@@ -84,9 +84,6 @@
 
     <div class="headerContainer">
 
-        <section  class="SkipToAttach" aria-labelledby="id1">
-        </section>
-
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
         </div>
@@ -182,35 +179,30 @@
                     id: "homePage",
                     target: "_self",
                     text: "דף הבית",
-//          commandTrigger: "home page"
                 },
                 link2: {
                     href: "library.html",
                     id: "library",
                     target: "_self",
                     text: "ספריה",
-//            commandTrigger: "library"
                 },
                 link3: {
                     href: "chat.html",
                     id: "chat",
                     target: "_self",
                     text: "חדר שיחה",
-                    commandTrigger: "חדר שיחה"
                 },
                 link4: {
                     href: "agenda.html",
                     id: "לוח חדשות",
                     target: "_self",
                     text: "לוח חדשות",
-                    commandTrigger: "לוח חדשות"
                 },
                 link5: {
                     href: "eventRegistration.html",
                     id: "event",
                     target: "_self",
                     text: "רישום לאירועים",
-//            commandTrigger: "agenda"
                 }
 
             }
@@ -291,26 +283,6 @@
     }
 
 
-    var SkipToConfig =  {
-        "settings": {
-            "skipTo": {
-                "headings": "h1 ,h2, h3",
-                "landmarks": "[role=navigation],[role=search]",
-                "sections": "nav , main",
-                "ids" : "#homePage, #library, #chat, #agenda ",
-                "accesskey": "0",
-                "wrap": "true",
-                "visibility": "onLoad",
-                "customClass": "custom",
-                "attachElement": ".SkipToAttach"
-            }
-        }
-    };
-
-
-
 </script>
-<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
-<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </body>
 </html>

@@ -37,6 +37,7 @@ class AnnyangUtil extends Util{
         return annyangUtilInstance;
     }
 
+    //init annyang if the admin does not define lang the default lang will be hebrew
     initAnnyang(){
         if(annyang){
             if(sessionStorage.hasOwnProperty("lang")) {
@@ -51,19 +52,14 @@ class AnnyangUtil extends Util{
     }
 
     addAnnyangCommands(options){
-
             annyang.addCommands(options.commands);
     }
 
-    initLangObj(){
-
-    }
-
+    //this function return keyword according the lang
     getLangObj(){
         let jsonObject = JSON.parse(this.jsonData);
         if(sessionStorage.getItem(("lang"))){
             let lang = sessionStorage.getItem("lang");
-            // console.log(jsonObject["lang"][0][this.languages[sessionStorage.getItem("lang")]]);
             return jsonObject["lang"][0][this.languages[sessionStorage.getItem("lang")]];
         }
         else{
@@ -72,14 +68,13 @@ class AnnyangUtil extends Util{
 
 
     }
-
+    //init exit command
     addExitCommand(){
 
         let commands = {};
 
         let langObj = this.getLangObj();
         for(let langCommand in langObj){
-            // console.log("langCommand: " + langObj[langCommand]);
             if(langObj[langCommand].hasOwnProperty("exit")){
                 commands[langObj[langCommand]["exit"]] = function(){
                     window.location.replace("index.html");

@@ -27,7 +27,7 @@ class LinkFactory extends ObjectFactory {
             this.options = options;
             link = new Link(domElement);
             link.draw(this.options);
-            if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+            if( sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
                 this.initUtils();
             }
         }
@@ -44,15 +44,12 @@ class LinkFactory extends ObjectFactory {
 
 
         let commands = {};
-        console.log("inside link factory annyang " );
 
         for(let propertyName in this.options) {
 
             if(this.options[propertyName]["commandTrigger"]){
-                console.log("there is a commandTrigger attribute");
-                let webPage =  this.options[propertyName].href;
-                commands[this.options[propertyName]["commandTrigger"]] = function () {   window.location.replace(webPage);};
-
+                    let webPage =  this.options[propertyName].href;
+                    commands[this.options[propertyName]["commandTrigger"]] = function () {   window.location.replace(webPage);};
             }
             else{
                 if(this.options[propertyName]["href"]){
@@ -60,7 +57,9 @@ class LinkFactory extends ObjectFactory {
                     for(let langCommand in langObj){
                         if(langObj[langCommand].hasOwnProperty("link")){
                             let webPage = this.options[propertyName]["href"];
-                            commands[langObj[langCommand]["link"]+ " " + this.options[propertyName]["text"]] = function () {   window.location.replace(webPage);};
+                            commands[langObj[langCommand]["link"] + " " + this.options[propertyName]["text"]] = function () {
+                                window.location.replace(webPage);
+                            };
                         }
 
                     }

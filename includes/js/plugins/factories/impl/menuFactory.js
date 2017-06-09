@@ -11,17 +11,10 @@ class MenuFactory extends PluginFactory{
     }
 
     createPlugin(domElement){
-
         let menu = new Menu(domElement);
         this.options = eval(domElement.getAttribute("options"));
         menu.draw();
         return menu;
     }
-
-    // initUtils(){
-    //
-    // }
-
-
 
 }

@@ -57,7 +57,7 @@ class ChatUtil extends Util{
             {
                 $('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
                 //voice to text only what the other says
-                if( !sessionStorage.hasOwnProperty("disability") ||  sessionStorage.getItem("disability").indexOf("hearing") == -1 ){
+                if(sessionStorage.getItem("utils").indexOf("ttv") != -1 ){
                     if(uname != myname){
                         let u = new SpeechSynthesisUtterance(uname + "say" + umsg);
                         u.lang = 'en-US';

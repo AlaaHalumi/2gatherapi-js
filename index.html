@@ -56,6 +56,7 @@
     <!--Objects-->
     <script src="includes/js/objects/object.js"></script>
     <script src="includes/js/objects/impl/inputText.js"></script>
+    <script src="includes/js/objects/impl/li.js"></script>
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
@@ -63,8 +64,10 @@
     <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
 
+
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/liFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
@@ -72,7 +75,7 @@
 </head>
 <body>
 
-<tg-accessibility options="accessibilityOption" class="markable">
+<tg-accessibility  class="markable">
 </tg-accessibility>
 
 <header>
@@ -100,14 +103,11 @@
 
 <script>
 
-    var accessibilityOption = {
-
-    }
 
     var checkUser = function(){
 
-        var name = document.querySelector("[type='text']").value;
-        var password = document.querySelector("[type='password']").value;
+//        var name = document.querySelector("[type='text']").value;
+//        var password = document.querySelector("[type='password']").value;
 
         var url = 'http://localhost:3030/tsamid/getUsers';
         var jsonData;
@@ -125,41 +125,39 @@
                 for(var index = 0 ; index < jsonData["data"].length ; index++){
 
                         if(jsonData["data"][index]["nickName"] == name && jsonData["data"][index]["password"] == password){
-                            console.log("okokokokokok" );
-                        if(name == "admin"){
-                            //if admin login to system
-                            sessionStorage.displayAdmin = 1
-                        }
-                        else{
-                            sessionStorage.utils = jsonData["data"][index]["utils"];
-                            sessionStorage.device = jsonData["data"][index]["device"];
-                            sessionStorage.lang = jsonData["data"][index]["lang"];
 
-                            var deviceUrl = 'http://localhost:3030/tsamid/getDevices';
-                            var jsonDeviceData;
+                            if(name == "admin"){
+                                //if admin login to system
+                                sessionStorage.displayAdmin = 1
+                            }
+                            else{
+                                sessionStorage.utils = jsonData["data"][index]["utils"];
+                                sessionStorage.device = jsonData["data"][index]["device"];
+                                sessionStorage.lang = jsonData["data"][index]["lang"];
 
-                            var xhttp = new XMLHttpRequest();
-                            xhttp.onreadystatechange = function() {
-                                if (this.readyState == 4 && this.status == 200) {
+                                var deviceUrl = 'http://localhost:3030/tsamid/getDevices';
+                                var jsonDeviceData;
 
-                                    jsonDeviceData = JSON.parse(this.responseText);
-                                    for(var index1 = 0 ; index1 < jsonDeviceData["data"].length ; index1++) {
-                                        if(jsonDeviceData["data"][index1]["productName"] == sessionStorage.getItem("device")){
-                                            sessionStorage.vendorId = jsonDeviceData["data"][index1]["vendorId"];
-                                            sessionStorage.productId = jsonDeviceData["data"][index1]["productId"];
-                                            console.log( jsonDeviceData["data"][index1]["vendorId"])
-                                            console.log( sessionStorage.getItem("vendorId"))
+                                var xhttp = new XMLHttpRequest();
+                                xhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+
+                                        jsonDeviceData = JSON.parse(this.responseText);
+                                        for(var index1 = 0 ; index1 < jsonDeviceData["data"].length ; index1++) {
+                                            if(jsonDeviceData["data"][index1]["productName"] == sessionStorage.getItem("device")){
+                                                sessionStorage.vendorId = jsonDeviceData["data"][index1]["vendorId"];
+                                                sessionStorage.productId = jsonDeviceData["data"][index1]["productId"];
+                                            }
                                         }
+                                        window.location.replace("homePage.html");
                                     }
-                                    window.location.replace("homePage.html");
-                                }
-                            };
-                            xhttp.open("GET", deviceUrl, true);
-                            xhttp.send();
+                                };
+                                xhttp.open("GET", deviceUrl, true);
+                                xhttp.send();
+
+                            }
 
                         }
-
-                    }
                 }
 
 
@@ -172,8 +170,8 @@
 
     var loginOptions = {
         labels: {
-            nickname: "Nick Name",
-            password: "Password",
+            nickname: "שם משתמש",
+            password: "סיסמה",
         },
         buttonValue:"התחבר",
         onClickFunc  : {

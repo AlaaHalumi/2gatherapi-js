@@ -17,7 +17,6 @@ class Button extends Object{
             this.options = options;
             button = this.initButton()
         }
-        console.log(this.domElement)
         this.domElement.appendChild(button);
     }
 
@@ -27,7 +26,6 @@ class Button extends Object{
 
         if(this.options.buttonAttribute){
             for (let attribute in this.options.buttonAttribute) {
-                console.log("attribute: " + attribute + " " + this.options.buttonAttribute[attribute]);
                 button.setAttribute(attribute,this.options.buttonAttribute[attribute]);
             }
         }
@@ -38,7 +36,6 @@ class Button extends Object{
             button.onclick = this.options.onClickFunc.func;
         }
         else if(this.options.commands){
-            console.log("lalalal")
             button.onclick = this.options.commands.submit.func;
         }
 

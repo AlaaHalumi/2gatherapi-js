@@ -25,6 +25,8 @@
     <!--2gatherAPI-->
     <script src="includes/js/2gatherapi.js"></script>
     <script src="includes/js/middleware/middleware.js"></script>
+    <script src="includes/js/middleware/external-inputs/external-input.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -32,10 +34,11 @@
     <script src="includes/js/utils/impl/chatUtil.js"></script>
     <script src="includes/js/utils/impl/ttv.js"></script>
     <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
-    <script src="includes/js/utils/impl/accessibilityUtil.js"></script>
-    <script src="includes/js/utils/impl/boxModal.js"></script>
 
     <!--Plugins-->
+    <script src="includes/js/utils/impl/boxModal.js"></script>
+    <script src="includes/js/utils/impl/userDetails.js"></script>
+
 
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
@@ -47,10 +50,13 @@
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/chatFactory.js"></script>
-    <!--<script src="includes/js/plugins/factories/impl/buttonFactory.js"></script>-->
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+
+    <!--Objects-->
+    <script src="includes/js/objects/factories/objectFactory.js"></script>
+    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
 
 
     <!--Objects-->
@@ -62,26 +68,23 @@
     <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
     <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
+    <script src="includes/js/objects/impl/li.js"></script>
 
-    <script src="includes/js/objects/factories/objectFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/inputFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
-
+    <script src="includes/js/objects/factories/impl/liFactory.js"></script>
 </head>
 <body>
 
-<tg-accessibility options="accessibilityOption">
+<tg-accessibility>
 </tg-accessibility>
 
 <header>
     <div class="headerContainer">
-        <section  class="SkipToAttach" aria-labelledby="id1">
-        </section>
 
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
@@ -113,134 +116,104 @@
 <script>
 
 
-    var accessibilityOption = {
+    (function () {
+        //display menu with admin option
+        if(sessionStorage.displayAdmin == 1){
+            console.log("admin");
+            //remove tg-menu from dom
+            $( "tg-menu" ).remove();
+            $('#adminMenu').show();
 
-    }
+        }
+        else{
+            console.log("not admin");
+            $('#adminMenu').hide();
 
-    var menuOptions = {
-        link1: {
-            href: "homePage.html",
-            id: "homePage",
-            target: "_self",
-            text: "Homepage",
-            commandTrigger: "home page"
-        },
-        link2: {
-            href: "library.html",
-            id: "library",
-            target: "_self",
-            text: "Library",
-            commandTrigger: "library"
-
-        },
-        link3: {
-            href: "chat.html",
-            id: "chat",
-            target: "_self",
-            text: "Chat",
-            commandTrigger: "chat"
-
-        },
-        link4: {
-            href: "agenda.html",
-            id: "agenda",
-            target: "_self",
-            text: "Agenda",
-            commandTrigger: "agenda"
-        },
-        link5: {
-            href: "eventRegistration.html",
-            id: "event",
-            target: "_self",
-            text: "רישום לאירועים",
+            window["menuOptions"] = {
+                link1: {
+                    href: "homePage.html",
+                    id: "homePage",
+                    target: "_self",
+                    text: "דף הבית",
+//          commandTrigger: "home page"
+                },
+                link2: {
+                    href: "library.html",
+                    id: "library",
+                    target: "_self",
+                    text: "ספריה",
+//            commandTrigger: "library"
+                },
+                link3: {
+                    href: "chat.html",
+                    id: "chat",
+                    target: "_self",
+                    text: "חדר שיחה",
+                    commandTrigger: "חדר שיחה"
+                },
+                link4: {
+                    href: "agenda.html",
+                    id: "לוח חדשות",
+                    target: "_self",
+                    text: "לוח חדשות",
+                    commandTrigger: "לוח חדשות"
+                },
+                link5: {
+                    href: "eventRegistration.html",
+                    id: "event",
+                    target: "_self",
+                    text: "רישום לאירועים",
 //            commandTrigger: "agenda"
+                }
+
+            }
+
+            var options = {
+                voiceToTextLanguage: "hebrew",
+                middlewareDevices:[
+                    {
+                        vendorId:"0781",
+                        productId:"5567"
+                    },
+                    {
+                        vendorId:"07c1",
+                        productId:"08a1"
+                    }
+                ]
+            };
         }
 
-    }
-
-    var libraryOption = {
-        book1 : {
-            path: "includes/library/The Hare and the Tortoise",
-            bookName : "The Hare and the Tortoise",
-            img : "includes/library/The Hare and the Tortoise.jpg",
-            triggerCommand : "one",
-            id : "The Hare and the Tortoise"
-        },
-        book2 : {
-            path: "includes/library/The Lion and the Mouse",
-            bookName : "The Lion and the Mouse",
-            img : "includes/library/The Lion and the Mouse.jpg",
-            triggerCommand : "two",
-            id : "The Lion and the Mouse"
-        },
-        book3 : {
-            path: "includes/library/The Goose with the Golden Eggs",
-            bookName : "The Goose with the Golden Eggs",
-            img : "includes/library/The Goose with the Golden Eggs.jpg",
-            triggerCommand : "three",
-            id : "The Goose with the Golden Eggs"
-        },
-        book4 : {
-            path: "includes/library/The Milkmaid and her Pail",
-            bookName : "The Milkmaid and her Pail",
-            img : "includes/library/The Milkmaid and her Pail.jpg",
-            triggerCommand : "four",
-            id : "The Milkmaid and her Pail"
-
-        },
-        book5 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "A Christmas Surprise",
-            img : "includes/library/A Christmas Surprise.jpg",
-            triggerCommand : "ספר חמישי"
-        },
-        book6 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "The Ant and the Grasshopper",
-            img : "includes/library/The Ant and the Grasshopper.jpg",
-            triggerCommand : "ספר שישי"
-        },
-        book7 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "Three Sons and a Bundle of Sticks",
-            img : "includes/library/Three Sons and a Bundle of Sticks.jpg",
-            triggerCommand : "ספר שביעי"
-        },
-        book8 : {
-            path: "includes/library/A Christmas Surprise",
-            bookName : "The Fox and the Grapes",
-            img : "includes/library/The Fox and the Grapes.jpg",
-            triggerCommand : "ספר שמיני"
-        },
-
-
-
-    }
-
-
-//    var options = {voiceToTextLanguage: "hebrew",textToVoice: "english", middlewareDevices:[{vendorId:"0781",productId:"5567"},{vendorId:"0781",productId:"1232"}], middleInterval:3000};
-//    var twoGatherApi = new Gatherapi(options);
-    var twoGatherApi = new Gatherapi();
-//    twoGatherApi.middleware.init();
-
-    var SkipToConfig =  {
-        "settings": {
-            "skipTo": {
-                "headings": "h1 ,h2, h3",
-                "landmarks": "[role=navigation],[role=search]",
-                "sections": "nav , main",
-                "ids" : "#homePage, #library, #chat, #agenda,#The Hare and the Tortoise,#The Lion and the Mouse,#The Milkmaid and her Pail, #The Milkmaid and her Pail ",
-                "accesskey": "0",
-                "wrap": "true",
-                "visibility": "onLoad",
-                "customClass": "custom",
-                "attachElement": ".SkipToAttach"
+        window["libraryOption"] = {
+            book1: {
+                imgAttribute : {
+                    id : 'img11',
+                    class : "tg-library-img",
+                    height : "150",
+                    width : "150"
+                },
+                path: "includes/new-library/שני אחים.txt",
+                img: "includes/new-library/שני אחים.png",
+                voiceCommand: "The Milkmaid",
+            },
+            book2: {
+                imgAttribute : {
+                    id : 'img22',
+                    class : "tg-library-img",
+                    height : "150",
+                    width : "150"
+                },
+                path: "includes/new-library/אדם צעיר.txt",
+                img: "includes/new-library/אדם צעיר.png",
+                voiceCommand: "The Milkmaid 2",
             }
         }
-    };
+
+
+                var twoGatherApi = new Gatherapi(options);
+
+    })();
 
 </script>
-<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
-<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
+
 </body>
 </html>

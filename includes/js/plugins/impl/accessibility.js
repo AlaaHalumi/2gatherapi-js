@@ -43,8 +43,6 @@ class Accessibility extends Object{
         divButtonPanel.setAttribute("class","buttons_panel");
         divAccPanel.appendChild(divButtonPanel);
 
-        console.log(this.jsonData);
-        console.log(this.jsonData.objects.length);
 
         var div_row_panel;
         var row3_panel;
@@ -108,7 +106,6 @@ class Accessibility extends Object{
         buttonAccess["commands"]["submit"]["name"] = "נגישות";
         buttonAccess["commands"]["submit"]["func"] = function() {
                 $("#acc_panel").toggle();
-                console.log("tg-button");
         }
 
         this.buttonFactory.createObject(tgButton[0], buttonAccess);

@@ -14,15 +14,7 @@ class LoginFactory extends PluginFactory{
     createPlugin(domElement){
         let login = new Login(domElement);
         this.options = eval(domElement.getAttribute("options"));
-        this.initUtils();
         login.draw();
         return login;
     }
-
-    initUtils(){
-
-    }
-
-
-
 }

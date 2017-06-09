@@ -115,14 +115,12 @@
     (function () {
         //display menu with admin option
         if(sessionStorage.displayAdmin == 1){
-            console.log("admin");
             //remove tg-menu from dom
             $( "tg-menu" ).remove();
             $('#adminMenu').show();
 
         }
         else{
-            console.log("not admin");
             $('#adminMenu').hide();
 
             window["menuOptions"] = {
@@ -179,43 +177,6 @@
             };
         }
 
-
-        window["buttonSend"] = {
-            buttonAttribute: {
-                type : "submit",
-                class : "btn btn-basic"
-
-            },
-            buttonValue: "שלח",
-            onClickFunc: {
-                func: function () {
-                    console.log("button clicked");
-                    alert("ההרשמה בוצע בהצלחה!")
-                }
-            }
-        }
-
-        window["inputName"] = {
-            inputAttribute : {
-                type: "text",
-                class : "form-control",
-                name : "name",
-                id : "name",
-                placeholder : "Enter name"
-            },
-            commands: {
-                'message': {
-                    name: 'שם *search', func: function (contents) {
-                        console.log("שם");
-                        console.log('inside שם');
-                        //set content
-                        document.querySelector("#name").value = contents;
-
-                    }
-                },
-
-            }
-        }
 
         var url = 'http://localhost:3030/tsamid/getStories';
         var jsonData;

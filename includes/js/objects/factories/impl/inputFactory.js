@@ -42,8 +42,6 @@ class InputFactory extends ObjectFactory{
 
     initAnnyang() {
 
-
-        console.log("inside inputText annyang");
         let commands = {};
 
         for(let command in this.options.commands){

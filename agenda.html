@@ -121,14 +121,12 @@
 
         //display menu with admin option
         if(sessionStorage.displayAdmin == 1){
-            console.log("admin");
             //remove tg-menu from dom
             $( "tg-menu" ).remove();
             $('#adminMenu').show();
 
         }
         else{
-            console.log("not admin");
             $('#adminMenu').hide();
 
             window["menuOptions"] = {
@@ -137,40 +135,34 @@
                     id: "homePage",
                     target: "_self",
                     text: "דף הבית",
-//          commandTrigger: "home page"
                 },
                 link2: {
                     href: "library.html",
                     id: "library",
                     target: "_self",
                     text: "ספריה",
-//            commandTrigger: "library"
                 },
                 link3: {
                     href: "chat.html",
                     id: "chat",
                     target: "_self",
                     text: "חדר שיחה",
-                    commandTrigger: "חדר שיחה"
                 },
                 link4: {
                     href: "agenda.html",
                     id: "לוח חדשות",
                     target: "_self",
                     text: "לוח חדשות",
-                    commandTrigger: "לוח חדשות"
                 },
                 link5: {
                     href: "eventRegistration.html",
                     id: "event",
                     target: "_self",
                     text: "רישום לאירועים",
-//            commandTrigger: "agenda"
                 }
 
             }
         }
-
 
         var url = 'http://localhost:3030/tsamid/getMessages';
         var jsonData;
@@ -180,7 +172,6 @@
             if (this.readyState == 4 && this.status == 200) {
 
                 jsonData = JSON.parse(this.responseText);
-                console.log("json " + jsonData["data"].length)
                 //container for all paragraphs
                 var divNews = document.getElementById("news")
 
@@ -209,7 +200,6 @@
                             link: {
                                 href : jsonData["data"][index]["url"],
                                 text: jsonData["data"][index]["urlName"],
-//                                target: "_blank"
                             }
                         }
 
@@ -235,17 +225,6 @@
 
 
     var options = {
-        voiceToTextLanguage: "hebrew",
-        middlewareDevices:[
-            {
-                vendorId:"0781",
-                productId:"5567"
-            },
-            {
-                vendorId:"07c1",
-                productId:"08a1"
-            }
-        ]
     };
 
     var markables = document.querySelectorAll("input,a,select,button,textarea");
