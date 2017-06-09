@@ -14,8 +14,7 @@ Different objects and plugins for different useage.<br>
 
 Objects Elements:<br>
 tg-button<br> 
-tg-buttonreaderstart<br>
-tg-buttonreaderstop<br>
+tg-li<br>
 tg-img<br>
 tg-input<br>
 tg-a<br>
@@ -64,56 +63,6 @@ tg-accessibilitytool<br>
 </div>
 
 <div>
-<h2>tg-buttonreaderstart: </h2>
-<p>Button for converting text to voice</p>
-<h3>Object Property:</h3>
-<h4>buttonAttribute - initial button attribute</h4>
-<h4>buttonValue - initial the text value of the button</h4>
-<h4>triggerCommand - initial voice coomand</h4>
-<h4>path - specify file location</h4>
-<h4>imgID - specify the image id of the book for mark the choosen img </h4>
-
-<h3>Example:</h3>
-<p> 
-&nbsp var buttonReadOne = { <br>
-&nbsp&nbsp&nbsp&nbsp buttonAttribute : { <br>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp id : "startButton", <br>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp class : "button" <br>
-&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
-&nbsp&nbsp&nbsp&nbsp buttonValue : "send", <br>
-&nbsp&nbsp&nbsp&nbsp triggerCommand : "The Hare and the Tortoise", <br>
-&nbsp&nbsp&nbsp&nbsp path : "includes/library/The Hare and the Tortoise", <br>
-&nbsp&nbsp&nbsp&nbsp imgID : "imgReader", <br>
-&nbsp&nbsp &nbsp&nbsp} <br>
-&nbsp} <br>
-</p>
-
-</div>
-
-<div>
-<h2>tg-buttonreaderstop: </h2>
-<p>Stop converting text to voice Button</p>
-<h3>Object Property:</h3>
-<h4>buttonAttribute - initial button attribute</h4>
-<h4>buttonValue - initial the text value of the button</h4>
-<h4>triggerCommand - initial voice coomand</h4>
-<h4>imgID - specify the image id of the book for unmark the choosen img </h4>
-
-<h3>Example:</h3>
-<p> 
-&nbsp var buttonReadOne = { <br>
-&nbsp&nbsp&nbsp&nbsp buttonAttribute : { <br>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp id : "startButton", <br>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp class : "button" <br>
-&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
-&nbsp&nbsp&nbsp&nbsp buttonValue : "send", <br>
-&nbsp&nbsp&nbsp&nbsp triggerCommand : "The Hare and the Tortoise", <br>
-&nbsp&nbsp&nbsp&nbsp imgID : "imgReader", <br>
-&nbsp&nbsp &nbsp&nbsp} <br>
-&nbsp} <br>
-</p>
-
-</div>
 
 <div>
 <h2>tg-img: </h2>
@@ -207,15 +156,24 @@ tg-accessibilitytool<br>
 <div>
 <h2>tg-login: </h2>
 <p>login plugin contain two inputs one of type text, and the second is of type password. In addition the plugin contains one button to login.<br> This plugin supports voice command option</p><br>
+<p>for button voice command there is option to use 2gatherAPI keyword for get it you need to add onClickFunc attribute and remove "submit" from command attribute like:</p>
+<p> onClickFunc  : {
+&nbsp&nbsp&nbsp&nbsp func: function () {
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//doSomething
+&nbsp&nbsp&nbsp&nbsp }
+}, </p>
 <p>How to use it? The developer needs to initial sessionStorage with 2 properties:<br>
-1.sessionStorage.disability<br>
+1.sessionStorage.utils<br>
 2.sessionStorage.device<br>
+3.sessionStorage.lang<br>
+4.sessionStorage.vendorId<br>
+5sessionStorage.productId<br>
 </p>
 
 <h3>Plugin Property:</h3>
 <h4>labels - initial the input lables</h4>
 <h4>buttonValue - initial the button text value</h4>
-<h4>commands - initial voice coomand for start speach the text</h4>
+<h4>commands - initial voice coomand for start speach the text. command need to init with "name" and "func"</h4>
 
 <h3>Example:</h3>
 <p> 
@@ -286,10 +244,15 @@ chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/i
 
 <div>
 <h2>tg-menu: </h2>
-<p>Menu plugin contains elements to navigate with different links, this plugin supports voice command, each link can be init with any attributes</p>
+<p>Menu plugin contains elements to navigate with different links, this plugin supports voice command, each link can be init with any attributes for use 2GatherAPI keyword don't init commandTriger and the voice command will init by text attribute</p>
 <h3>Object Property:</h3>
 <h4>text - link name</h4>
 <h4>commandTrigger - initial voice coomand</h4>
+<h4> for add class to a element we just need craete class attribute with the desired value</h4>
+<h4>embedded class:</h4>
+<p>tg-ul</p>
+<p>tg-il</p>
+
 
 
 <h3>Example:</h3>
