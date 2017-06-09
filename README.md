@@ -37,6 +37,12 @@ tg-accessibilitytool<br>
 <div>
 <h2>tg-button: </h2>
 <p>Button element with voice command option </p>
+<p>for button voice command there is option to use 2gatherAPI keyword for get it you need to add onClickFunc attribute and remove "submit" from command attribute like:</p>
+<p> onClickFunc  : {
+&nbsp&nbsp&nbsp&nbsp func: function () {
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//doSomething
+&nbsp&nbsp&nbsp&nbsp }
+}, </p>
 <h3>Object Property:</h3>
 <h4>buttonAttribute - initial button attribute</h4>
 <h4>buttonValue - initial the text value of the button</h4>
@@ -92,7 +98,7 @@ tg-accessibilitytool<br>
 <p>input element with voice command options</p>
 <h3>Object Property:</h3>
 <h4>inputAttribute - initial input attribute</h4>
-<h4>commands - initial voice coomand</h4>
+<h4>commands - initial voice coomand need to contain name for the object like message and 2 attribute name for voice command and func for the function</h4>
 
 <h3>Example:</h3>
 <p> 
