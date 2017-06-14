@@ -2,8 +2,9 @@ let imgFactoryInstance = null;
 
 class ImgFactory extends ObjectFactory{
 
-    constructor(){
+    constructor(gatherApiObject){
         super();
+        this.gatherApiObject = gatherApiObject;
         if(!imgFactoryInstance){
             imgFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
@@ -25,7 +26,7 @@ class ImgFactory extends ObjectFactory{
             img = new Img(domElement);
             img.draw(this.options);
         }
-
+        this.gatherApiObject.objects.push(img);
         return img;
     }
 

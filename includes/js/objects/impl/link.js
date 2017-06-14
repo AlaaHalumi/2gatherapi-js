@@ -1,4 +1,4 @@
-class Link extends Object{
+class Link extends TGObject{
 
     constructor(domElement){
         super();
@@ -10,22 +10,17 @@ class Link extends Object{
         let link;
         if(options == null || options == undefined ){
             this.options = eval(this.domElement.getAttribute("options"));
-            link = this.initLink()
+            this.link = this.initLink()
         }
         else{
             this.options = options;
-            link = this.initLink()
+            this.link = this.initLink()
         }
-        this.domElement.appendChild(link);
+        this.domElement.appendChild(this.link);
     }
 
     initLink(){
         let link = document.createElement("a");
-        if( sessionStorage.getItem("device") == "tobi"){
-            link.style.fontSize = "2em";
-            console.log("li tobi");
-        }
-
         for(let propertyName in this.options) {
             for(let attribute in this.options[propertyName]) {
                 if(attribute == "text"){
@@ -40,6 +35,15 @@ class Link extends Object{
             }
         }
         return link;
+    }
+
+    enableTobii(){
+        this.link.style.fontSize = "2em";
+        console.log("li tobi");
+    }
+
+    enablejoystick(){
+
     }
 
 }

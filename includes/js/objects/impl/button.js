@@ -1,4 +1,4 @@
-class Button extends Object{
+class Button extends TGObject{
 
     constructor(domElement){
         super();
@@ -20,31 +20,32 @@ class Button extends Object{
         this.domElement.appendChild(button);
     }
 
+    enableTobii(){
+        this.button.classList.add("btn-lg");
+    }
+
+    enablejoystick(){
+
+    }
+
     initButton(){
 
-        let button = document.createElement("button");
-
-
-
+        this.button = document.createElement("button");
 
         if(this.options.buttonAttribute){
             for (let attribute in this.options.buttonAttribute) {
-                button.setAttribute(attribute,this.options.buttonAttribute[attribute]);
+                this.button.setAttribute(attribute,this.options.buttonAttribute[attribute]);
             }
         }
         if(this.options.buttonValue) {
-            button.innerHTML = this.options.buttonValue;
+            this.button.innerHTML = this.options.buttonValue;
         }
         if(this.options.onClickFunc) {
-            button.onclick = this.options.onClickFunc.func;
+            this.button.onclick = this.options.onClickFunc.func;
         }
         else if(this.options.commands){
-            button.onclick = this.options.commands.submit.func;
+            this.button.onclick = this.options.commands.submit.func;
         }
-
-        if( sessionStorage.getItem("device") == "tobi"){
-            button.classList.add("btn-lg");
-        }
-        return button;
+        return this.button;
     }
 }

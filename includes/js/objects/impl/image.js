@@ -1,4 +1,4 @@
-class Img extends Object {
+class Img extends TGObject {
 
     constructor(domElement) {
         super();
@@ -27,28 +27,22 @@ class Img extends Object {
 
     initImage() {
 
-        let img = document.createElement("img");
-
-        if( sessionStorage.getItem("device") == "tobi"){
-            // img.style.fontSize = "2em";
-            img.style.transform = "scale(2)"
-            console.log("img tobi");
-        }
+        this.img = document.createElement("img");
 
         if (this.options.imgAttribute) {
             for (let attribute in this.options.imgAttribute) {
-                img.setAttribute(attribute, this.options.imgAttribute[attribute]);
+                this.img.setAttribute(attribute, this.options.imgAttribute[attribute]);
             }
         }
         if (this.options.img) {
-            img.setAttribute("src", this.options["img"]);
+            this.img.setAttribute("src", this.options["img"]);
         }
         if(this.options.path) {
 
             let path = this.options["path"];
             // When the user clicks the button, open the modal
             var self = this
-            img.onclick = function () {
+            this.img.onclick = function () {
 
                 document.getElementsByClassName("content-paragraph").innerHTML += "";
                 let rawFile = new XMLHttpRequest();
@@ -76,7 +70,7 @@ class Img extends Object {
                 if (this.options.voiceCommand) {
                     let dataCommand = this.options.voiceCommand;
                     commands[this.options.voiceCommand] = function () {
-                        img.click();
+                        this.img.click();
                     };
                 }
                 let langObj = this.annyangUtil.getLangObj();
@@ -119,7 +113,16 @@ class Img extends Object {
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
 
-        return img;
+        return this.img;
+    }
+
+    enableTobii(){
+        this.img.style.transform = "scale(2)"
+        console.log("img tobi");
+    }
+
+    enablejoystick(){
+
     }
 
 }

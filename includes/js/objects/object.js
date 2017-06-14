@@ -1,20 +1,13 @@
-let chatFactoryInstance = null;
-
-class ChatFactory extends PluginFactory{
-
-    constructor(){
-        super();
-        if(!chatFactoryInstance){
-            chatFactoryInstance = this;
+class TGObject{
+    constructor() {
+        if (this.draw === undefined) {
+            throw new TypeError("Must override draw");
         }
-        return chatFactoryInstance;
+        if (this.enableTobii === undefined) {
+            throw new TypeError("Must override draw");
+        }
+        if (this.enablejoystick === undefined) {
+            throw new TypeError("Must override draw");
+        }
     }
-
-    createPlugin(domElement){
-        let chat = new Chat(domElement);
-        this.options = eval(domElement.getAttribute("options"));
-        chat.draw(this.options.wsURL);
-        return chat;
-    }
-
 }

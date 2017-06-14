@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 
     <!--accessibilty tool-->
-    <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
+    <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css"/>
 
     <!--third-party-->
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
@@ -24,6 +24,8 @@
     <script src="includes/js/middleware/middleware.js"></script>
     <script src="includes/js/middleware/external-inputs/external-input.js"></script>
     <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/tobii.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/joystick.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -76,7 +78,7 @@
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
-<body >
+<body>
 
 <tg-accessibility options="accessibilityOption">
 </tg-accessibility>
@@ -143,7 +145,7 @@
 
             <div class="snow-globe">
                 <img src="images/agenda.png" alt="Agenda">
-                <div class="bottom"> <a class="button" href="agenda.html">לוח חדשות</a></div>
+                <div class="bottom"><a class="button" href="agenda.html">לוח חדשות</a></div>
 
             </div>
 
@@ -163,14 +165,14 @@
 
     (function () {
         //display menu with admin option
-        if(sessionStorage.displayAdmin == 1){
+        if (sessionStorage.displayAdmin == 1) {
             console.log("admin");
             //remove tg-menu from dom
-            $( "tg-menu" ).remove();
+            $("tg-menu").remove();
             $('#adminMenu').show();
 
         }
-        else{
+        else {
             console.log("not admin");
             $('#adminMenu').hide();
 
@@ -220,15 +222,12 @@
             console.log(sessionStorage.getItem("lang"));
             var options = {
                 voiceToTextLanguage: sessionStorage.getItem("lang"),
-
-                middlewareDevices:[
-                    {
-                        vendorId:sessionStorage.getItem("vendorId"),
-                        productId:sessionStorage.getItem("productId")
-                    },
-                ]
+                middlewareDevices: {}
             };
-
+            options.middlewareDevices[sessionStorage.getItem("device")] = {
+                vendorId: sessionStorage.getItem("vendorId"),
+                productId: sessionStorage.getItem("productId")
+            };
             var twoGatherApi = new Gatherapi(options);
         }
 
@@ -236,9 +235,7 @@
     })();
 
 
-    var accessibilityOption = {
-
-    }
+    var accessibilityOption = {}
 
 
     var markables = document.querySelectorAll("input,a,select,button,textarea");
@@ -252,9 +249,9 @@
             el.setAttribute("data-dblclick", 1);
             setTimeout(function () {
                 if (el.getAttribute("data-dblclick") == 1) {
-                    if(event.button == 0) {
+                    if (event.button == 0) {
                         rightClickFunction();
-                    }else{
+                    } else {
                         leftClickFunction();
                     }
                 }
@@ -267,7 +264,7 @@
     }
 
     function leftClickFunction() {
-        if(i == 1){
+        if (i == 1) {
             i = markables.length - 1;
         }
         i--;
@@ -277,7 +274,7 @@
     }
 
     function rightClickFunction() {
-        if(i == markables.length - 1){
+        if (i == markables.length - 1) {
             i = -1;
         }
         i++;

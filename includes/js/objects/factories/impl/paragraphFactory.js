@@ -2,8 +2,9 @@ let paragraphFactoryInstance = null;
 
 class ParagraphFactory extends ObjectFactory {
 
-    constructor() {
+    constructor(gatherApiObject) {
         super();
+        this.gatherApiObject = gatherApiObject;
         if (!paragraphFactoryInstance) {
             paragraphFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
@@ -29,7 +30,7 @@ class ParagraphFactory extends ObjectFactory {
             paragraph = new Paragraph(domElement);
             paragraph.draw(this.options);
         }
-
+        this.gatherApiObject.objects.push(paragraph);
         return paragraph;
     }
 

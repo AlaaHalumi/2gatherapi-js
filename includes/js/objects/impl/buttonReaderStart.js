@@ -1,4 +1,4 @@
-class ButtonReaderStart extends Object {
+class ButtonReaderStart extends TGObject {
 
     constructor(domElement) {
         super();
@@ -88,5 +88,13 @@ class ButtonReaderStart extends Object {
             rawFile.send(null);
         }
         return button;
+    }
+
+    enableTobii(){
+
+    }
+
+    enablejoystick(){
+
     }
 }

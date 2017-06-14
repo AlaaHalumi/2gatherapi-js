@@ -2,8 +2,9 @@ let linkFactoryInstance = null;
 
 class LinkFactory extends ObjectFactory {
 
-    constructor() {
+    constructor(gatherApiObject) {
         super();
+        this.gatherApiObject = gatherApiObject;
         if (!linkFactoryInstance) {
             linkFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
@@ -31,7 +32,7 @@ class LinkFactory extends ObjectFactory {
                 this.initUtils();
             }
         }
-
+        this.gatherApiObject.objects.push(link);
         return link;
 
     }

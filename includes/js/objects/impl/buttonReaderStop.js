@@ -1,4 +1,4 @@
-class ButtonReaderStop extends Object {
+class ButtonReaderStop extends TGObject {
 
     constructor(domElement) {
         super();
@@ -44,5 +44,13 @@ class ButtonReaderStop extends Object {
             console.log("stop stop speaker");
         }
         return button;
+    }
+
+    enableTobii(){
+
+    }
+
+    enablejoystick(){
+
     }
 }

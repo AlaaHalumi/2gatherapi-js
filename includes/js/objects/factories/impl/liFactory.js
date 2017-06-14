@@ -2,8 +2,9 @@ let liFactoryInstance = null;
 
 class LiFactory extends ObjectFactory{
 
-    constructor(){
+    constructor(gatherApiObject){
         super();
+        this.gatherApiObject = gatherApiObject;
         if(!liFactoryInstance){
             liFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
@@ -32,7 +33,7 @@ class LiFactory extends ObjectFactory{
                 this.initUtils();
             }
         }
-
+        this.gatherApiObject.objects.push(li);
         return li;
     }
 

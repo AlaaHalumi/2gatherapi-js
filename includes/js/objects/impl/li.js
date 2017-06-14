@@ -1,4 +1,4 @@
-class Li extends Object {
+class Li extends TGObject {
 
     constructor(domElement) {
         super();
@@ -41,6 +41,14 @@ class Li extends Object {
         }
 
         return li;
+    }
+
+    enableTobii(){
+
+    }
+
+    enablejoystick(){
+
     }
 
 }

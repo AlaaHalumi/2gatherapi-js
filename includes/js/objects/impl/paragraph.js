@@ -1,4 +1,4 @@
-class Paragraph extends Object{
+class Paragraph extends TGObject{
 
     constructor(domElement){
         super();
@@ -23,5 +23,13 @@ class Paragraph extends Object{
         let paragraph = document.createElement("p");
         paragraph.innerHTML = this.options.commands.content;
         return paragraph;
+    }
+
+    enableTobii(){
+
+    }
+
+    enablejoystick(){
+
     }
 }

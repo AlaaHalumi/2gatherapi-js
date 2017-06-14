@@ -26,6 +26,8 @@
     <script src="includes/js/middleware/middleware.js"></script>
     <script src="includes/js/middleware/external-inputs/external-input.js"></script>
     <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/tobii.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/joystick.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -203,18 +205,12 @@
 
         var options = {
             voiceToTextLanguage: "hebrew",
-            middlewareDevices:[
-                {
-                    vendorId:"0781",
-                    productId:"5567"
-                },
-                {
-                    vendorId:"07c1",
-                    productId:"08a1"
-                }
-            ]
+            middlewareDevices: {}
         };
-
+        options.middlewareDevices[sessionStorage.getItem("device")] = {
+            vendorId: sessionStorage.getItem("vendorId"),
+            productId: sessionStorage.getItem("productId")
+        };
 //        var chatUtil = new ChatUtil();
 //        chatUtil.initChat("ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php");
 

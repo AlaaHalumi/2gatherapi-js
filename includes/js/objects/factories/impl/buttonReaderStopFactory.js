@@ -2,8 +2,9 @@ let buttonReaderStopFactoryInstance = null;
 
 class ButtonReaderStopFactory extends ObjectFactory{
 
-    constructor(){
+    constructor(gatherApiObject){
         super();
+        this.gatherApiObject = gatherApiObject;
         if(!buttonReaderStopFactoryInstance){
             buttonReaderStopFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
@@ -31,6 +32,7 @@ class ButtonReaderStopFactory extends ObjectFactory{
                 this.initUtils();
             }
         }
+        this.gatherApiObject.objects.push(buttonReader);
         return buttonReader;
 
     }

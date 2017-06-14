@@ -2,16 +2,23 @@
 
 class Middleware {
 
-    constructor(devices) {
+    constructor(devices, gatherApiObject) {
         this.devices = devices;
+        this.gatherApiObject = gatherApiObject;
         this.connectedDevices = {};
         this.externalInputs = {
-            clickers: new Clickers()
+            Clickers: new Clickers(),
+            Tobii : new Tobii(),
+            joystick : new Joystick()
         }
     }
 
     init(callback){
-        this.checkForConnectedDevices(JSON.stringify(this.devices),callback);
+        var devicesToCheck = [];
+        for(var key in this.devices){
+            devicesToCheck.push({productId : this.devices[key].productId, vendorId: this.devices[key].vendorId});
+        }
+        this.checkForConnectedDevices(JSON.stringify(devicesToCheck),callback);
     }
 
     checkForConnectedDevices(data,callback){
@@ -21,13 +28,20 @@ class Middleware {
             if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
                 try {
                     self.connectedDevices = JSON.parse(xmlhttp.responseText);
+                    var needExternalInit = false;
                     for(var externalInput in self.externalInputs){
-                        var ei = self.externalInputs[externalInput];
-                        for(var connectedDevice in self.connectedDevices){
-                            if(self.connectedDevices[connectedDevice].productId == ei.deviceInfo.productId &&
-                                self.connectedDevices[connectedDevice].vendorId == ei.deviceInfo.vendorId){
-                                ei.connectExternalInput();
-                                break;
+                        if(self.devices[externalInput]) {
+                            var ei = self.externalInputs[externalInput];
+                            for (var connectedDevice in self.connectedDevices) {
+                                if (self.connectedDevices[connectedDevice].productId == self.devices[externalInput].productId &&
+                                    self.connectedDevices[connectedDevice].vendorId == self.devices[externalInput].vendorId) {
+                                    ei.connectExternalInput();
+                                    needExternalInit = true;
+                                    break;
+                                }
+                            }
+                            if(needExternalInit){
+                                self.gatherApiObject.enableExternalInputsHandlers();
                             }
                         }
                     }

@@ -2,8 +2,9 @@ let inputFactoryInstance = null;
 
 class InputFactory extends ObjectFactory{
 
-    constructor(){
+    constructor(gatherApiObject){
         super();
+        this.gatherApiObject = gatherApiObject;
         if(!inputFactoryInstance){
             inputFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
@@ -32,7 +33,7 @@ class InputFactory extends ObjectFactory{
                 this.initUtils();
             }
         }
-
+        this.gatherApiObject.objects.push(inputText);
         return inputText;
     }
 

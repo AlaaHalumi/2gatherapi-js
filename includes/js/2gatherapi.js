@@ -3,13 +3,16 @@
 class Gatherapi {
     constructor(options) {
 
+        this.options = options;
         if(options.middlewareDevices) {
-            this.middleware = new Middleware(options.middlewareDevices);
+            this.middleware = new Middleware(options.middlewareDevices, this);
         }
 
+        this.objects = [];
+        this.plugins = [];
         this.objectToObjectFactoryMap = {inputFactory :"tg-input",buttonFactory : "tg-button",linkFactory : "tg-a",
             paragraphFactory : "tg-paragraph",imgFactory : "tg-img", buttonReaderStartFactory : "tg-buttonreaderStart",
-            buttonReaderStopFactory : "tg-buttonreaderStop", };
+            buttonReaderStopFactory : "tg-buttonreaderStop", liFactory : new LiFactory(this)};
 
         this.pluginToPluginFactoryMap = {loginFactory:"tg-login",menuFactory:"tg-menu",accessibilityFactory : "tg-accessibility",
             chatFactory : "tg-chat",libraryFactory : "tg-library" ,gameFactory : "tg-game" };
@@ -22,19 +25,19 @@ class Gatherapi {
             boxModal : new BoxModelUtil(),
         };
 
-        this.objectFactories = {inputFactory : new InputFactory() ,imgFactory : new ImgFactory() , buttonFactory: new ButtonFactory
-            ,paragraphFactory : new ParagraphFactory(),linkFactory : new LinkFactory(), buttonReaderStartFactory : new ButtonReaderStartFactory()
-            , buttonReaderStopFactory : new ButtonReaderStopFactory()};
+        this.objectFactories = {inputFactory : new InputFactory(this) ,imgFactory : new ImgFactory(this) , buttonFactory: new ButtonFactory(this)
+            ,paragraphFactory : new ParagraphFactory(this),linkFactory : new LinkFactory(this), buttonReaderStartFactory : new ButtonReaderStartFactory(this)
+            , buttonReaderStopFactory : new ButtonReaderStopFactory(this)};
 
         this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(),
             menuFactory: new MenuFactory(), libraryFactory: new LibraryFactory(),
             accessibilityFactory : new AccessibilityFactory(), gameFactory : new GameFactory() };
 
         this.utilsConfiguration();
-        this.scanForPluginsOrObjects();
         if(this.middleware){
             this.middleware.init();
         }
+        this.scanForPluginsOrObjects();
     }
 
     utilsConfiguration(){
@@ -46,14 +49,24 @@ class Gatherapi {
     scanForPluginsOrObjects(){
         this.scanObjects();
         this.scanPlugins();
-
     }
 
     scanObjects(){
-        for(var objectToObjectFactoryKey in this.objectToObjectFactoryMap){
+        for (var objectToObjectFactoryKey in this.objectToObjectFactoryMap) {
             var elements = document.getElementsByTagName(this.objectToObjectFactoryMap[objectToObjectFactoryKey]);
-            for(var index=0; index < elements.length ; index++){
+            for (var index = 0; index < elements.length; index++) {
                 this.objectFactories[objectToObjectFactoryKey].createObject(elements[index]);
+            }
+        }
+    }
+
+    enableExternalInputsHandlers(){
+        var lang = this.options.virtualKeyboardLang;
+        for(var ei in this.middleware.externalInputs){
+            if(this.middleware.externalInputs[ei].connected){
+                this.objects.forEach(function(object){
+                    object["enable" + ei](lang);
+                });
             }
         }
     }

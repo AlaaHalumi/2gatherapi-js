@@ -2,8 +2,9 @@ let buttonFactoryInstance = null;
 
 class ButtonFactory extends ObjectFactory{
 
-    constructor(){
+    constructor(gatherApiObject){
         super();
+        this.gatherApiObject = gatherApiObject;
         if(!buttonFactoryInstance){
             buttonFactoryInstance = this;
             this.annyangUtil = new AnnyangUtil();
@@ -32,7 +33,7 @@ class ButtonFactory extends ObjectFactory{
                 this.initUtils();
             }
         }
-
+        this.gatherApiObject.objects.push(button);
         return button;
     }
 

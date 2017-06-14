@@ -4,10 +4,6 @@ class Clickers extends ExternalInput{
 
     constructor(){
         super();
-        this.deviceInfo = {
-            vendorId:"07c1",
-            productId:"08a1"
-        };
         if(!clickersInstance){
             clickersInstance = this;
         }
@@ -16,6 +12,7 @@ class Clickers extends ExternalInput{
     }
 
     connectExternalInput(){
+        this.connected = true;
         myElement = document.querySelector('body');
         myElement.onmousedown = this.doubleclick;
         var blockContextMenu, myElement;

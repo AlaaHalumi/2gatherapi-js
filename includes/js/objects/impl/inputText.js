@@ -1,4 +1,4 @@
-class InputText extends Object{
+class InputText extends TGObject{
 
     constructor(domElement){
         super();
@@ -28,5 +28,15 @@ class InputText extends Object{
         }
 
         return input;
+    }
+
+    enableTobii(){
+
+    }
+
+    enablejoystick(lang){
+        $('#' + this.options.inputAttribute.id).keyboard({
+            layout: lang
+        })
     }
 }
