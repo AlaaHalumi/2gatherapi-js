@@ -21,6 +21,11 @@ class Link extends Object{
 
     initLink(){
         let link = document.createElement("a");
+        if( sessionStorage.getItem("device") == "tobi"){
+            link.style.fontSize = "2em";
+            console.log("li tobi");
+        }
+
         for(let propertyName in this.options) {
             for(let attribute in this.options[propertyName]) {
                 if(attribute == "text"){

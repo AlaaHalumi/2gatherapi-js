@@ -10,7 +10,7 @@ class LoginFactory extends PluginFactory{
         }
         return loginFactoryInstance;
     }
-    
+
     createPlugin(domElement){
         let login = new Login(domElement);
         this.options = eval(domElement.getAttribute("options"));

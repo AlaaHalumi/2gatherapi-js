@@ -29,6 +29,12 @@ class Img extends Object {
 
         let img = document.createElement("img");
 
+        if( sessionStorage.getItem("device") == "tobi"){
+            // img.style.fontSize = "2em";
+            img.style.transform = "scale(2)"
+            console.log("img tobi");
+        }
+
         if (this.options.imgAttribute) {
             for (let attribute in this.options.imgAttribute) {
                 img.setAttribute(attribute, this.options.imgAttribute[attribute]);
@@ -61,57 +67,57 @@ class Img extends Object {
 
         }
         //init voice command
-            let commands = {};
+        let commands = {};
         if( sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
 
-                //first check if there is file path exist for voice command
-                if (this.options.path) {
-                    sessionStorage.scrollPosition = 0;
-                    if (this.options.voiceCommand) {
-                        let dataCommand = this.options.voiceCommand;
-                        commands[this.options.voiceCommand] = function () {
-                            img.click();
+            //first check if there is file path exist for voice command
+            if (this.options.path) {
+                sessionStorage.scrollPosition = 0;
+                if (this.options.voiceCommand) {
+                    let dataCommand = this.options.voiceCommand;
+                    commands[this.options.voiceCommand] = function () {
+                        img.click();
+                    };
+                }
+                let langObj = this.annyangUtil.getLangObj();
+                for (let langCommand in langObj) {
+                    if (langObj[langCommand].hasOwnProperty("imgCloseModal")) {
+                        commands[langObj[langCommand]["imgCloseModal"]] = function () {
+                            let modal = document.getElementById('myModal');
+                            modal.style.display = "none";
                         };
                     }
-                    let langObj = this.annyangUtil.getLangObj();
-                    for (let langCommand in langObj) {
-                        if (langObj[langCommand].hasOwnProperty("imgCloseModal")) {
-                            commands[langObj[langCommand]["imgCloseModal"]] = function () {
-                                let modal = document.getElementById('myModal');
-                                modal.style.display = "none";
-                            };
-                        }
-                        else if(langObj[langCommand].hasOwnProperty("imgScrollModalDown")){
-                            commands[langObj[langCommand]["imgScrollModalDown"]] = function () {
-                                // var modal = document.getElementsByClassName('modal-content');
-                                // modal.scrollTop = 100;
-                                let position = sessionStorage.getItem("scrollPosition");
-                                console.log(position + " before");
-                                position = position + 50;
-                                sessionStorage.scrollPosition = position;
-                                console.log(position + " after");
-                                $(".modal-content").scrollTop(position);
-                            };
-                        }
-                    }
-                }
-            }
-            //the user is blind
-            else{
-                var self = this;
-                let path = this.options["path"];
-                if (this.options.path) {
-                    if (this.options.voiceCommand) {
-                        let dataCommand = this.options.voiceCommand;
-                        commands[this.options.voiceCommand] = function () {
-                            self.speechUtil.read(path);
+                    else if(langObj[langCommand].hasOwnProperty("imgScrollModalDown")){
+                        commands[langObj[langCommand]["imgScrollModalDown"]] = function () {
+                            // var modal = document.getElementsByClassName('modal-content');
+                            // modal.scrollTop = 100;
+                            let position = sessionStorage.getItem("scrollPosition");
+                            console.log(position + " before");
+                            position = position + 50;
+                            sessionStorage.scrollPosition = position;
+                            console.log(position + " after");
+                            $(".modal-content").scrollTop(position);
                         };
                     }
                 }
             }
+        }
+        //the user is blind
+        else{
+            var self = this;
+            let path = this.options["path"];
+            if (this.options.path) {
+                if (this.options.voiceCommand) {
+                    let dataCommand = this.options.voiceCommand;
+                    commands[this.options.voiceCommand] = function () {
+                        self.speechUtil.read(path);
+                    };
+                }
+            }
+        }
 
-            let annyangOptions = {commands: commands};
-            this.annyangUtil.addAnnyangCommands(annyangOptions);
+        let annyangOptions = {commands: commands};
+        this.annyangUtil.addAnnyangCommands(annyangOptions);
 
         return img;
     }

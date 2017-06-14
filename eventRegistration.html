@@ -8,16 +8,18 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 
+    <!--bootstrap-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
     <!--accessibilty tool-->
     <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
 
-    <title>Tsamid</title>
-
-    <!--2gatherAPI.js-->
-    <!--<script src="dist/2gatherapi.js"></script>-->
-
     <!--third-party-->
     <script src="includes/js/third-parties/annyang/annyang.js"></script>
+
+    <title>Tsamid</title>
 
     <!--2gatherAPI-->
     <script src="includes/js/2gatherapi.js"></script>
@@ -74,21 +76,20 @@
     <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
     <script src="includes/js/objects/factories/impl/liFactory.js"></script>
-
 </head>
 <body>
-
 <tg-accessibility>
 </tg-accessibility>
-
 <header>
+
     <div class="headerContainer">
+
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
         </div>
 
-        <tg-menu options="menuOptions">
 
+        <tg-menu options="menuOptions">
         </tg-menu>
 
         <nav id="adminMenu">
@@ -101,24 +102,63 @@
                 <li><a href="eventRegistration.html">רישום לאירועים</a></li>
             </ul>
         </nav>
+
     </div>
     <div class="clear"></div>
 </header>
 
-<div class="wrapper">
-    <div class="news">
+<div>
+</div>
+<div class="clear"></div>
+</header>
 
-        <h1>לוח החדשות</h1>
-        <div id="news"></div>
+<div class="wrapper">
+
+    <div class="container">
+        <h2 style="text-align: center ; margin-bottom: 2%">הרשמה לאירועים</h2>
 
     </div>
+
+        <form id="formEvent" class="form-horizontal" action="http://localhost:3030/tsamid/formEvent" method="POST" >
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <tg-input options="inputName"></tg-input>
+                </div>
+                <label class="control-label col-sm-2" for="name">שם</label>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <tg-input options="inputSurname"></tg-input>
+                </div>
+                <label class="control-label col-sm-2" for="surname">שם משפחה</label>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <tg-input options="inputMail"></tg-input>
+                </div>
+                <label class="control-label col-sm-2" for="mail">תעודת זהות</label>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <tg-input options="inputEvent"></tg-input>
+                </div>
+                <label class="control-label col-sm-2" for="event">אירוע</label>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 text-left">
+                    <tg-button options="buttonSend"></tg-button>
+                    <!--<button type="submit" class="btn btn-basic">Submit</button>-->
+                </div>
+            </div>
+        </form>
+
 </div>
+
 <div class="grass"></div>
 
 <script>
 
-    (function(){
-
+    (function () {
         //display menu with admin option
         if(sessionStorage.displayAdmin == 1){
             //remove tg-menu from dom
@@ -159,131 +199,119 @@
                     id: "event",
                     target: "_self",
                     text: "רישום לאירועים",
-                },
-                link6: {
-                    href: "games.html",
-                    id: "game",
-                    target: "_self",
-                    text: "משחקיה",
-//            commandTrigger: "agenda"
                 }
+
+            }
+
+            var options = {
+
+            };
+        }
+
+
+        window["buttonSend"] = {
+            buttonAttribute: {
+                type : "submit",
+                class : "btn btn-basic"
+
+            },
+            buttonValue: "שלח",
+            onClickFunc: {
+                func: function () {
+                    alert("ההרשמה בוצע בהצלחה!")
+                }
+            }
+        }
+
+        window["inputEvent"] = {
+            inputAttribute : {
+                type: "text",
+                class : "form-control",
+                name : "event",
+                id : "eventName",
+                placeholder : "שם אירוע"
+            },
+            commands: {
+                'message': {
+                    name: 'אירוע *search', func: function (contents) {
+                        //set content
+                        document.querySelector("#eventName").value = contents;
+
+                    }
+                },
 
             }
         }
 
-        var url = 'http://localhost:3030/tsamid/getMessages';
-        var jsonData;
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
 
-                jsonData = JSON.parse(this.responseText);
-                //container for all paragraphs
-                var divNews = document.getElementById("news")
-
-                for(var index = 0 ; index < jsonData["data"].length ; index++){
-
-                    //contain one paragraph and link if exist
-                    var divContainer = document.createElement("section");
-                    divContainer.setAttribute("class","rowNews");
-                    var tgParagraph = document.createElement("tg-paragraph");
-
-                    //create var options for tg element
-                    window['paragraph'+index] = {
-                        commands: {
-                            'content' : jsonData["data"][index]["paragraph"],
-                            'commandTrigger': jsonData["data"][index]["command"]
-                        }
-                    }
-
-                    tgParagraph.setAttribute("options",'paragraph'+index)
-
-                    if(jsonData["data"][index]["linkExist"] == "yes"){
-
-                        var tgA = document.createElement("tg-a");
-
-                        window['link'+index] = {
-                            link: {
-                                href : jsonData["data"][index]["url"],
-                                text: jsonData["data"][index]["urlName"],
-                            }
-                        }
-
-                        tgA.setAttribute("options",'link'+index);
-                        divContainer.appendChild(tgParagraph);
-                        divContainer.insertBefore(tgA, divContainer.firstChild);
-                        divNews.appendChild(divContainer);
+        window["inputMail"] = {
+            inputAttribute : {
+                type: "text",
+                class : "form-control",
+                name : "mail",
+                id : "mail",
+                placeholder : "תעודת זהות"
+            },
+            commands: {
+                'message': {
+                    name: 'תעודת זהות *search', func: function (contents) {
+                        //set content
+                        document.querySelector("#mail").value = contents;
 
                     }
-                    divContainer.appendChild(tgParagraph);
-                    divNews.appendChild(divContainer);
-
-                }
-                var twoGatherApi = new Gatherapi(options);
-
+                },
 
             }
-        };
-        xhttp.open("GET", url, true);
-        xhttp.send();
+        }
 
+
+        window["inputSurname"] = {
+            inputAttribute : {
+                type: "text",
+                class : "form-control",
+                name : "surname",
+                id : "Surname",
+                placeholder : "שם משפחה"
+            },
+            commands: {
+                'message': {
+                    name: 'משפחה *search', func: function (contents) {
+                        //set content
+                        document.querySelector("#Surname").value = contents;
+
+                    }
+                },
+
+            }
+        }
+
+        window["inputName"] = {
+            inputAttribute : {
+                type: "text",
+                class : "form-control",
+                name : "name",
+                id : "name",
+                placeholder : "שם פרטי"
+            },
+            commands: {
+                'message': {
+                    name: 'שם *search', func: function (contents) {
+                        //set content
+                        document.querySelector("#name").value = contents;
+
+                    }
+                },
+
+            }
+        }
+
+
+        var twoGatherApi = new Gatherapi(options);
     })();
 
-
-    var options = {
-    };
-
-    var markables = document.querySelectorAll("input,a,select,button,textarea");
-    var i = 0;
-    markables[0].focus();
-
-    function doubleclick(event) {
-        console.log(event);
-        var el = document.querySelector('body');
-        if (el.getAttribute("data-dblclick") == null) {
-            el.setAttribute("data-dblclick", 1);
-            setTimeout(function () {
-                if (el.getAttribute("data-dblclick") == 1) {
-                    if(event.button == 0) {
-                        rightClickFunction();
-                    }else{
-                        leftClickFunction();
-                    }
-                }
-                el.removeAttribute("data-dblclick");
-            }, 300);
-        } else {
-            el.removeAttribute("data-dblclick");
-            chooseFunction();
-        }
-    }
-
-    function leftClickFunction() {
-        if(i == 1){
-            i = markables.length - 1;
-        }
-        i--;
-        var mark = markables[i];
-        console.log(mark);
-        mark.focus();
-    }
-
-    function rightClickFunction() {
-        if(i == markables.length - 1){
-            i = -1;
-        }
-        i++;
-        var mark = markables[i];
-        console.log(mark);
-        mark.focus();
-    }
-
-    function chooseFunction() {
-        $(markables[i]).click();
-    }
-
-
 </script>
+
+
 </body>
 </html>

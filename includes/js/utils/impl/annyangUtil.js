@@ -8,29 +8,29 @@ class AnnyangUtil extends Util{
 
         if(!annyangUtilInstance){
             this.languages = {hebrew:'he',english:'en-US',arabic :'ar'};
-            this.jsonData = '{'+
-                   ' "lang" : ['+
-                        '{ "he" : ['+
-                         '   {"link" : "עבור"},'+
-                         '   {"button" : "לחץ על"},'+
-                         '   {"buttonReaderStop" : "עצור הקראה"},'+
-                         '   {"buttonReaderStart" : "הקראה"},'+
-                         '   {"imgCloseModal" : "סגור חלון"},'+
-                         '   {"imgScrollModalDown" : "למטה"},'+
-                         '   {"imgScrollModalUp" : "למעלה"},'+
-                         '   {"exit" : "יציאה"}'+
-                              '],'+
-                         '   "en-US" : ['+
-                          '   {"link" : "go to"},'+
-                          '   {"button" : "click on"},'+
-                          '   {"buttonReaderStop" : "stop read"},'+
-                          '   {"buttonReaderStart" : "start read"},'+
-                          '   {"imgCloseModal" : "close window"},'+
-                          '   {"exit" : "exit"}'+
-                           ' ]'+
-                        '}'+
-                    ']'+
-                '}';
+            this.jsonData = {
+                "lang" : [
+                    { "he" :
+                        [
+                            {"link" : "עבור"},
+                            {"button" : "לחץ על"},
+                            {"imgCloseModal" : "סגור חלון"},
+                            {"imgScrollModalDown" : "למטה"},
+                            {"imgScrollModalUp" : "למעלה"},
+                            {"exit" : "יציאה"}
+                        ],
+                        "en-US" :
+                            [
+                                {"link" : "go to"},
+                                {"button" : "click on"},
+                                {"imgCloseModal" : "close window"},
+                                {"imgScrollModalDown" : "down"},
+                                {"imgScrollModalUp" : "up"},
+                                {"exit" : "exit"}
+                            ]
+                    }
+                ]
+            }
 
             annyangUtilInstance = this;
         }
@@ -52,21 +52,19 @@ class AnnyangUtil extends Util{
     }
 
     addAnnyangCommands(options){
-            annyang.addCommands(options.commands);
+        annyang.addCommands(options.commands);
     }
 
     //this function return keyword according the lang
     getLangObj(){
-        let jsonObject = JSON.parse(this.jsonData);
+        // let jsonObject = JSON.parse(this.jsonData);
         if(sessionStorage.getItem(("lang"))){
             let lang = sessionStorage.getItem("lang");
-            return jsonObject["lang"][0][this.languages[sessionStorage.getItem("lang")]];
+            return this.jsonData["lang"][0][this.languages[sessionStorage.getItem("lang")]];
         }
         else{
-            return jsonObject["lang"][0]["he"];
+            return this.jsonData["lang"][0]["he"];
         }
-
-
     }
     //init exit command
     addExitCommand(){

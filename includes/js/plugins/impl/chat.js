@@ -11,36 +11,36 @@ class Chat extends Object{
     draw(wsChatServer){
 
         this.domElement.innerHTML +='<div class="chatmain">'+
-                                        '<div class="messages">'+
-                                            '<div class="above"  id="message_box">'+
-                                                '<div class="bellow">'+
-                                                    '<tg-input class="text" name="name" id="name" placeholder="Your Name" /></tg-input>'+
-                                                    '<tg-input class="text" name="message" id="message" placeholder="Message" /></tg-input>'+
-                                                    // '<section class="text"> </section>'+1
-                                                    '<tg-button></tg-button>'+
-                                                '</div>'+
-                                            '</div>'+
-                                        '</div>'+
-                                        '<div class="loggedin">'+
-                                            '<section class="me">'+
-                                                '<img class="mypic" src="images/anyone.png">'+
-                                                '<p class="name">Me me: </p>'+
-                                                '<p class="status">Online</hp>'+
-                                            '</section>'+
-                                            '<section class="others">'+
-                                            '</section>'+
-                                        '</div>'+
-                                        '<div class="clear"></div>'+
-                                        '</div>';
+            '<div class="messages">'+
+            '<div class="above"  id="message_box">'+
+            '</div>'+
+            '<div class="bellow">'+
+            '<tg-input class="text" name="name" id="name" placeholder="Your Name" /></tg-input>'+
+            '<tg-input class="text" name="message" id="message" placeholder="Message" /></tg-input>'+
+            // '<section class="text"> </section>'+1
+            '<tg-button></tg-button>'+
+            '</div>'+
+            '</div>'+
+            '<div class="loggedin">'+
+            '<section class="me">'+
+            '<img class="mypic" src="images/anyone.png">'+
+            '<p class="name">Me me: </p>'+
+            '<p class="status">Online</hp>'+
+            '</section>'+
+            '<section class="others">'+
+            '</section>'+
+            '</div>'+
+            '<div class="clear"></div>'+
+            '</div>';
 
         let inputOption = {
             inputAttribute : {
 
             },
             commands: {
-               name : {
+                name : {
 
-               }
+                }
 
             }
         }

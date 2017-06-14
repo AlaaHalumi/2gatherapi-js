@@ -55,7 +55,7 @@ class ButtonFactory extends ObjectFactory{
 
                 let langObj = this.annyangUtil.getLangObj();
                 for(let langCommand in langObj){
-                   
+
                     if(langObj[langCommand].hasOwnProperty("button")){
                         commands[langObj[langCommand]["button"]+ " " + this.options["buttonValue"]] = this.options.onClickFunc.func;
                     }

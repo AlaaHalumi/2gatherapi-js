@@ -5,13 +5,20 @@ class SpeechUtil extends Util{
     constructor() {
         super();
         if(!SpeechUtilInstance){
-            // this.SpeechUtilInstance = window.speechSynthesis;
-            // SpeechUtilInstance =  new SpeechSynthesisUtterance();
-            // this.languages = {english:'en-US'};
-            // SpeechUtilInstance.lang('en-US');
+            this.languages = {english:'en-US',france:'fr-FR'};
             this.SpeechUtilInstance = this;
+            this.utterance = new SpeechSynthesisUtterance();
         }
         return this.SpeechUtilInstance;
+    }
+
+    initSpeech(){
+        if(sessionStorage.hasOwnProperty("lang")) {
+            this.utterance.lang  = this.languages[sessionStorage.getItem("lang")];
+        }
+        else{
+            this.utterance.lang = 'english';
+        }
     }
 
     startSpeak(utterance){
@@ -19,7 +26,6 @@ class SpeechUtil extends Util{
         window.speechSynthesis.speak(utterance);
     }
     cancelSpeak(){
-
         window.speechSynthesis.cancel();
     }
     chunkContents(text){
@@ -32,32 +38,20 @@ class SpeechUtil extends Util{
             arr.push(txt.match(pattRegex)[0]);
             txt = txt.substring(arr[arr.length - 1].length);
         }
+        let self = this.utterance
         arr.forEach(function(element) {
             let content = element.trim();
             console.log(content);
-            let u = new SpeechSynthesisUtterance(content);
-            u.lang = 'en-US';
-            speaker.startSpeak(u);
-            // window.speechSynthesis.speak(u);
-
+            self.text = content
+            speaker.startSpeak(self);
         });
-    }
-    readChunk(element){
-        console.log("before========================");
-        console.log(element);
-        let content = element.trim();
-        // console.log(content);
-        let u = new SpeechSynthesisUtterance(content);
-        u.lang = 'en-US';
-        let speaker = new SpeechUtil();
-        speaker.startSpeak(u);
-        console.log("after========================");
     }
 
     read(path){
-
+        let speaker = new SpeechUtil();
         let rawFile = new XMLHttpRequest();
         rawFile.open("GET", path, false);
+        let self = this.utterance
         rawFile.onreadystatechange = function () {
             if (rawFile.readyState === 4) {
                 if (rawFile.status === 200 || rawFile.status == 0) {
@@ -71,24 +65,28 @@ class SpeechUtil extends Util{
                         arr.push(txt.match(pattRegex)[0]);
                         txt = txt.substring(arr[arr.length - 1].length);
                     }
-                    var i = 0;
-                    // readChunk(arr[i]);
-                    // arr.forEach(function (element) {
+                    arr.forEach(function(element) {
+                        let content = element.trim();
+                        console.log(content);
+                        self.text = content
+                        speaker.startSpeak(self);
+                    });
 
-                    console.log("before========================");
-                    // console.log(element);
-                    // let content = element.trim();
-                    let content = arr[i].trim()
-                    // console.log(content);
-                    let u = new SpeechSynthesisUtterance(content);
-                    u.lang = 'en-US';
-                    let speaker = new SpeechUtil();
-                    speaker.startSpeak(u);
-                    console.log("after========================");
-                    // });
-                }
+                };
             }
         }
         rawFile.send(null);
     }
+
+    // readChunk(element){
+    //     console.log("before========================");
+    //     console.log(element);
+    //     let content = element.trim();
+    //     // console.log(content);
+    //     let u = new SpeechSynthesisUtterance(content);
+    //     u.lang = 'en-US';
+    //     let speaker = new SpeechUtil();
+    //     speaker.startSpeak(u);
+    //     console.log("after========================");
+    // }
 }

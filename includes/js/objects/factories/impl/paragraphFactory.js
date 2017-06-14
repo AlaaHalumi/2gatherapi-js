@@ -41,10 +41,11 @@ class ParagraphFactory extends ObjectFactory {
 
         let commands = {};
         let text = this.options.commands.content;
-
+        let self = this.SpeechUtils;
         commands[this.options.commands.commandTrigger] = function () {
-            let speaker = new SpeechUtil();
-            speaker.chunkContents(text);
+            // let speaker = new SpeechUtil();
+            self.chunkContents(text)
+            // speaker.chunkContents(text);
 
         };
         // commands['הפסק'] = function(){

@@ -48,8 +48,8 @@ class LinkFactory extends ObjectFactory {
         for(let propertyName in this.options) {
 
             if(this.options[propertyName]["commandTrigger"]){
-                    let webPage =  this.options[propertyName].href;
-                    commands[this.options[propertyName]["commandTrigger"]] = function () {   window.location.replace(webPage);};
+                let webPage =  this.options[propertyName].href;
+                commands[this.options[propertyName]["commandTrigger"]] = function () {   window.location.replace(webPage);};
             }
             else{
                 if(this.options[propertyName]["href"]){

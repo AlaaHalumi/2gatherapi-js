@@ -8,11 +8,11 @@ class Gatherapi {
         }
 
         this.objectToObjectFactoryMap = {inputFactory :"tg-input",buttonFactory : "tg-button",linkFactory : "tg-a",
-                                         paragraphFactory : "tg-paragraph",imgFactory : "tg-img", buttonReaderStartFactory : "tg-buttonreaderStart",
-                                         buttonReaderStopFactory : "tg-buttonreaderStop", };
+            paragraphFactory : "tg-paragraph",imgFactory : "tg-img", buttonReaderStartFactory : "tg-buttonreaderStart",
+            buttonReaderStopFactory : "tg-buttonreaderStop", };
 
         this.pluginToPluginFactoryMap = {loginFactory:"tg-login",menuFactory:"tg-menu",accessibilityFactory : "tg-accessibility",
-                                         chatFactory : "tg-chat",libraryFactory : "tg-library"};
+            chatFactory : "tg-chat",libraryFactory : "tg-library" ,gameFactory : "tg-game" };
 
 
         this.utils = {
@@ -27,8 +27,8 @@ class Gatherapi {
             , buttonReaderStopFactory : new ButtonReaderStopFactory()};
 
         this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(),
-             menuFactory: new MenuFactory(), libraryFactory: new LibraryFactory(),
-            accessibilityFactory : new AccessibilityFactory() };
+            menuFactory: new MenuFactory(), libraryFactory: new LibraryFactory(),
+            accessibilityFactory : new AccessibilityFactory(), gameFactory : new GameFactory() };
 
         this.utilsConfiguration();
         this.scanForPluginsOrObjects();
@@ -40,6 +40,7 @@ class Gatherapi {
     utilsConfiguration(){
         this.utils.annyangUtil.initAnnyang();
         this.utils.annyangUtil.addExitCommand();
+        this.utils.textToVoice.initSpeech()
     }
 
     scanForPluginsOrObjects(){

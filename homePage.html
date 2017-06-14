@@ -34,7 +34,6 @@
 
     <!--Plugins-->
     <script src="includes/js/utils/impl/boxModal.js"></script>
-    <script src="includes/js/utils/impl/userDetails.js"></script>
 
 
     <script src="includes/js/plugins/plugin.js"></script>
@@ -43,6 +42,7 @@
     <script src="includes/js/plugins/impl/library.js"></script>
     <script src="includes/js/plugins/impl/accessibility.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
+    <script src="includes/js/plugins/impl/game.js"></script>
 
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
@@ -50,6 +50,7 @@
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/gameFactory.js"></script>
 
     <!--Objects-->
     <script src="includes/js/objects/factories/objectFactory.js"></script>
@@ -108,53 +109,53 @@
     <div class="clear"></div>
 </header>
 
-<div id="wrapper">
+<div class="wrapper">
+    <div class="container">
 
+        <div class="row_activity">
 
-    <div class="row_activity">
+            <div class="snow-globe">
+                <img src="images/games.png" alt="Games">
+                <div class="bottom"><a class="button" href="#">משחקים</a></div>
 
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="#">Games</a>
+            </div>
+
+            <div class="snow-globe">
+                <img src="images/library.png" alt="Library">
+                <div class="bottom"><a class="button" href="library.html">ספריה</a></div>
+
+            </div>
+
+            <div class="snow-globe">
+                <img src="images/zula.png" alt="Zula">
+                <div class="bottom"><a class="button" href="zula.html">חדר שיחה</a></div>
+
+            </div>
         </div>
 
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="library.html">Library</a>
-        </div>
+        <div class="row_activity">
 
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="zula.html">Zula</a>
+            <div class="snow-globe">
+                <img src="images/chat.png" alt="Chat">
+                <div class="bottom"><a class="button" href="chat.html">זולה</a></div>
+
+            </div>
+
+            <div class="snow-globe">
+                <img src="images/agenda.png" alt="Agenda">
+                <div class="bottom"> <a class="button" href="agenda.html">לוח חדשות</a></div>
+
+            </div>
+
+            <div class="snow-globe">
+                <img src="images/calendar.png" alt="Calendar">
+                <div class="bottom"><a class="button" href="#">לוח שנה</a></div>
+
+
+            </div>
+
         </div>
     </div>
-
-    <div class="row_activity">
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="chat.html">Chat</a>
-        </div>
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="agenda.html">Agenda</a>
-        </div>
-
-        <div class="snow-globe">
-            <img src="">
-            <div class="bottom"></div>
-            <a class="button" href="#">Calender</a>
-
-        </div>
-
-    </div>
-
 </div>
 <div class="grass"></div>
 
@@ -196,13 +197,20 @@
                     href: "agenda.html",
                     id: "לוח חדשות",
                     target: "_self",
-                    text: "לוח חדשות",
+                    text: "לוח מודעות",
                 },
                 link5: {
                     href: "eventRegistration.html",
                     id: "event",
                     target: "_self",
                     text: "רישום לאירועים",
+                },
+                link6: {
+                    href: "games.html",
+                    id: "game",
+                    target: "_self",
+                    text: "משחקיה",
+//            commandTrigger: "agenda"
                 }
 
             }

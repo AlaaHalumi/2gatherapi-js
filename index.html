@@ -31,7 +31,6 @@
 
     <!--Plugins-->
     <script src="includes/js/utils/impl/boxModal.js"></script>
-    <script src="includes/js/utils/impl/userDetails.js"></script>
 
 
     <script src="includes/js/plugins/plugin.js"></script>
@@ -40,6 +39,7 @@
     <script src="includes/js/plugins/impl/library.js"></script>
     <script src="includes/js/plugins/impl/accessibility.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
+    <script src="includes/js/plugins/impl/game.js"></script>
 
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
@@ -47,6 +47,7 @@
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/gameFactory.js"></script>
 
     <!--Objects-->
     <script src="includes/js/objects/factories/objectFactory.js"></script>
@@ -124,40 +125,45 @@
 
                 for(var index = 0 ; index < jsonData["data"].length ; index++){
 
-                        if(jsonData["data"][index]["nickName"] == name && jsonData["data"][index]["password"] == password){
+                    if(jsonData["data"][index]["nickName"] == name && jsonData["data"][index]["password"] == password){
 
-                            if(name == "admin"){
-                                //if admin login to system
-                                sessionStorage.displayAdmin = 1
-                            }
-                            else{
-                                sessionStorage.utils = jsonData["data"][index]["utils"];
-                                sessionStorage.device = jsonData["data"][index]["device"];
-                                sessionStorage.lang = jsonData["data"][index]["lang"];
+                        if(name == "admin"){
+                            //if admin login to system
+                            sessionStorage.displayAdmin = 1
+                        }
+                        else{
+                            //get name of the user for chat
+                            sessionStorage.name = name;
+                            sessionStorage.utils = jsonData["data"][index]["utils"];
+                            sessionStorage.device = jsonData["data"][index]["device"];
+                            sessionStorage.lang = jsonData["data"][index]["lang"];
 
-                                var deviceUrl = 'http://localhost:3030/tsamid/getDevices';
-                                var jsonDeviceData;
+                            var deviceUrl = 'http://localhost:3030/tsamid/getDevices';
+                            var jsonDeviceData;
 
-                                var xhttp = new XMLHttpRequest();
-                                xhttp.onreadystatechange = function() {
-                                    if (this.readyState == 4 && this.status == 200) {
+                            var xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
 
-                                        jsonDeviceData = JSON.parse(this.responseText);
-                                        for(var index1 = 0 ; index1 < jsonDeviceData["data"].length ; index1++) {
-                                            if(jsonDeviceData["data"][index1]["productName"] == sessionStorage.getItem("device")){
-                                                sessionStorage.vendorId = jsonDeviceData["data"][index1]["vendorId"];
-                                                sessionStorage.productId = jsonDeviceData["data"][index1]["productId"];
-                                            }
+                                    jsonDeviceData = JSON.parse(this.responseText);
+                                    for(var index1 = 0 ; index1 < jsonDeviceData["data"].length ; index1++) {
+                                        if(jsonDeviceData["data"][index1]["productName"] == sessionStorage.getItem("device")){
+                                            sessionStorage.vendorId = jsonDeviceData["data"][index1]["vendorId"];
+                                            sessionStorage.productId = jsonDeviceData["data"][index1]["productId"];
                                         }
-                                        window.location.replace("homePage.html");
                                     }
-                                };
-                                xhttp.open("GET", deviceUrl, true);
-                                xhttp.send();
-
-                            }
+                                    window.location.replace("homePage.html");
+                                }
+                            };
+                            xhttp.open("GET", deviceUrl, true);
+                            xhttp.send();
 
                         }
+
+                    }
+                }
+                if(sessionStorage.getItem("displayAdmin") == 1){
+                    window.location.replace("homePage.html");
                 }
 
 
@@ -176,10 +182,10 @@
         buttonValue:"התחבר",
         onClickFunc  : {
             func: function () {
-                    console.log("login");
-                    checkUser();
+                console.log("login");
+                checkUser();
 
-                }
+            }
         },
         commands: {
             'username': {

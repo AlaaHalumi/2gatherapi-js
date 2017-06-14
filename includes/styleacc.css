@@ -7,15 +7,14 @@
 #acc_logo{
     position: fixed;
     width: 4%;
-    height: 8.5%;
-    background-image: url(../images/pic.png);
+    height: 7.9%;
+    background-image: url(../images/accessible.png);
     right: 0%;
     top: 20%;
     background-size: 100%;
     cursor: pointer;
-    font-weight: bolder;
-    border-radius: 30% 0px 0px 30%;
-    background-color: #fff;
+    border-radius: 15px 0px 0px 15px;
+    box-shadow: none;
 }
 #acc_panel{
     display: none;
@@ -32,7 +31,7 @@
 #acc_panel a{
     cursor: pointer;
 }
-#bigger_font,#smaller_font,#blackCursor,#whiteCursor,#impared,#bright_Contrast,#hightlightTitles{
+#bigger_font,#smaller_font,#blackCursor,#whiteCursor,#impared,#bright_Contrast,#hightlightTitles,#imagesDescriptions{
     border-right: 1px solid #d1d2d3;
 }
 .header_panel{
@@ -46,8 +45,8 @@
     left: 20%;
 }
 #lang{
-    position: absolute;
-    right: 2%;
+    position: relative;
+    right: -44%;
     top: 30%;
 }
 .header_panel ul{
@@ -63,7 +62,7 @@
     display: block;
     margin: 0 auto;
     width: 98.5%;
-    height: 92.5%;
+    height: 90.5%;
     position: relative;
     border-left: 4px steelblue solid;
     border-bottom: 4px steelblue solid;
@@ -107,6 +106,9 @@
 }
 .row3_panel ul li img{
     position: relative;
+    width: 48%;
+    display: block;
+    margin: 12px auto;
 }
 /*Legible font*/
 .lfont{
@@ -190,6 +192,47 @@
 }
 .cb_bodyWhite{
     background-color: #ffffff;
+}
+/*  Pictures Alt*/
+#text{
+    display: none;
+    padding: 10px;
+    position: absolute;
+    background-color: #333333;
+    border-radius: 5px;
+    color: #fff;
+}
+
+/*Magni*/
+/*Large page*/
+.lfonts{
+    font-size: 2em;
+}
+.largef{
+    display: flex;
+}
+.largeB{
+    display: block;
+}
+.largeSnowGlobe{
+    width:30em;
+    height: 30em;
+}
+.largeSnowBottom{
+    /*border-bottom: 45px solid #fd6ca3;*/
+    /*border-left: 50px solid transparent;*/
+    /*border-right: 50px solid transparent;*/
+    height: 0px;
+    width: 240px;
+    top: 445px;
+    left: 15%;
+}
+}
+.largeBodyFonts{
+    font-size: 2em;
+}
+.largeimg{
+    width:60%;
 }
 
 

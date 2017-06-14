@@ -8,6 +8,11 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 
+    <!--bootstrap-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
     <!--accessibilty tool-->
     <link rel="stylesheet" title="Normal" href="includes/styleacc.css" type="text/css" />
 
@@ -31,8 +36,6 @@
 
     <!--Plugins-->
     <script src="includes/js/utils/impl/boxModal.js"></script>
-    <script src="includes/js/utils/impl/userDetails.js"></script>
-
 
     <script src="includes/js/plugins/plugin.js"></script>
     <script src="includes/js/plugins/impl/chat.js"></script>
@@ -40,6 +43,7 @@
     <script src="includes/js/plugins/impl/library.js"></script>
     <script src="includes/js/plugins/impl/accessibility.js"></script>
     <script src="includes/js/plugins/impl/menu.js"></script>
+    <script src="includes/js/plugins/impl/game.js"></script>
 
     <script src="includes/js/plugins/factories/pluginFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/loginFactory.js"></script>
@@ -47,6 +51,7 @@
     <script src="includes/js/plugins/factories/impl/menuFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/libraryFactory.js"></script>
     <script src="includes/js/plugins/factories/impl/accessibilityFactory.js"></script>
+    <script src="includes/js/plugins/factories/impl/gameFactory.js"></script>
 
     <!--Objects-->
     <script src="includes/js/objects/factories/objectFactory.js"></script>
@@ -74,12 +79,14 @@
 </head>
 <body>
 
-<tg-accessibility >
+<tg-accessibility options="accessibilityOption">
 </tg-accessibility>
 
 <header>
     <div class="headerContainer">
 
+        <section  class="SkipToAttach" aria-labelledby="id1">
+        </section>
 
         <div class="headerD">
             <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
@@ -104,31 +111,31 @@
     <div class="clear"></div>
 </header>
 
-<div id="wrapper">
-    <div class="chatmain">
-        <div class="messages">
-            <div class="above"  id="message_box">
-                <div class="bellow">
-                    <tg-input options="inputName"></tg-input>
-                    <tg-input options="inputMessage"></tg-input>
-                    <tg-button options="buttonSend"></tg-button>
-                </div>
-            </div>
-        </div>
-        <div class="loggedin">
-            <section class="me">
-                <img class="mypic" src="images/anyone.png">
-                <p class="name">Me me: </p>
-                <p class="status">Online</p>
-            </section>
-            <section class="others">
-            </section>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div style="width: 400px ; height: 400px ; overflow: scroll"></div>
+<div class="wrapper">
+    <!--<div class="chatmain">-->
+    <!--<div class="messages">-->
+    <!--<div class="above"  id="message_box">-->
+    <!--<div class="bellow">-->
+    <!--<tg-input options="inputName"></tg-input>-->
+    <!--<tg-input options="inputMessage"></tg-input>-->
+    <!--<tg-button options="buttonSend"></tg-button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="loggedin">-->
+    <!--<section class="me">-->
+    <!--<img class="mypic" src="images/anyone.png">-->
+    <!--<p class="name">Me me: </p>-->
+    <!--<p class="status">Online</p>-->
+    <!--</section>-->
+    <!--<section class="others">-->
+    <!--</section>-->
+    <!--</div>-->
+    <!--<div class="clear"></div>-->
+    <!--</div>-->
+    <!--<div id="message_box" style="width: 400px ; height: 400px ; overflow: scroll"></div>-->
 
-    <!--<tg-chat options="chatOptions"></tg-chat>-->
+    <tg-chat options="chatOptions"></tg-chat>
 </div>
 <div class="grass"></div>
 
@@ -137,11 +144,13 @@
     (function () {
         //display menu with admin option
         if(sessionStorage.displayAdmin == 1){
+            console.log("admin");
             //remove tg-menu from dom
             $( "tg-menu" ).remove();
             $('#adminMenu').show();
         }
         else{
+            console.log("not admin");
             $('#adminMenu').hide();
 
             window["menuOptions"] = {
@@ -150,30 +159,42 @@
                     id: "homePage",
                     target: "_self",
                     text: "דף הבית",
+//          commandTrigger: "home page"
                 },
                 link2: {
                     href: "library.html",
                     id: "library",
                     target: "_self",
                     text: "ספריה",
+//            commandTrigger: "library"
                 },
                 link3: {
                     href: "chat.html",
                     id: "chat",
                     target: "_self",
                     text: "חדר שיחה",
+                    commandTrigger: "חדר שיחה"
                 },
                 link4: {
                     href: "agenda.html",
                     id: "לוח חדשות",
                     target: "_self",
-                    text: "לוח חדשות",
+                    text: "לוח מודעות",
+                    commandTrigger: "לוח חדשות"
                 },
                 link5: {
                     href: "eventRegistration.html",
                     id: "event",
                     target: "_self",
                     text: "רישום לאירועים",
+//            commandTrigger: "agenda"
+                },
+                link6: {
+                    href: "games.html",
+                    id: "game",
+                    target: "_self",
+                    text: "משחקיה",
+//            commandTrigger: "agenda"
                 }
 
             }
@@ -181,51 +202,78 @@
         }
 
         var options = {
+            voiceToTextLanguage: "hebrew",
+            middlewareDevices:[
+                {
+                    vendorId:"0781",
+                    productId:"5567"
+                },
+                {
+                    vendorId:"07c1",
+                    productId:"08a1"
+                }
+            ]
         };
 
+//        var chatUtil = new ChatUtil();
+//        chatUtil.initChat("ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php");
 
-//        window["chatOptions"] = {
-//            wsURL: "ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php",
-//            onClickFunc: {
-//                func: function () {
-//                    document.getElementById('send-btn').click();
-//                }
-//            },
-//            commands: {
-//                'name': {
-//                    name: 'שם *search', func: function (contents) {
-//                        //set content
-//                        document.querySelector("#name").value = contents;
-//                        var contents = document.querySelector("#name").value;
-////                        textToSpeak(contents);
-//                    }
-//                },
-//                'message': {
-//                    name: 'הודעה *search', func: function (contents) {
-//                        //set content
-//                        document.querySelector("#message").value = contents;
-//                        var contents = document.querySelector("#message").value;
-////                        textToSpeak(contents);
-//                    }
-//                }
-//            }
-//        }
-
-        //chat from objects
-        var chatUtil = new ChatUtil();
-        chatUtil.initChat("ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php");
-
-        window["buttonSend"] = {
-            buttonAttribute : {
-                id : "send-btn",
-                class : "send"
-            },
-            buttonValue : "send",
-            onClickFunc : {
-                func  : function () {
+        window["chatOptions"] = {
+            wsURL: "ws://ec2-54-202-15-139.us-west-2.compute.amazonaws.com:8080/index.php",
+            onClickFunc: {
+                func: function () {
                     document.getElementById('send-btn').click();
                 }
             },
+            commands: {
+                'name': {
+                    name: 'שם *search', func: function (contents) {
+                        console.log("name");
+                        console.log('inside fillName');
+                        //set content
+                        document.querySelector("#name").value = contents;
+//                  get content and speak it
+                        var contents = document.querySelector("#name").value;
+//                        textToSpeak(contents);
+                    }
+                },
+                'message': {
+                    name: 'הודעה *search', func: function (contents) {
+                        console.log("message");
+                        console.log('inside message');
+                        //set content
+                        document.querySelector("#message").value = contents;
+//                  get content and speak it
+                        var contents = document.querySelector("#message").value;
+//                        textToSpeak(contents);
+                    }
+                }
+            }
+        }
+
+        var twoGatherApi = new Gatherapi(options);
+
+
+    })();
+    document.querySelector("#name").value =  sessionStorage.getItem("name");
+
+
+    var accessibilityOption = {
+
+    }
+
+
+    var buttonSend = {
+        buttonAttribute : {
+            id : "send-btn",
+            class : "send"
+        },
+        buttonValue : "send",
+        onClickFunc : {
+            func  : function () {
+                document.getElementById('send-btn').click();
+            }
+        },
 //        commands: {
 //            'submit': {
 //                name: 'send', func: function () {
@@ -235,55 +283,57 @@
 //                }
 //            }
 //        }
-        }
+    }
 
-        window["inputName"] = {
-            inputAttribute : {
-                class:"text",
-                type: "text",
-                id : "name",
-                placeholder : "your name"
-            },
-            commands: {
-                'message': {
-                    name: 'שם *search', func: function (contents) {
-                        document.querySelector("#name").value = contents;
-                        var contents = document.querySelector("#message").value;
+    var inputName = {
+        inputAttribute : {
+            class:"text",
+            type: "text",
+            id : "name",
+            placeholder : "your name"
+        },
+        commands: {
+            'message': {
+                name: 'name *search', func: function (contents) {
+                    console.log("message");
+                    console.log('inside message');
+                    //set content
+                    document.querySelector("#name").value = contents;
+//                  get content and speak it
+                    var contents = document.querySelector("#message").value;
 //                        textToSpeak(contents);
-                    }
-                },
-
-            }
-        }
-
-        window["inputMessage"] = {
-            inputAttribute : {
-                type: "text",
-                class : "text",
-                id : "message",
-                name : "message",
-                placeholder : "compose message"
+                }
             },
-            commands: {
-                'message': {
-                    name: 'הודעה *search', func: function (contents) {
-                        document.querySelector("#message").value = contents;
-                        var contents = document.querySelector("#message").value;
-//                        textToSpeak(contents);
-                    }
-                },
 
-            }
         }
 
+    }
 
+    var inputMessage = {
+        inputAttribute : {
+            type: "text",
+            min : "1",
+            max : "5",
+            class : "text",
+            id : "message",
+            name : "message",
+            placeholder : "compose message"
+        },
+        commands: {
+            'message': {
+                name: 'message *search', func: function (contents) {
+                    console.log("message");
+                    console.log('inside message');
+                    //set content
+                    document.querySelector("#message").value = contents;
+//                  get content and speak it
+                    var contents = document.querySelector("#message").value;
+//                        textToSpeak(contents);
+                }
+            },
 
-            var twoGatherApi = new Gatherapi(options);
-
-
-    })();
-
-
+        }
+    }
 
     var markables = document.querySelectorAll("input,a,select,button,textarea");
     var i = 0;
@@ -334,6 +384,12 @@
         $(markables[i]).click();
     }
 
+
+
+
+
 </script>
 </body>
+<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
+<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </html>

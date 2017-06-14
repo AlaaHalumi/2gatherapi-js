@@ -24,6 +24,9 @@ class Button extends Object{
 
         let button = document.createElement("button");
 
+
+
+
         if(this.options.buttonAttribute){
             for (let attribute in this.options.buttonAttribute) {
                 button.setAttribute(attribute,this.options.buttonAttribute[attribute]);
@@ -39,6 +42,9 @@ class Button extends Object{
             button.onclick = this.options.commands.submit.func;
         }
 
+        if( sessionStorage.getItem("device") == "tobi"){
+            button.classList.add("btn-lg");
+        }
         return button;
     }
 }
