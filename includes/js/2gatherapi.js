@@ -4,6 +4,7 @@ class Gatherapi {
     constructor(options) {
 
         this.options = options;
+        this.requiredUtills = !options.requiredUtills ? ["voice command"] : options.requiredUtills;
         if(options.middlewareDevices) {
             this.middleware = new Middleware(options.middlewareDevices, this);
         }
@@ -11,8 +12,7 @@ class Gatherapi {
         this.objects = [];
         this.plugins = [];
         this.objectToObjectFactoryMap = {inputFactory :"tg-input",buttonFactory : "tg-button",linkFactory : "tg-a",
-            paragraphFactory : "tg-paragraph",imgFactory : "tg-img", buttonReaderStartFactory : "tg-buttonreaderStart",
-            buttonReaderStopFactory : "tg-buttonreaderStop", liFactory : new LiFactory(this)};
+            paragraphFactory : "tg-paragraph",imgFactory : "tg-img",liFactory : new LiFactory(this)};
 
         this.pluginToPluginFactoryMap = {loginFactory:"tg-login",menuFactory:"tg-menu",accessibilityFactory : "tg-accessibility",
             chatFactory : "tg-chat",libraryFactory : "tg-library" ,gameFactory : "tg-game" };
@@ -26,8 +26,7 @@ class Gatherapi {
         };
 
         this.objectFactories = {inputFactory : new InputFactory(this) ,imgFactory : new ImgFactory(this) , buttonFactory: new ButtonFactory(this)
-            ,paragraphFactory : new ParagraphFactory(this),linkFactory : new LinkFactory(this), buttonReaderStartFactory : new ButtonReaderStartFactory(this)
-            , buttonReaderStopFactory : new ButtonReaderStopFactory(this)};
+            ,paragraphFactory : new ParagraphFactory(this),linkFactory : new LinkFactory(this)};
 
         this.pluginFactories = {loginFactory: new LoginFactory(), chatFactory: new ChatFactory(),
             menuFactory: new MenuFactory(), libraryFactory: new LibraryFactory(),
@@ -41,9 +40,9 @@ class Gatherapi {
     }
 
     utilsConfiguration(){
-        this.utils.annyangUtil.initAnnyang();
+        this.utils.annyangUtil.initAnnyang(this.options.language);
         this.utils.annyangUtil.addExitCommand();
-        this.utils.textToVoice.initSpeech()
+        this.utils.textToVoice.initSpeech(this.options.language)
     }
 
     scanForPluginsOrObjects(){

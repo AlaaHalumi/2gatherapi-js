@@ -20,16 +20,15 @@ class ButtonFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             button = new Button(domElement);
             button.draw();
-            if( !sessionStorage.hasOwnProperty("utils") || sessionStorage.getItem("utils").indexOf("voice command")!= -1 ){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
                 this.initUtils();
             }
-
         }
         else{
             this.options = options;
             button = new Button(domElement);
             button.draw(this.options);
-            if( !sessionStorage.hasOwnProperty("utils") || sessionStorage.getItem("utils").indexOf("voice command")!= -1 ){
+            if( this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
                 this.initUtils();
             }
         }

@@ -82,51 +82,51 @@
 
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/addMessages" method="POST" >
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="number">No'</label>
+                            <label class="control-label col-sm-2" for="number">מספר מודעה: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="number" placeholder="Enter paragraph number" name="paragraphNumber">
+                                <input type="text" class="form-control" id="number" placeholder="מספר מודעה" name="paragraphNumber">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="content">content</label>
+                            <label class="control-label col-sm-2" for="content">תוכן: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="content" placeholder="Enter content" name="content">
+                                <input type="text" class="form-control" id="content" placeholder="תוכן המודעה" name="content">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="command voice">command voice</label>
+                            <label class="control-label col-sm-2" for="command voice">פקודה קולית: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="command voice" placeholder="Enter command voice" name="commandVoice">
+                                <input type="text" class="form-control" id="command voice" placeholder="פקודה קולית" name="commandVoice">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >link exist</label>
+                            <label class="control-label col-sm-2" >קיים קישור: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Link Exist" placeholder="Enter Yes/No" name="linkExist">
+                                <input type="text" class="form-control" id="Link Exist" placeholder="תכתוב כן\לא " name="linkExist">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">link name</label>
+                            <label class="control-label col-sm-2">שם קישור: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="link text" placeholder="Enter name" name="linkName">
+                                <input type="text" class="form-control" id="link text" placeholder="שם קישור" name="linkName">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">url</label>
+                            <label class="control-label col-sm-2">קישור:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="url" placeholder="Enter url" name="url">
+                                <input type="text" class="form-control" id="url" placeholder="קישור" name="url">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">הוסיף </button>
                             </div>
                         </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 
@@ -142,25 +142,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">הסר פסקה מלוח המודעות</h4>
+                    <h4 class="modal-title">מחק פסקה מלוח המודעות</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/removeMessages" method="POST" >
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="removePara">paragraph number</label>
+                            <label class="control-label col-sm-2" for="removePara">מספר מודעה: </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="removePara" name="paragraphNumber">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">מחק</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 
@@ -182,51 +182,51 @@
 
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/editMessages" method="POST" >
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="number">No'</label>
+                            <label class="control-label col-sm-2" for="number">מספר מודעה: </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editNumber"  name="paragraphNumber">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="content">content</label>
+                            <label class="control-label col-sm-2" for="content">תוכן: </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editContent" name="content">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="command voice">command voice</label>
+                            <label class="control-label col-sm-2" for="command voice">פקודה קולית:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editCommandVoice" name="commandVoice">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >link exist</label>
+                            <label class="control-label col-sm-2" >קיים קישור: </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editLinkExist" name="linkExist">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">link name</label>
+                            <label class="control-label col-sm-2">שם קישור: </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editLinkText"  name="linkName">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">url</label>
+                            <label class="control-label col-sm-2">קישור: </label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editUrl"  name="url">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">אשר</button>
                             </div>
                         </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 

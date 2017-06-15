@@ -1,12 +1,12 @@
 class Img extends TGObject {
 
-    constructor(domElement) {
+    constructor(domElement,gatherApiObject) {
         super();
         this.domElement = domElement;
         this.annyangUtil = new AnnyangUtil();
         this.speechUtil = new SpeechUtil();
         this.boxModal = new BoxModelUtil();
-
+        this.gatherApiObject = gatherApiObject;
     }
 
     draw(options) {
@@ -26,6 +26,7 @@ class Img extends TGObject {
     }
 
     initImage() {
+        var self = this;
 
         this.img = document.createElement("img");
 
@@ -41,7 +42,6 @@ class Img extends TGObject {
 
             let path = this.options["path"];
             // When the user clicks the button, open the modal
-            var self = this
             this.img.onclick = function () {
 
                 document.getElementsByClassName("content-paragraph").innerHTML += "";
@@ -62,7 +62,7 @@ class Img extends TGObject {
         }
         //init voice command
         let commands = {};
-        if( sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
+        if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
 
             //first check if there is file path exist for voice command
             if (this.options.path) {
@@ -70,7 +70,7 @@ class Img extends TGObject {
                 if (this.options.voiceCommand) {
                     let dataCommand = this.options.voiceCommand;
                     commands[this.options.voiceCommand] = function () {
-                        this.img.click();
+                        self.img.click();
                     };
                 }
                 let langObj = this.annyangUtil.getLangObj();
@@ -79,13 +79,16 @@ class Img extends TGObject {
                         commands[langObj[langCommand]["imgCloseModal"]] = function () {
                             let modal = document.getElementById('myModal');
                             modal.style.display = "none";
+                            sessionStorage.scrollPosition = 0;
+                            console.log("insied modal close " + sessionStorage.getItem("scrollPosition"))
+                            $(".modal-content").scrollTop(0);
                         };
                     }
                     else if(langObj[langCommand].hasOwnProperty("imgScrollModalDown")){
                         commands[langObj[langCommand]["imgScrollModalDown"]] = function () {
                             // var modal = document.getElementsByClassName('modal-content');
                             // modal.scrollTop = 100;
-                            let position = sessionStorage.getItem("scrollPosition");
+                            let position = parseInt(sessionStorage.getItem("scrollPosition"));
                             console.log(position + " before");
                             position = position + 50;
                             sessionStorage.scrollPosition = position;

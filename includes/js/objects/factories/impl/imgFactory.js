@@ -18,12 +18,12 @@ class ImgFactory extends ObjectFactory{
         let img;
         if(options == null || options == undefined ){
             this.options = eval(domElement.getAttribute("options"));
-            img = new Img(domElement);
+            img = new Img(domElement,this.gatherApiObject);
             img.draw();
         }
         else{
             this.options = options;
-            img = new Img(domElement);
+            img = new Img(domElement,this.gatherApiObject);
             img.draw(this.options);
         }
         this.gatherApiObject.objects.push(img);

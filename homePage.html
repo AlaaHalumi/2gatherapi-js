@@ -61,16 +61,12 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
 
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/liFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
 <body >
@@ -216,8 +212,9 @@
             console.log(sessionStorage.getItem("productId"));
             console.log(sessionStorage.getItem("lang"));
             var options = {
-                voiceToTextLanguage: sessionStorage.getItem("lang"),
-                middlewareDevices: {}
+                language: sessionStorage.getItem("lang"),
+                middlewareDevices: {},
+                requiredUtills:[sessionStorage.getItem("utils")]
             };
             options.middlewareDevices[sessionStorage.getItem("device")] = {
                 vendorId: sessionStorage.getItem("vendorId"),

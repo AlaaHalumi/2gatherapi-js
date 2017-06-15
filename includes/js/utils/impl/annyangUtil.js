@@ -30,18 +30,23 @@ class AnnyangUtil extends Util{
                             ]
                     }
                 ]
-            }
-
+            };
+            this.userLanguages;
             annyangUtilInstance = this;
         }
         return annyangUtilInstance;
     }
 
+    setLanguages(languages){
+        this.userLanguages = languages
+    }
     //init annyang if the admin does not define lang the default lang will be hebrew
-    initAnnyang(){
+    initAnnyang(languages){
+        this.setLanguages(languages)
         if(annyang){
-            if(sessionStorage.hasOwnProperty("lang")) {
-                annyang.setLanguage(this.languages[sessionStorage.getItem("lang")]);
+            if(languages != null || languages != undefined) {
+                console.log(languages)
+                annyang.setLanguage(this.languages[languages]);
             }
             else{
                 annyang.setLanguage('he');
@@ -58,9 +63,10 @@ class AnnyangUtil extends Util{
     //this function return keyword according the lang
     getLangObj(){
         // let jsonObject = JSON.parse(this.jsonData);
-        if(sessionStorage.getItem(("lang"))){
+        if(this.userLanguages != null || this.userLanguages != undefined){
+            console.log("getLangObj userLanguages" + this.userLanguages)
             let lang = sessionStorage.getItem("lang");
-            return this.jsonData["lang"][0][this.languages[sessionStorage.getItem("lang")]];
+            return this.jsonData["lang"][0][this.languages[this.userLanguages]];
         }
         else{
             return this.jsonData["lang"][0]["he"];

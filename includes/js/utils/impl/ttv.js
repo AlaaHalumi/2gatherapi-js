@@ -14,9 +14,9 @@ class SpeechUtil extends Util{
         return this.SpeechUtilInstance;
     }
 
-    initSpeech(){
-        if(sessionStorage.hasOwnProperty("lang")) {
-            this.utterance.lang  = this.languages[sessionStorage.getItem("lang")];
+    initSpeech(languages){
+        if(languages != null || languages != undefined) {
+            this.utterance.lang  = this.languages[this.languages[languages]];
         }
         else{
             this.utterance.lang = 'english';
@@ -30,7 +30,7 @@ class SpeechUtil extends Util{
     cancelSpeak(){
         window.speechSynthesis.cancel();
     }
-    chunkContents(text){
+    chunkContents(text) {
         let speaker = new SpeechUtil();
         let chunkLength = 120;
         let pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
@@ -41,7 +41,7 @@ class SpeechUtil extends Util{
             txt = txt.substring(arr[arr.length - 1].length);
         }
         let self = this.utterance
-        arr.forEach(function(element) {
+        arr.forEach(function (element) {
             let content = element.trim();
             console.log(content);
             self.text = content

@@ -115,28 +115,6 @@ class Accessibility extends Object{
 
 
     }
-    // Pictures Alt
-    // var imgDes='<p id="text"></p>';
-    // $('body').append(imgDes);
-    //
-    // function iDescriptions(){
-    // var img = document.getElementsByTagName("img");
-    // var text = document.getElementById("text");
-    //
-    // for (var i = 0; i < img.length; i++) {
-    //     img[i].addEventListener("mouseover", function() {
-    //         var alt = this.alt;
-    //         text.textContent = alt;
-    //     });
-    // }
-    // $(img).mousemove(function(e) {
-    //     $('#text').offset({
-    //         left: e.pageX,
-    //         top: e.pageY
-    //     });
-    // });
-    // flag = 1;
-// }
     draw(){
 
         var tgButtonElement = document.createElement("tg-button");
@@ -203,19 +181,6 @@ class Accessibility extends Object{
         select.appendChild(select3);
         select.appendChild(select4);
 
-        //  <div class="header_panel">
-        //
-        //         <h3 data-translate="_acc">Accessibility</h3>
-        //         <select id="lang">
-        //         <option id="English">English</option>
-        //         <option>ألعربيه</option>
-        //         <option>עברית</option>
-        //         <option>русский</option>
-        //         </select>
-        // </div>
-
-
-
         var divButtonPanel = document.createElement("div");
         divButtonPanel.setAttribute("class","buttons_panel");
         divAccPanel.appendChild(divButtonPanel);
@@ -226,9 +191,6 @@ class Accessibility extends Object{
         var div_row_panel;
         var row3_panel;
         var ul;
-
-
-
 
         for(var index = 0 ; index < this.jsonData.objects.length ; index++){
 
@@ -275,10 +237,6 @@ class Accessibility extends Object{
             var liChild= tgLi.firstChild;
             liChild.appendChild(img);
 
-            // let span = document.createElement("span");
-            // span.innerHTML += this.jsonData.objects[index]["text"] ;
-            // liChild.appendChild(span);
-
             ul.appendChild(tgLi);
         }
 
@@ -290,87 +248,6 @@ class Accessibility extends Object{
         row3_panel = document.createElement("div");
         row3_panel.setAttribute("class","row3_panel");
         div_row_panel.appendChild(row3_panel);
-
-        // ul = document.createElement("ul");
-        // row3_panel.appendChild(ul);
-        // let li = {
-        //     liAttribute : {
-        //         id : "imagesDescriptions",
-        //         text : "תיאור תמונה",
-        //     },
-        //     commands : {
-        //         submit : {
-        //
-        //         }
-        //     }
-        // }
-        //
-        //
-        // li.commands["submit"]["name"] = "תיאור תמונה" ;
-        // li.commands["submit"]["func"] = function(){
-        //     var flag = 0
-        //     $("#imagesDescriptions").on('click', function(){
-        //         console.log("ok1")
-        //         if(flag ==0){
-        //             iDescriptions();
-        //             $("#text").css("display","block");
-        //         }
-        //         else{
-        //             flag =0;
-        //             $("#text").css("display","none");
-        //         }
-        //     });
-        //     // Pictures Alt
-        //     var imgDes='<p id="text"></p>';
-        //     $('body').append(imgDes);
-        //
-        //     function iDescriptions() {
-        //         console.log("call func")
-        //         var img = document.getElementsByTagName("img");
-        //         var text = document.getElementById("text");
-        //
-        //         for (var i = 0; i < img.length; i++) {
-        //             img[i].addEventListener("mouseover", function () {
-        //                 var alt = this.alt;
-        //                 text.textContent = alt;
-        //             });
-        //         }
-        //
-        //         document.getElementById("img").addEventListener("mousemove", function(event) {
-        //             myFunction(event);
-        //         });
-        //
-        //         function myFunction(e) {
-        //             $('#text').offset({
-        //                 left: e.pageX,
-        //                 top: e.pageY
-        //             });
-        //             var x = e.clientX;
-        //             var y = e.clientY;
-        //             var coor = "Coordinates: (" + x + "," + y + ")";
-        //             document.getElementById("demo").innerHTML = coor;
-        //         }
-        //
-        //         document.getElementsByTagName("img").addEventListener("mousemove", myFunction(e) )
-        //
-        //         myFunction(e){
-        //             console.log("mouseOver");
-        //             $('#text').offset({
-        //                 left: e.pageX,
-        //                 top: e.pageY
-        //             });
-        //         }
-        //
-        //
-        //         flag = 1;
-        //     }
-        //
-        //     console.log("ok2")
-        // };
-        //
-        // this.liFactory.createObject(tgLi, li);
-        // ul.appendChild(tgLi);
-
 
         let tgButton = this.domElement.getElementsByTagName("tg-button");
 

@@ -80,39 +80,39 @@
 
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/addDevice" method="POST">
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="product no">product no'</label>
+                            <label class="control-label col-sm-2" for="product no">מספר מוצר: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="product no" placeholder="product no" name="productNumber">
+                                <input type="text" class="form-control" id="product no" placeholder="מספר מוצר" name="productNumber">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="deviceName">Device</label>
+                            <label class="control-label col-sm-2" for="deviceName">מספר זיהוי:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="deviceName" placeholder="Enter Device Name" name="productName">
+                                <input type="text" class="form-control" id="deviceName" placeholder="מספר זיהוי" name="productName">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="vendorId">vendor id</label>
+                            <label class="control-label col-sm-2" for="vendorId">מספר ספק:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="vendorId" placeholder="Enter vendor id" name="vendorId">
+                                <input type="text" class="form-control" id="vendorId" placeholder="מספר ספק" name="vendorId">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >product id</label>
+                            <label class="control-label col-sm-2" >שם מוצר:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control"  placeholder="Enter product id" name="productId">
+                                <input type="text" class="form-control"  placeholder="שם מוצר" name="productId">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">הוסיף</button>
                             </div>
                         </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 
@@ -127,25 +127,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Remove device From DB</h4>
+                    <h4 class="modal-title">מחק מכשיר</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/removeDevice" method="POST" >
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="deviceNumber">device number</label>
+                            <label class="control-label col-sm-2" for="deviceNumber">מספר מוצר: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="deviceNumber" placeholder="Enter device for remove" name="productNumber">
+                                <input type="text" class="form-control" id="deviceNumber" placeholder="מספר מוצר" name="productNumber">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">מחק</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 
@@ -166,25 +166,25 @@
 
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/editDevice" method="POST">
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="product no">product no'</label>
+                            <label class="control-label col-sm-2" for="product no">מספר מוצר:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editProductNumber" name="productNumber">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="deviceName">Device</label>
+                            <label class="control-label col-sm-2" for="deviceName">שם מוצר:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editDeviceName" name="productName">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="vendorId">vendor id</label>
+                            <label class="control-label col-sm-2" for="vendorId">מספר ספק:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editVendorId"name="vendorId">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >product id</label>
+                            <label class="control-label col-sm-2" >מספר זיהוי</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="editProductId" name="productId">
                             </div>
@@ -198,7 +198,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 

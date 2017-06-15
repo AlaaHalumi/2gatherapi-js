@@ -53,6 +53,7 @@ class BoxModelUtil extends Util {
             if (event.target == modal) {
                 modal.style.display = "none";
                 sessionStorage.scrollPosition = 0;
+                console.log("insied modal close " + sessionStorage.getItem("scrollPosition"))
                 $(".modal-content").scrollTop(0);
             }
         }

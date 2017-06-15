@@ -76,41 +76,41 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Register New Child</h4>
+                    <h4 class="modal-title">הירשם ילד חדש</h4>
                 </div>
                 <div class="modal-body">
 
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/addNewUser" method="POST" >
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="nickName">NickName</label>
+                            <label class="control-label col-sm-2" for="nickName">שם משתמש: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nickName" placeholder="Enter Nick Name" name="nickName">
+                                <input type="text" class="form-control" id="nickName" placeholder="שם משתמש" name="nickName">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Password</label>
+                            <label class="control-label col-sm-2" for="pwd">סיסמה: </label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                                <input type="password" class="form-control" id="pwd" placeholder="סיסמה" name="password">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="mail">email</label>
+                            <label class="control-label col-sm-2" for="mail">דואר אלקטרוני: </label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="mail" placeholder="Enter Email" name="mail">
+                                <input type="email" class="form-control" id="mail" placeholder="דואר אלקטרוני" name="mail">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >device</label>
+                            <label class="control-label col-sm-2" >מכשיר נתמך: </label>
                             <div class="col-sm-10">
                                 <select name="device" id="device">
-                                    <!--<option value="Tobi">Tobii</option>-->
-                                    <!--<option value="Joystick">Joystick</option>-->
-                                    <!--<option value="Clicker">Clicker</option>-->
+                                    <option value="Tobi">Tobii</option>
+                                    <option value="Joystick">Joystick</option>
+                                    <option value="Clicker">Clicker</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >utils</label>
+                            <label class="control-label col-sm-2" >כלי עזר</label>
                             <div class="col-sm-10">
                                 <select name="utils">
                                     <option value="voice command">voice command</option>
@@ -120,25 +120,25 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">language</label>
+                            <label class="control-label col-sm-2">שפה נתמכת: </label>
                             <div class="col-sm-10">
                                 <select name="lang">
-                                    <option value="english">english</option>
-                                    <option value="arabic">arabic</option>
-                                    <option value="hebrew">hebrew</option>
+                                    <option value="english">עברית</option>
+                                    <option value="arabic">ألعربيه</option>
+                                    <option value="hebrew">English</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">הוסיף</button>
                             </div>
                         </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 
@@ -153,25 +153,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Remove Child From DB</h4>
+                    <h4 class="modal-title">מחק משתמש מהרשימה</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/removeUser" method="POST" >
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="userRemove">NickName</label>
+                            <label class="control-label col-sm-2" for="userRemove">שם משתמש: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="userRemove" placeholder="Enter Nick Name For Remove" name="nickName">
+                                <input type="text" class="form-control" id="userRemove" placeholder="שם משתמש" name="nickName">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">מחק</button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 
@@ -187,31 +187,31 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit User</h4>
+                    <h4 class="modal-title">עדכן משתמש</h4>
                 </div>
                 <div class="modal-body">
 
                     <form class="form-horizontal" action="http://localhost:3030/tsamid/editUser" method="POST" >
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="nickName">NickName</label>
+                            <label class="control-label col-sm-2" for="nickName">שם משתמש: </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="editNickName" placeholder="Enter Nick Name" name="nickName">
+                                <input type="text" class="form-control" id="editNickName" placeholder="שם משתמש" name="nickName">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Password</label>
+                            <label class="control-label col-sm-2" for="pwd">סיסמה: </label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="editPwd" placeholder="Enter password" name="password">
+                                <input type="password" class="form-control" id="editPwd" placeholder="סיסמה" name="password">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="mail">email</label>
+                            <label class="control-label col-sm-2" for="mail">דואר אלקטרוני:</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="editMail" placeholder="Enter Email" name="mail">
+                                <input type="email" class="form-control" id="editMail" placeholder="דואר אלקטרוני" name="mail">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >device</label>
+                            <label class="control-label col-sm-2" >מכשיר נתמך: </label>
                             <div class="col-sm-10">
                                 <select name="device" id="editDevice">
                                     <option value="tobi">tobii</option>
@@ -221,7 +221,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" >utils</label>
+                            <label class="control-label col-sm-2" >כלי עזר: </label>
                             <div class="col-sm-10">
                                 <select name="utils" id="editUtils">
                                     <option value="voice command">voice command</option>
@@ -231,25 +231,25 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">language</label>
+                            <label class="control-label col-sm-2">שפה נתמכת: </label>
                             <div class="col-sm-10">
                                 <select name="lang" id="editLang">
-                                    <option id="English" value="english">english</option>
-                                    <option id="Arabic" value="arabic">arabic</option>
-                                    <option id="Hebrew" value="hebrew">hebrew</option>
+                                    <option id="English" value="english">עברית</option>
+                                    <option id="Arabic" value="arabic">ألعربيه</option>
+                                    <option id="Hebrew" value="hebrew">English</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-basic">Submit</button>
+                                <button type="submit" class="btn btn-basic">עדכן </button>
                             </div>
                         </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
 

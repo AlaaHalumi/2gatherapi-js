@@ -20,8 +20,7 @@ class LiFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             li = new Li(domElement);
             li.draw();
-            //if we dob't init sessionStorage like index page
-            if(!sessionStorage.hasOwnProperty("utils")|| sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
                 this.initUtils();
             }
         }
@@ -29,7 +28,7 @@ class LiFactory extends ObjectFactory{
             this.options = options;
             li = new Li(domElement);
             li.draw(this.options);
-            if(  !sessionStorage.hasOwnProperty("utils")|| sessionStorage.getItem("utils").indexOf("voice command") != -1 ){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
                 this.initUtils();
             }
         }

@@ -21,7 +21,7 @@ class ParagraphFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             paragraph = new Paragraph(domElement);
             paragraph.draw(null);
-            if( sessionStorage.getItem("utils").indexOf("voice command")!= -1 ){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
                 this.initUtils();
             }
         }
@@ -29,6 +29,9 @@ class ParagraphFactory extends ObjectFactory {
             this.options = options;
             paragraph = new Paragraph(domElement);
             paragraph.draw(this.options);
+            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+                this.initUtils();
+            }
         }
         this.gatherApiObject.objects.push(paragraph);
         return paragraph;
@@ -44,15 +47,8 @@ class ParagraphFactory extends ObjectFactory {
         let text = this.options.commands.content;
         let self = this.SpeechUtils;
         commands[this.options.commands.commandTrigger] = function () {
-            // let speaker = new SpeechUtil();
             self.chunkContents(text)
-            // speaker.chunkContents(text);
-
         };
-        // commands['הפסק'] = function(){
-        //     speechSynthesisInstance.cancel();
-        //     console.log("stop");
-        // };
         let annyangOptions = {commands: commands};
         this.annyangUtil.addAnnyangCommands(annyangOptions);
     }

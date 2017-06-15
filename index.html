@@ -63,8 +63,6 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
 
 
@@ -72,8 +70,6 @@
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/liFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
 </head>
 <body>
@@ -205,8 +201,7 @@
     }
 
     var options = {
-        middlewareDevices:[
-        ]
+        middlewareDevices:[],
     };
     var twoGatherApi = new Gatherapi(options);
 
