@@ -97,4 +97,8 @@ class ButtonReaderStart extends TGObject {
     enablejoystick(){
 
     }
+
+    enableClickers(){
+
+    }
 }

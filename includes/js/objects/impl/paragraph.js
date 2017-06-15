@@ -32,4 +32,8 @@ class Paragraph extends TGObject{
     enablejoystick(){
 
     }
+
+    enableClickers(){
+
+    }
 }

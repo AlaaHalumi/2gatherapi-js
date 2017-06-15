@@ -125,4 +125,8 @@ class Img extends TGObject {
 
     }
 
+    enableClickers(){
+
+    }
+
 }

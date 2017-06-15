@@ -48,4 +48,8 @@ class Button extends TGObject{
         }
         return this.button;
     }
+
+    enableClickers(){
+
+    }
 }

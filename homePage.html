@@ -21,6 +21,8 @@
     <script src="includes/js/middleware/middleware.js"></script>
     <script src="includes/js/middleware/external-inputs/external-input.js"></script>
     <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/tobii.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/joystick.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -155,19 +157,18 @@
     </div>
 </div>
 <div class="grass"></div>
-
 <script>
 
     (function () {
         //display menu with admin option
-        if(sessionStorage.displayAdmin == 1){
+        if (sessionStorage.displayAdmin == 1) {
             console.log("admin");
             //remove tg-menu from dom
-            $( "tg-menu" ).remove();
+            $("tg-menu").remove();
             $('#adminMenu').show();
 
         }
-        else{
+        else {
             console.log("not admin");
             $('#adminMenu').hide();
 
@@ -217,15 +218,12 @@
             console.log(sessionStorage.getItem("lang"));
             var options = {
                 voiceToTextLanguage: sessionStorage.getItem("lang"),
-
-                middlewareDevices:[
-                    {
-                        vendorId:sessionStorage.getItem("vendorId"),
-                        productId:sessionStorage.getItem("productId")
-                    },
-                ]
+                middlewareDevices: {}
             };
-
+            options.middlewareDevices[sessionStorage.getItem("device")] = {
+                vendorId: sessionStorage.getItem("vendorId"),
+                productId: sessionStorage.getItem("productId")
+            };
             var twoGatherApi = new Gatherapi(options);
         }
 
@@ -233,9 +231,7 @@
     })();
 
 
-    var accessibilityOption = {
-
-    }
+    var accessibilityOption = {}
 
 </script>
 </body>

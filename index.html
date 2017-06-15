@@ -21,6 +21,8 @@
     <script src="includes/js/middleware/middleware.js"></script>
     <script src="includes/js/middleware/external-inputs/external-input.js"></script>
     <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/tobii.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/joystick.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -147,7 +149,7 @@
 
                                     jsonDeviceData = JSON.parse(this.responseText);
                                     for(var index1 = 0 ; index1 < jsonDeviceData["data"].length ; index1++) {
-                                        if(jsonDeviceData["data"][index1]["productName"] == sessionStorage.getItem("device")){
+                                        if(jsonDeviceData["data"][index1]["productName"].toLowerCase() == sessionStorage.getItem("device").toLowerCase()){
                                             sessionStorage.vendorId = jsonDeviceData["data"][index1]["vendorId"];
                                             sessionStorage.productId = jsonDeviceData["data"][index1]["productId"];
                                         }

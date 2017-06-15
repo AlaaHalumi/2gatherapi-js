@@ -46,4 +46,8 @@ class Link extends TGObject{
 
     }
 
+    enableClickers(){
+
+    }
+
 }

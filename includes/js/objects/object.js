@@ -9,5 +9,8 @@ class TGObject{
         if (this.enablejoystick === undefined) {
             throw new TypeError("Must override draw");
         }
+        if (this.enableClickers === undefined) {
+            throw new TypeError("Must override draw");
+        }
     }
 }

@@ -4,9 +4,9 @@ class Gatherapi {
     constructor(options) {
 
         this.options = options;
-        // if(options.middlewareDevices) {
-        //     this.middleware = new Middleware(options.middlewareDevices, this);
-        // }
+        if(options.middlewareDevices) {
+            this.middleware = new Middleware(options.middlewareDevices, this);
+        }
 
         this.objects = [];
         this.plugins = [];

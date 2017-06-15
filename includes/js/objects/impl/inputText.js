@@ -39,4 +39,8 @@ class InputText extends TGObject{
             layout: lang
         })
     }
+
+    enableClickers(){
+
+    }
 }

@@ -53,4 +53,8 @@ class ButtonReaderStop extends TGObject {
     enablejoystick(){
 
     }
+
+    enableClickers(){
+
+    }
 }

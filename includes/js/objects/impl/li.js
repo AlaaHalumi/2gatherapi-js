@@ -51,4 +51,8 @@ class Li extends TGObject {
 
     }
 
+    enableClickers(){
+
+    }
+
 }
