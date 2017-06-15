@@ -36,13 +36,13 @@
 }
 .header_panel{
     background-color: steelblue;
+    text-align: center;
     color: white;
     padding: 3% 1% 3% 1%;
     position: relative;
 }
 .header_panel h3{
     position: relative;
-    left: 20%;
 }
 #lang{
     position: relative;
@@ -50,8 +50,24 @@
     top: 30%;
 }
 .header_panel ul{
+    text-align: center;
+    position: absolute;
     float:left;
     list-style: none;
+}
+.header_panel ul button{
+    width: 175%;
+    display: block;
+    font-size: 1.5em;
+    top: -4px;
+    position: relative;
+    background-color: white;
+    border: 1px solid #fff;
+    color: #4682b4;
+    border-radius: 8px;
+    left: -300px;
+    z-index: 99;
+    cursor: pointer;
 }
 #hide_panel img, #refresh_panel img{
     width:35%;

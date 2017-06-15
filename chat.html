@@ -26,8 +26,6 @@
     <script src="includes/js/middleware/middleware.js"></script>
     <script src="includes/js/middleware/external-inputs/external-input.js"></script>
     <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
-    <script src="includes/js/middleware/external-inputs/impl/tobii.js"></script>
-    <script src="includes/js/middleware/external-inputs/impl/joystick.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -91,7 +89,7 @@
         </section>
 
         <div class="headerD">
-            <a href="homePage.html"><img src="images/heart.png"> Tsamid</a>
+            <a href="homePage.html"><img src="images/heart.png"> צמ"ד </a>
         </div>
 
 
@@ -106,6 +104,7 @@
                 <li><a href="chat.html">חדר שיחה</a></li>
                 <li><a href="agenda.html">לוח חדשות</a></li>
                 <li><a href="eventRegistration.html">רישום לאירועים</a></li>
+                <li><a href="games.html">משחקיה</a></li>
             </ul>
         </nav>
 
@@ -205,12 +204,18 @@
 
         var options = {
             voiceToTextLanguage: "hebrew",
-            middlewareDevices: {}
+            middlewareDevices:[
+                {
+                    vendorId:"0781",
+                    productId:"5567"
+                },
+                {
+                    vendorId:"07c1",
+                    productId:"08a1"
+                }
+            ]
         };
-        options.middlewareDevices[sessionStorage.getItem("device")] = {
-            vendorId: sessionStorage.getItem("vendorId"),
-            productId: sessionStorage.getItem("productId")
-        };
+
 //        var chatUtil = new ChatUtil();
 //        chatUtil.initChat("ws://ec2-54-191-107-88.us-west-2.compute.amazonaws.com:8080/index.php");
 
@@ -331,61 +336,6 @@
         }
     }
 
-    var markables = document.querySelectorAll("input,a,select,button,textarea");
-    var i = 0;
-    markables[0].focus();
-
-    function doubleclick(event) {
-        console.log(event);
-        var el = document.querySelector('body');
-        if (el.getAttribute("data-dblclick") == null) {
-            el.setAttribute("data-dblclick", 1);
-            setTimeout(function () {
-                if (el.getAttribute("data-dblclick") == 1) {
-                    if(event.button == 0) {
-                        rightClickFunction();
-                    }else{
-                        leftClickFunction();
-                    }
-                }
-                el.removeAttribute("data-dblclick");
-            }, 300);
-        } else {
-            el.removeAttribute("data-dblclick");
-            chooseFunction();
-        }
-    }
-
-    function leftClickFunction() {
-        if(i == 1){
-            i = markables.length - 1;
-        }
-        i--;
-        var mark = markables[i];
-        console.log(mark);
-        mark.focus();
-    }
-
-    function rightClickFunction() {
-        if(i == markables.length - 1){
-            i = -1;
-        }
-        i++;
-        var mark = markables[i];
-        console.log(mark);
-        mark.focus();
-    }
-
-    function chooseFunction() {
-        $(markables[i]).click();
-    }
-
-
-
-
-
 </script>
 </body>
-<script src="includes/js/third-parties/skipTo/skipTo.js"></script>
-<script src="includes/js/third-parties/skipTo/dropMenu.js"></script>
 </html>

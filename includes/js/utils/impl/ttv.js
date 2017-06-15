@@ -8,6 +8,8 @@ class SpeechUtil extends Util{
             this.languages = {english:'en-US',france:'fr-FR'};
             this.SpeechUtilInstance = this;
             this.utterance = new SpeechSynthesisUtterance();
+            this.annyangUtil = new AnnyangUtil();
+            this.initAnnyang()
         }
         return this.SpeechUtilInstance;
     }
@@ -77,16 +79,15 @@ class SpeechUtil extends Util{
         }
         rawFile.send(null);
     }
+    initAnnyang() {
 
-    // readChunk(element){
-    //     console.log("before========================");
-    //     console.log(element);
-    //     let content = element.trim();
-    //     // console.log(content);
-    //     let u = new SpeechSynthesisUtterance(content);
-    //     u.lang = 'en-US';
-    //     let speaker = new SpeechUtil();
-    //     speaker.startSpeak(u);
-    //     console.log("after========================");
-    // }
+        let commands = {};
+        commands['stop'] = function(){
+            // speechSynthesisInstance.cancel();
+            window.speechSynthesis.cancel();
+            console.log("stop");
+        };
+        let annyangOptions = {commands: commands};
+        this.annyangUtil.addAnnyangCommands(annyangOptions);
+    }
 }

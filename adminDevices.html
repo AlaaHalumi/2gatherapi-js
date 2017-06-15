@@ -10,7 +10,6 @@
 
     <!--Table-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -21,15 +20,15 @@
 <header>
     <div class="headerContainer">
         <div class="headerD">
-            <a href="adminPanel.html"><img src="images/heart.png"> Tsamid</a>
+            <a href="adminPanel.html"><img src="images/heart.png"> צמ"ד </a>
         </div>
         <nav>
             <ul class="menu">
-                <li><a href="homePage.html">צמי"ד</a></li>
+                <li class="bold"><a href="homePage.html">צמי"ד</a></li>
                 <li><a href="adminPanel.html">דף הבית</a></li>
-                <li><a href="adminUsers.html">משתמשים</a></li>
-                <li><a href="adminMessageBoard.html">לוח מודעות</a></li>
                 <li><a href="adminLibrary.html">ספריה</a></li>
+                <li><a href="adminUsers.html">משתמשים</a></li>
+                <li><a href="adminMessageBoard.html">לוח חדשות</a></li>
                 <li><a href="adminDevices.html">מכשירים</a></li>
             </ul>
         </nav>
@@ -42,7 +41,7 @@
 <div class="clear"></div>
 </header>
 
-<div id="wrapper">
+<div class="wrapper">
 
     <div class="container">
         <h2 style="text-align: center ; margin-bottom: 2%">ניהול תוכן - מכשירים</h2>
@@ -50,11 +49,11 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>product No'</th>
-                <th>product Id</th>
-                <th>vendor Id</th>
-                <th>product name</th>
-                <th>option</th>
+                <th>מספר מוצר</th>
+                <th>מספר זיהוי</th>
+                <th>מספר ספק</th>
+                <th>שפ מוצר</th>
+                <th>פעולות</th>
             </tr>
             </thead>
             <tbody id="table">
@@ -65,7 +64,7 @@
 
 
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-success" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addDevice">Add</button>
+    <button class="adminButton" type="button" class="btn btn-success" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addDevice"> + </button>
 
     <!-- Modal -->
     <div class="modal fade" id="addDevice" role="dialog">
@@ -248,19 +247,17 @@
                 editButton.setAttribute("type","button");
                 editButton.setAttribute("class","use-edit");
                 editButton.setAttribute("onclick","myScriptEdit(this)");
-                editButton.setAttribute("class","btn btn-info btn-lg");
                 editButton.setAttribute("data-toggle","modal");
                 editButton.setAttribute("data-target","#editDevice");
-                editButton.innerHTML += "edit";
+                editButton.innerHTML += " / ";
 
                 var removeButton = document.createElement("button");
                 removeButton.setAttribute("type","button");
                 removeButton.setAttribute("class","use-remove");
                 removeButton.setAttribute("onclick","myScriptDelete(this)");
-                removeButton.setAttribute("class","btn btn-info btn-lg");
                 removeButton.setAttribute("data-toggle","modal");
                 removeButton.setAttribute("data-target","#removeDevice");
-                removeButton.innerHTML += "remove";
+                removeButton.innerHTML += " - ";
 
 
                 tdEdit.appendChild(editButton);
