@@ -106,7 +106,39 @@
         <h4 style="text-align: center">כאן תוכלו למצוא שפע סיפורים לילדים, לשימושכם החופשי:</h4>
         <h4 style="text-align: center"> סיפורים קצרים, סיפור לפני השינה, סיפורי עם, אגדות לילדים, מעשיות.</h4>
 
+
         <div class="tg-library-books" id="libraryContainer">
+            <div class="tg-library-story" id="book0">
+                <tg-img options="book0"></tg-img>
+            </div>
+
+            <div class="tg-library-story" id="book1">
+                <tg-img options="book1"></tg-img>
+            </div>
+
+            <div class="tg-library-story" id="book2">
+                <tg-img options="book2"></tg-img>
+            </div>
+
+            <div class="tg-library-story" id="book3">
+                <tg-img options="book3"></tg-img>
+            </div>
+
+            <div class="tg-library-story" id="book4">
+                <tg-img options="book4"></tg-img>
+            </div>
+
+            <div class="tg-library-story" id="book5">
+                <tg-img options="book5"></tg-img>
+            </div>
+
+            <div class="tg-library-story" id="book6">
+                <tg-img options="book6"></tg-img>
+            </div>
+
+            <div class="tg-library-story" id="book7">
+                <tg-img options="book7"></tg-img>
+            </div>
 
         </div>
 
@@ -197,20 +229,17 @@
 
                 jsonData = JSON.parse(this.responseText);
                 console.log("json " + jsonData["data"].length)
-                //container for all paragraphs
-                var divLibrary = document.getElementById("libraryContainer")
 
                 for(var index = 0 ; index < jsonData["data"].length ; index++){
 
-                    //contain one paragraph and link if exist
-                    var divStory = document.createElement("div");
-                    divStory.setAttribute("class","tg-library-story");
-                    var tgImg = document.createElement("tg-img");
+
+                    var div = document.getElementById("book"+index);
                     var header = document.createElement("h2");
                     header.innerHTML+=jsonData["data"][index]["header"];
+                    div.insertBefore(header, div.firstChild);
 
                     //create var options for tg element
-                    window['img'+index] = {
+                    window['book'+index] = {
                         imgAttribute : {
                             id : 'img'+index,
                             class : "tg-library-img",
@@ -221,14 +250,6 @@
                         img : jsonData["data"][index]["imgURL"],
                         voiceCommand : jsonData["data"][index]["header"]
                     }
-
-                    tgImg.setAttribute("options",'img'+index)
-
-                    divStory.appendChild(header);
-                    divStory.appendChild(tgImg);
-
-                    divLibrary.appendChild(divStory);
-
                 }
                 var twoGatherApi = new Gatherapi(options);
 
