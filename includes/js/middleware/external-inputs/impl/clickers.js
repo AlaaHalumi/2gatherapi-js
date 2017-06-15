@@ -12,7 +12,7 @@ class Clickers extends ExternalInput{
     }
 
     connectExternalInput(){
-        this.connected = true;
+
         myElement = document.querySelector('body');
         myElement.onmousedown = this.doubleclick;
         var blockContextMenu, myElement;
@@ -46,7 +46,7 @@ class Clickers extends ExternalInput{
     }
 
     leftClickFunction() {
-        var markables = document.querySelectorAll("input,a,select,button,textarea");
+        var markables = document.querySelectorAll("input,a,select,button,textarea,.tg-library-img");
         if(this.i == 1){
             this.i = markables.length - 1;
         }
@@ -57,7 +57,7 @@ class Clickers extends ExternalInput{
     }
 
     rightClickFunction() {
-        var markables = document.querySelectorAll("input,a,select,button,textarea");
+        var markables = document.querySelectorAll("input,a,select,button,textarea,.tg-library-img");
         if(this.i == markables.length - 1){
             this.i = -1;
         }
@@ -68,7 +68,7 @@ class Clickers extends ExternalInput{
     }
 
     chooseFunction() {
-        var markables = document.querySelectorAll("input,a,select,button,textarea");
-        $(markables[this.i]).click();
+        var markables = document.querySelectorAll("input,a,select,button,textarea,.tg-library-img");
+        markables[this.i].click();
     }
 }
