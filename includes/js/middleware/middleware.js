@@ -26,27 +26,28 @@ class Middleware {
         var self = this;
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-                try {
-                    self.connectedDevices = JSON.parse(xmlhttp.responseText);
-                    var needExternalInit = false;
-                    for(var externalInput in self.externalInputs){
-                        if(self.devices[externalInput]) {
-                            var ei = self.externalInputs[externalInput];
-                            for (var connectedDevice in self.connectedDevices) {
-                                if (self.connectedDevices[connectedDevice].productId == self.devices[externalInput].productId &&
-                                    self.connectedDevices[connectedDevice].vendorId == self.devices[externalInput].vendorId) {
-                                    ei.connectExternalInput();
-                                    needExternalInit = true;
-                                    break;
-                                }
-                            }
-                            if(needExternalInit){
-                                self.gatherApiObject.enableExternalInputsHandlers();
+                self.connectedDevices = JSON.parse(xmlhttp.responseText);
+                var needExternalInit = false;
+                for(var externalInput in self.externalInputs){
+                    if(self.devices[externalInput]) {
+                        var ei = self.externalInputs[externalInput];
+                        for (var connectedDevice in self.connectedDevices) {
+                            if (self.connectedDevices[connectedDevice].productId == self.devices[externalInput].productId &&
+                                self.connectedDevices[connectedDevice].vendorId == self.devices[externalInput].vendorId) {
+                                ei.connectExternalInput();
+                                needExternalInit = true;
+                                break;
                             }
                         }
+                        if(needExternalInit){
+                            self.gatherApiObject.enableExternalInputsHandlers();
+                        }else if(self.devices.length != 0 && callback){
+                            callback();
+                        }
+                        else if(self.devices.length != 0){
+                            alert("one of the following required devices isn't connected: " + Object.keys(self.devices));
+                        }
                     }
-                }catch(err) {
-                    callback();
                 }
             }
         };
