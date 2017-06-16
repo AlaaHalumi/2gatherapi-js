@@ -238,6 +238,7 @@
                     header.innerHTML+=jsonData["data"][index]["header"];
                     div.insertBefore(header, div.firstChild);
 
+
                     //create var options for tg element
                     window['book'+index] = {
                         imgAttribute : {
@@ -250,6 +251,9 @@
                         img : jsonData["data"][index]["imgURL"],
                         voiceCommand : jsonData["data"][index]["header"]
                     }
+
+
+
                 }
                 var twoGatherApi = new Gatherapi(options);
 
