@@ -115,7 +115,6 @@ class Accessibility extends Plugin{
         divHeader.appendChild(ulHeader);
 
 
-
         var tgLButtonClose = document.createElement("tg-button");
         ulHeader.appendChild(tgLButtonClose);
         let buttonClose = {
@@ -144,9 +143,6 @@ class Accessibility extends Plugin{
         var divButtonPanel = document.createElement("div");
         divButtonPanel.setAttribute("class","buttons_panel");
         divAccPanel.appendChild(divButtonPanel);
-
-        console.log(this.jsonData);
-        console.log(this.jsonData.objects.length);
 
         var div_row_panel;
         var row3_panel;

@@ -66,21 +66,17 @@
     <script src="includes/js/objects/impl/button.js"></script>
     <script src="includes/js/objects/impl/link.js"></script>
     <script src="includes/js/objects/impl/paragraph.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStart.js"></script>
-    <script src="includes/js/objects/impl/buttonReaderStop.js"></script>
     <script src="includes/js/objects/impl/image.js"></script>
     <script src="includes/js/objects/impl/li.js"></script>
 
     <script src="includes/js/objects/factories/impl/buttonFactory.js"></script>
     <script src="includes/js/objects/factories/impl/linkFactory.js"></script>
     <script src="includes/js/objects/factories/impl/paragraphFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStartFactory.js"></script>
-    <script src="includes/js/objects/factories/impl/buttonReaderStopFactory.js"></script>
     <script src="includes/js/objects/factories/impl/imgFactory.js"></script>
     <script src="includes/js/objects/factories/impl/liFactory.js"></script>
 </head>
 <body>
-<tg-accessibility>
+<tg-accessibility options="accessibility">
 </tg-accessibility>
 <header>
 
@@ -91,7 +87,7 @@
         </div>
 
 
-        <tg-menu options="menuOptions">
+        <tg-menu options="menu">
         </tg-menu>
 
         <nav id="adminMenu">
@@ -156,7 +152,7 @@
         else{
             $('#adminMenu').hide();
 
-            window["menuOptions"] = {
+            window["menu"] = {
                 link1: {
                     href: "homePage.html",
                     id: "homePage",
@@ -194,6 +190,69 @@
                     text: "משחקיה",
                 }
 
+            }
+
+            window["accessibility"] = {
+                func1 : {
+                    option : "bigger_font",
+                    text : "הגדל פונט",
+                    image : "images/accessibility/bigFont.png"
+                },
+                func2 : {
+                    option : "smaller_font",
+                    text : "הקטן פונט",
+                    image : "images/accessibility/smallFont.png"
+                },
+                func3 : {
+                    option: "legible_font",
+                    text: "פונט קריא",
+                    image: "images/accessibility/legibleFont.png",
+                },
+                func4 : {
+                    option : "bright_Contrast",
+                    text : "בהירות בהירה",
+                    image : "images/accessibility/brightContrast.png",
+                },
+                func5 : {
+                    option : "impared",
+                    text : "בהירות כהה",
+                    image : "images/accessibility/darkContrast.png",
+                },
+                func6 : {
+                    option: "color_blind",
+                    text: "עוורי ראייה",
+                    image: "images/accessibility/colorBlind.png",
+                },
+                func7 : {
+                    option : "blackCursor",
+                    text : "סמן שחור",
+                    image : "images/accessibility/blackCursor.png",
+                },
+                func8 : {
+                    option : "whiteCursor",
+                    text : "סמן לבן",
+                    image : "images/accessibility/whiteCursor.png",
+                },
+                func9 : {
+                    option : "magnifier",
+                    text : "זכוכית מגדלת",
+                    image : "images/accessibility/magni.png",
+                },
+                func10 : {
+                    option : "imagesDescriptions",
+                    text : "תיאור לתמונות",
+                    image : "images/accessibility/imagesDes.png",
+                },
+                func11 : {
+                    option : "hightlightTitles",
+                    text : "הדגשת כותרות",
+                    image : "images/accessibility/hightlightTitles.png",
+                },
+                func12 : {
+                    option : "hightlightTitles",
+                    text : "הדגשת קישורים",
+                    image : "images/accessibility/links.png",
+                }
             }
 
             var options = {

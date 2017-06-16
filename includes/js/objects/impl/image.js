@@ -100,7 +100,7 @@ class Img extends TGObject {
             }
         }
         //the user is blind
-        else{
+        if(this.gatherApiObject.requiredUtills.indexOf("ttv") != -1){
             var self = this;
             let path = this.options["path"];
             if (this.options.path) {
