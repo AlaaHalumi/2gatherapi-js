@@ -137,7 +137,7 @@
                             sessionStorage.device = jsonData["data"][index]["device"];
                             sessionStorage.lang = jsonData["data"][index]["lang"];
 
-                            var deviceUrl = 'http://localhost:3030/tsamid/getDevices';
+                            var deviceUrl = 'https://tsamid-ws.herokuapp.com/tsamid/getDevices';
                             var jsonDeviceData;
 
                             var xhttp = new XMLHttpRequest();
