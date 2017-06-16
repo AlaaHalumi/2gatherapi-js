@@ -80,7 +80,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form class="form-horizontal" action="http://localhost:3030/tsamid/addMessages" method="POST" >
+                    <form class="form-horizontal" action="https://tsamid-ws.herokuapp.com/tsamid/addMessages" method="POST" >
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="number">מספר מודעה: </label>
                             <div class="col-sm-10">
@@ -145,7 +145,7 @@
                     <h4 class="modal-title">מחק פסקה מלוח המודעות</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="http://localhost:3030/tsamid/removeMessages" method="POST" >
+                    <form class="form-horizontal" action="https://tsamid-ws.herokuapp.com/tsamid/removeMessages" method="POST" >
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="removePara">מספר מודעה: </label>
                             <div class="col-sm-10">
@@ -180,7 +180,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form class="form-horizontal" action="http://localhost:3030/tsamid/editMessages" method="POST" >
+                    <form class="form-horizontal" action="https://tsamid-ws.herokuapp.com/tsamid/editMessages" method="POST" >
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="number">מספר מודעה: </label>
                             <div class="col-sm-10">
@@ -245,7 +245,7 @@
 
         var table = document.getElementById("table");
 
-        $.get( "http://localhost:3030/tsamid/getMessages", function( data ) {
+        $.get( "https://tsamid-ws.herokuapp.com/tsamid/getMessages", function( data ) {
             $.each( data["data"], function( key, val ) {
                 var tr = document.createElement("tr");
 
