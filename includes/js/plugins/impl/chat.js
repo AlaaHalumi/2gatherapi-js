@@ -1,4 +1,4 @@
-class Chat extends Object{
+class Chat extends Plugin{
 
     constructor(domElement){
         super();

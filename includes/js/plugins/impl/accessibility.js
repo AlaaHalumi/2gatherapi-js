@@ -1,5 +1,5 @@
 
-class Accessibility extends Object{
+class Accessibility extends Plugin{
 
     constructor(domElement){
         super();
