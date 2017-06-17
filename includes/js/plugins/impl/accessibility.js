@@ -4,6 +4,7 @@ class Accessibility extends Plugin{
     constructor(domElement){
         super();
         this.domElement = domElement;
+        this.annyangUtil = new AnnyangUtil();
         this.buttonFactory = new ButtonFactory();
         this.liFactory = new LiFactory();
         this.jsonData = {
@@ -115,6 +116,7 @@ class Accessibility extends Plugin{
         divHeader.appendChild(ulHeader);
 
 
+        this.ann
         var tgLButtonClose = document.createElement("tg-button");
         ulHeader.appendChild(tgLButtonClose);
         let buttonClose = {
@@ -129,7 +131,14 @@ class Accessibility extends Plugin{
             }
         }
 
-        buttonClose.commands["submit"]["name"] = "close accessibility" ;
+        let langObj = this.annyangUtil.getLangObj();
+        for(let langCommand in langObj){
+            if(langObj[langCommand].hasOwnProperty("accessibility_close")){
+                   buttonClose.commands["submit"]["name"] = langObj[langCommand]["accessibility_close"] ;
+            };
+        }
+
+
         buttonClose.commands["submit"]["func"] = function(){
             $('#acc_panel').hide();
         };
@@ -239,7 +248,12 @@ class Accessibility extends Plugin{
             }
         }
 
-        buttonAccess["commands"]["submit"]["name"] = "נגישות";
+        for(let langCommand in langObj){
+            if(langObj[langCommand].hasOwnProperty("accessibility_open")){
+                buttonAccess["commands"]["submit"]["name"]  = langObj[langCommand]["accessibility_open"] ;
+            };
+        }
+
         buttonAccess["commands"]["submit"]["func"] = function() {
             $("#acc_panel").toggle();
             console.log("tg-button");
