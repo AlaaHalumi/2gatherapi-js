@@ -1,4 +1,4 @@
-class Library extends Object{
+class Library extends Plugin{
 
     constructor(domElement){
         super();

@@ -10,24 +10,28 @@ class AnnyangUtil extends Util{
             this.languages = {hebrew:'he',english:'en-US',arabic :'ar'};
             this.jsonData = {
                 "lang" : [
-                    { "he" :
+                    {   "he" :
                         [
                             {"link" : "עבור"},
                             {"button" : "לחץ על"},
                             {"imgCloseModal" : "סגור חלון"},
                             {"imgScrollModalDown" : "למטה"},
                             {"imgScrollModalUp" : "למעלה"},
+                            {"accessibility_close" : "סגור נגישות"},
+                            {"accessibility_open" : "פתח נגישות"},
                             {"exit" : "יציאה"}
                         ],
                         "en-US" :
-                            [
-                                {"link" : "go to"},
-                                {"button" : "click on"},
-                                {"imgCloseModal" : "close window"},
-                                {"imgScrollModalDown" : "down"},
-                                {"imgScrollModalUp" : "up"},
-                                {"exit" : "exit"}
-                            ]
+                         [
+                            {"link" : "go to"},
+                            {"button" : "click on"},
+                            {"imgCloseModal" : "close window"},
+                            {"imgScrollModalDown" : "down"},
+                            {"imgScrollModalUp" : "up"},
+                            {"accessibility_close" : "close accessibility"},
+                            {"accessibility_open" : "open accessibility"},
+                            {"exit" : "exit"}
+                         ]
                     }
                 ]
             };
@@ -64,8 +68,6 @@ class AnnyangUtil extends Util{
     getLangObj(){
         // let jsonObject = JSON.parse(this.jsonData);
         if(this.userLanguages != null || this.userLanguages != undefined){
-            console.log("getLangObj userLanguages" + this.userLanguages)
-            let lang = sessionStorage.getItem("lang");
             return this.jsonData["lang"][0][this.languages[this.userLanguages]];
         }
         else{

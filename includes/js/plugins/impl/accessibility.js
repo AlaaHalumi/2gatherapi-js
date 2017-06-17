@@ -1,29 +1,24 @@
 
-class Accessibility extends Object{
+class Accessibility extends Plugin{
 
     constructor(domElement){
         super();
         this.domElement = domElement;
+        this.annyangUtil = new AnnyangUtil();
         this.buttonFactory = new ButtonFactory();
         this.liFactory = new LiFactory();
         this.jsonData = {
             "objects" :
-                [
-                    {
-                        "id" : "bigger_font",
-                        "text" : "הגדל ונט",
-                        "img" : "images/accessibility/bigFont.png",
-                        "func" : "var divtxt = document.querySelector('body > div:not(#acc_panel)');" +
+                {
+                    "bigger_font": {
+                        "id": "bigger_font",
+                        "func": "var divtxt = document.querySelector('body > div:not(#acc_panel)');" +
                         "var curSize  = window.getComputedStyle(divtxt, null).getPropertyValue('font-size');" +
                         "var newSize = parseInt(curSize.replace('px', '')) + 1;" +
-                        "divtxt.style.fontSize = newSize + 'px';"
-
-
-                    },
-                    {
+                        "divtxt.style.fontSize = newSize + 'px';",
+                    } ,
+                    "smaller_font": {
                         "id" : "smaller_font",
-                        "text" : "הקטן פונט",
-                        "img" : "images/accessibility/smallFont.png",
                         "func" : "var divtxt = document.querySelector('body > div:not(#acc_panel)');" +
                         "var curSize  = window.getComputedStyle(divtxt, null).getPropertyValue('font-size');" +
                         "var newSize = parseInt(curSize.replace('px', '')) - 1;" +
@@ -31,54 +26,41 @@ class Accessibility extends Object{
                         "newSize = 10+ 'px';}"+
                         "divtxt.style.fontSize = newSize + 'px';"
                     },
+                    "legible_font" :
                     {
                         "id" : "legible_font",
-                        "text" : "פונט קריא",
-                        "img" : "images/accessibility/legibleFont.png",
                         "func" : "$('body').toggleClass('lfont');"
                     },
-                    {
+                    "bright_Contrast" : {
                         "id" : "bright_Contrast",
-                        "text" : "בהירות בהירה",
-                        "img" : "images/accessibility/brightContrast.png",
                         "func" : "$('body,nav,main,header,section,article,footer,div,button').toggleClass('bc_blocks');" +
                         "$('main,header,footer,div,button').toggleClass('bc_border');" +
                         "$('h1,h2,h3,h4,h5,h6,span,label').toggleClass('bc_headers');" +
                         "$('a').toggleClass('bc_links');" +
                         "$('img,svg').toggleClass('bc_image');"
                     },
-                    {
+                    "impared" : {
                         "id" : "impared",
-                        "text" : "בהירות כהה",
-                        "img" : "images/accessibility/darkContrast.png",
                         "func" : "$('body,main,nav,header,section,article,footer,div').toggleClass('vi_whitefont');" +
                         "$('h1,h2,h3,h4,h5,h6,span,label,button').toggleClass('vi_yellowfont');" +
                         "$('a').toggleClass('vi_link');" +
                         "$('img,svg').toggleClass('vi_image');"
                     },
-                    {
+                    "color_blind" : {
                         "id" : "color_blind",
-                        "text" : "עוורי ראייה",
-                        "img" : "images/accessibility/colorBlind.png",
                         "func" : "$('body,img').toggleClass('cb_grayscale');" +
                         "$('body,main').toggleClass('cb_bodyWhite');"
                     },
-                    {
+                    "blackCursor" : {
                         "id" : "blackCursor",
-                        "text" : "סמן שחור",
-                        "img" : "images/accessibility/blackCursor.png",
                         "func" : "$('body').toggleClass('black_cursor');"
                     },
-                    {
+                    "whiteCursor" : {
                         "id" : "whiteCursor",
-                        "text" : "סמן לבן",
-                        "img" : "images/accessibility/whiteCursor.png",
                         "func" : "$('body').toggleClass('white_cursor');"
                     },
-                    {
+                    "magnifier" : {
                         "id" : "magnifier",
-                        "text" : "זכוכית מגדלת",
-                        "img" : "images/accessibility/magni.png",
                         "func" : "$('.wrapper').toggleClass('largeBodyFonts');" +
                         "$('header,#question,.buttonGame').toggleClass('lfonts');" +
                         "$('.row_activity').toggleClass('largeB');" +
@@ -87,35 +69,33 @@ class Accessibility extends Object{
                         "$('.bottom').toggleClass('largeSnowBottom');" +
                         "$('.cell img').toggleClass('largeimg');"
                     },
-                    {
+                    "imagesDescriptions" : {
                         "id" : "imagesDescriptions",
-                        "text" : "תיאור לתמונות",
-                        "img" : "images/accessibility/imagesDes.png",
                         "func" : "if(flag ==0){iDescriptions();" +
                         "$('#text').css('display','block');}" +
                         "else{flag =0;" +
                         "$('#text').css('display','none');}"
                     },
-                    {
+                    "hightlightTitles" : {
                         "id" : "hightlightTitles",
-                        "text" : "הדגשת כותרות",
-                        "img" : "images/accessibility/hightlightTitles.png",
                         "func" : "$('h1,h2,h3,h4,h5,h6').toggleClass('hightlight_titles');"
                     },
-                    {
+                    "hightlightLinks" :{
                         "id" : "hightlightLinks",
-                        "text" : "הדגשת קישורים",
-                        "img" : "images/accessibility/links.png",
                         "func" : "$('a').toggleClass('hightlight_Links');"
                     }
-
-
-                ]
+                }
         }
 
 
     }
     draw(){
+
+        this.options = eval(this.domElement.getAttribute("options"));
+
+        if (this.options == undefined) {
+            throw "Exception: Can't init tg-accessibility, option attribute is undefined"
+        }
 
         var tgButtonElement = document.createElement("tg-button");
         this.domElement.appendChild(tgButtonElement);
@@ -136,7 +116,7 @@ class Accessibility extends Object{
         divHeader.appendChild(ulHeader);
 
 
-
+        this.ann
         var tgLButtonClose = document.createElement("tg-button");
         ulHeader.appendChild(tgLButtonClose);
         let buttonClose = {
@@ -151,7 +131,14 @@ class Accessibility extends Object{
             }
         }
 
-        buttonClose.commands["submit"]["name"] = "close accessibility" ;
+        let langObj = this.annyangUtil.getLangObj();
+        for(let langCommand in langObj){
+            if(langObj[langCommand].hasOwnProperty("accessibility_close")){
+                   buttonClose.commands["submit"]["name"] = langObj[langCommand]["accessibility_close"] ;
+            };
+        }
+
+
         buttonClose.commands["submit"]["func"] = function(){
             $('#acc_panel').hide();
         };
@@ -162,37 +149,16 @@ class Accessibility extends Object{
         headerAccess.innerHTML += "Accessibility";
         divHeader.appendChild(headerAccess);
 
-        let select = document.createElement("select")
-        select.setAttribute("id","lang");
-        divHeader.appendChild(select);
-
-        let select1 = document.createElement("option")
-        let select2 = document.createElement("option")
-        let select3 = document.createElement("option")
-        let select4 = document.createElement("option")
-
-        select1.innerHTML += "English";
-        select2.innerHTML += "ألعربيه";
-        select3.innerHTML += "עברית";
-        select4.innerHTML += "русский";
-
-        select.appendChild(select1);
-        select.appendChild(select2);
-        select.appendChild(select3);
-        select.appendChild(select4);
-
         var divButtonPanel = document.createElement("div");
         divButtonPanel.setAttribute("class","buttons_panel");
         divAccPanel.appendChild(divButtonPanel);
-
-        console.log(this.jsonData);
-        console.log(this.jsonData.objects.length);
 
         var div_row_panel;
         var row3_panel;
         var ul;
 
-        for(var index = 0 ; index < this.jsonData.objects.length ; index++){
+        let index=0;
+        for(let propertyName in this.options) {
 
             var tgLi = document.createElement("tg-li");
 
@@ -214,8 +180,7 @@ class Accessibility extends Object{
 
             let li = {
                 liAttribute : {
-                    id : this.jsonData.objects[index]["id"],
-                    text : this.jsonData.objects[index]["text"],
+
                 },
                 commands : {
                     submit : {
@@ -224,21 +189,41 @@ class Accessibility extends Object{
                 }
             }
 
-            let self =  this.jsonData.objects[index]["func"];
-            li.commands["submit"]["name"] = this.jsonData.objects[index]["text"] ;
-            li.commands["submit"]["func"] = function(){
-                eval(self);
-            };
+            let option = this.options[propertyName]["option"];
+            let text = this.options[propertyName]["text"];
+            let func;
+            let image = this.options[propertyName]["image"];
+
+            //set func
+            if(option != null || option != undefined){
+                li.liAttribute.id = this.jsonData.objects[option]["id"];
+                func =  this.jsonData.objects[option]["func"];
+                li.commands["submit"]["func"] = function(){
+                    eval(func);
+                };
+
+            }
+            //set text to function
+            if(text != null || text != undefined){
+                li.liAttribute.text  = this.options[propertyName]["text"];
+                li.commands["submit"]["name"] = this.options[propertyName]["text"] ;
+            }
 
             this.liFactory.createObject(tgLi, li);
 
             let img = document.createElement("img");
-            img.setAttribute("src",this.jsonData.objects[index]["img"]);
+            //set img to function
+            if(image != null || image != undefined){
+                img.setAttribute("src",image);
+            }
+
             var liChild= tgLi.firstChild;
             liChild.appendChild(img);
-
             ul.appendChild(tgLi);
+
+            index++;
         }
+
 
         var tgLi = document.createElement("tg-li");
         div_row_panel = document.createElement("div");
@@ -263,7 +248,12 @@ class Accessibility extends Object{
             }
         }
 
-        buttonAccess["commands"]["submit"]["name"] = "נגישות";
+        for(let langCommand in langObj){
+            if(langObj[langCommand].hasOwnProperty("accessibility_open")){
+                buttonAccess["commands"]["submit"]["name"]  = langObj[langCommand]["accessibility_open"] ;
+            };
+        }
+
         buttonAccess["commands"]["submit"]["func"] = function() {
             $("#acc_panel").toggle();
             console.log("tg-button");

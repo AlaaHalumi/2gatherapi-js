@@ -6,7 +6,6 @@ class AccessibilityFactory extends PluginFactory{
         super();
         if(!accessibilityFactoryInstance){
             accessibilityFactoryInstance = this;
-            this.annyangUtil = new AnnyangUtil();
         }
         return accessibilityFactoryInstance;
     }
@@ -15,7 +14,6 @@ class AccessibilityFactory extends PluginFactory{
         let accessibility = new Accessibility(domElement);
         this.options = eval(domElement.getAttribute("options"));
         accessibility.draw();
-        // this.initUtils();
         return accessibility;
     }
 

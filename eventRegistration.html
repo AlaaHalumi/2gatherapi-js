@@ -83,7 +83,7 @@
     <script src="includes/js/objects/factories/impl/liFactory.js"></script>
 </head>
 <body>
-<tg-accessibility>
+<tg-accessibility options="accessibility">
 </tg-accessibility>
 <header>
 
@@ -94,7 +94,7 @@
         </div>
 
 
-        <tg-menu options="menuOptions">
+        <tg-menu options="menu">
         </tg-menu>
 
         <nav id="adminMenu">
@@ -121,7 +121,7 @@
 <div class="form">
     <h2 style="text-align: center ; margin-bottom: 2%">הרשמה לאירועים</h2>
 
-    <form id="formEvent" class="form-horizontal" action="http://localhost:3030/tsamid/formEvent" method="POST" >
+    <form id="formEvent" class="form-horizontal" action="https://tsamid-ws.herokuapp.com/tsamid/formEvent" method="POST" >
         <div class="form-group">
             <label for="name">שם: </label>
             <tg-input options="inputName"></tg-input>
@@ -159,7 +159,7 @@
         else{
             $('#adminMenu').hide();
 
-            window["menuOptions"] = {
+            window["menu"] = {
                 link1: {
                     href: "homePage.html",
                     id: "homePage",
@@ -199,10 +199,72 @@
 
             }
 
+            window["accessibility"] = {
+                func1 : {
+                    option : "bigger_font",
+                    text : "הגדל פונט",
+                    image : "images/accessibility/bigFont.png"
+                },
+                func2 : {
+                    option : "smaller_font",
+                    text : "הקטן פונט",
+                    image : "images/accessibility/smallFont.png"
+                },
+                func3 : {
+                    option: "legible_font",
+                    text: "פונט קריא",
+                    image: "images/accessibility/legibleFont.png",
+                },
+                func4 : {
+                    option : "bright_Contrast",
+                    text : "בהירות בהירה",
+                    image : "images/accessibility/brightContrast.png",
+                },
+                func5 : {
+                    option : "impared",
+                    text : "בהירות כהה",
+                    image : "images/accessibility/darkContrast.png",
+                },
+                func6 : {
+                    option: "color_blind",
+                    text: "עוורי ראייה",
+                    image: "images/accessibility/colorBlind.png",
+                },
+                func7 : {
+                    option : "blackCursor",
+                    text : "סמן שחור",
+                    image : "images/accessibility/blackCursor.png",
+                },
+                func8 : {
+                    option : "whiteCursor",
+                    text : "סמן לבן",
+                    image : "images/accessibility/whiteCursor.png",
+                },
+                func9 : {
+                    option : "magnifier",
+                    text : "זכוכית מגדלת",
+                    image : "images/accessibility/magni.png",
+                },
+                func10 : {
+                    option : "imagesDescriptions",
+                    text : "תיאור לתמונות",
+                    image : "images/accessibility/imagesDes.png",
+                },
+                func11 : {
+                    option : "hightlightTitles",
+                    text : "הדגשת כותרות",
+                    image : "images/accessibility/hightlightTitles.png",
+                },
+                func12 : {
+                    option : "hightlightTitles",
+                    text : "הדגשת קישורים",
+                    image : "images/accessibility/links.png",
+                }
+            }
+
             var options = {
                 language: sessionStorage.getItem("lang"),
-                middlewareDevices: {},
-                requiredUtills : [sessionStorage.getItem("utils")]
+                middlewareDevices: {}
             };
             options.middlewareDevices[sessionStorage.getItem("device")] = {
                 vendorId: sessionStorage.getItem("vendorId"),

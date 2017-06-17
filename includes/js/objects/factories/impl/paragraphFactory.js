@@ -21,7 +21,7 @@ class ParagraphFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             paragraph = new Paragraph(domElement);
             paragraph.draw(null);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1 ){
                 this.initUtils();
             }
         }

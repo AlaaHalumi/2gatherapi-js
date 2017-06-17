@@ -7,7 +7,8 @@ class SpeechUtil extends Util{
         if(!SpeechUtilInstance){
             this.languages = {english:'en-US',france:'fr-FR'};
             this.SpeechUtilInstance = this;
-            this.utterance = new SpeechSynthesisUtterance();
+            // this.utterance = new SpeechSynthesisUtterance();
+            this.userLanguages;
             this.annyangUtil = new AnnyangUtil();
             this.initAnnyang()
         }
@@ -16,10 +17,10 @@ class SpeechUtil extends Util{
 
     initSpeech(languages){
         if(languages != null || languages != undefined) {
-            this.utterance.lang  = this.languages[this.languages[languages]];
+            this.userLanguages  = this.languages[this.languages[languages]];
         }
         else{
-            this.utterance.lang = 'english';
+            this.userLanguages = 'english';
         }
     }
 
@@ -30,36 +31,18 @@ class SpeechUtil extends Util{
     cancelSpeak(){
         window.speechSynthesis.cancel();
     }
-    chunkContents(text) {
-        let speaker = new SpeechUtil();
-        let chunkLength = 120;
-        let pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
-        let arr = [];
-        let txt = text;
-        while (txt.length > 0) {
-            arr.push(txt.match(pattRegex)[0]);
-            txt = txt.substring(arr[arr.length - 1].length);
-        }
-        let self = this.utterance
-        arr.forEach(function (element) {
-            let content = element.trim();
-            console.log(content);
-            self.text = content
-            speaker.startSpeak(self);
-        });
-    }
 
     read(path){
         let speaker = new SpeechUtil();
         let rawFile = new XMLHttpRequest();
         rawFile.open("GET", path, false);
-        let self = this.utterance
+        let userLanguage = this.userLanguages;
         rawFile.onreadystatechange = function () {
             if (rawFile.readyState === 4) {
                 if (rawFile.status === 200 || rawFile.status == 0) {
                     let allText = rawFile.responseText;
 
-                    let chunkLength = 150;
+                    let chunkLength = 120;
                     let pattRegex = new RegExp('^[\\s\\S]{' + Math.floor(chunkLength / 2) + ',' + chunkLength + '}[.!?,]{1}|^[\\s\\S]{1,' + chunkLength + '}$|^[\\s\\S]{1,' + chunkLength + '} ');
                     let arr = [];
                     let txt = allText;
@@ -69,16 +52,18 @@ class SpeechUtil extends Util{
                     }
                     arr.forEach(function(element) {
                         let content = element.trim();
-                        console.log(content);
-                        self.text = content
-                        speaker.startSpeak(self);
+                        let utterance = new SpeechSynthesisUtterance(content);
+                        utterance.lang = userLanguage
+                        speaker.startSpeak(utterance);
                     });
+
 
                 };
             }
         }
         rawFile.send(null);
     }
+
     initAnnyang() {
 
         let commands = {};

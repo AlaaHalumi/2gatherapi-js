@@ -12,7 +12,7 @@ class Login extends Plugin {
             this.options = eval(this.domElement.getAttribute("options"));
 
             if (this.options == undefined) {
-                throw "Exception: Can't init tg-accessibility, option attribute is undefined"
+                throw "Exception: Can't init tg-login, option attribute is undefined"
             }
             //if user define label in login options
             if (this.options.labels) {
