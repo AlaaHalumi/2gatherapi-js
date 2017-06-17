@@ -11,7 +11,7 @@ class Img extends TGObject {
 
     draw(options) {
 
-        let img
+        let img;
 
         if (options == null || options == undefined) {
             this.options = eval(this.domElement.getAttribute("options"));

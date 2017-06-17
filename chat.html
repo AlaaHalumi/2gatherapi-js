@@ -262,7 +262,7 @@
         var options = {
             language: sessionStorage.getItem("lang"),
             middlewareDevices: {},
-            requiredUtills : [sessionStorage.getItem("utils")]
+            requiredUtills : sessionStorage.getItem("utils").split(",")
         };
         options.middlewareDevices[sessionStorage.getItem("device")] = {
             vendorId: sessionStorage.getItem("vendorId"),
