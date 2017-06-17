@@ -57,7 +57,6 @@ class BoxModelUtil extends Util {
                 modal.style.display = "none";
             }
         }
-
     }
 
     setText(allText)

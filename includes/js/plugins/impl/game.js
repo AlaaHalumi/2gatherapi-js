@@ -9,41 +9,87 @@ class Game extends Plugin {
         this.questions;
         $(domElement).append("<div id='quiz'></div>");
         this.quiz = $('#quiz');
-        this.linkFactory = new LinkFactory();
+        this.buttonFactory = new ButtonFactory();
+        this.inputFactory = new InputFactory()
     }
 
     draw() {
-
+        var self = this;
         for(let index=0; index < 3 ; index++){
 
-            let a = document.createElement("tg-a");
-            let menu = {
-                link : {}
-            }
+            let tgbutton = document.createElement("tg-button");
 
-            let div = document.createElement("div");
-            div.setAttribute("class","buttonGame");
-            div.appendChild(a);
+            let button = {
+                buttonAttribute: {},
+                buttonValue: {},
+                commands: {
+                    submit: {}
+                }
+            }
 
             if(index==0){
-                div.setAttribute("id","next");
-                menu.link["text"] = "הבא";
+                button.buttonValue = "הבא";
+                button.buttonAttribute["id"] = "next";
+                button.buttonAttribute["class"] = "buttonGame";
+                button["commands"]["submit"]["name"] = "הבא";
+                button["commands"]["submit"]["func"] = function (){
+                        event.preventDefault();
+
+                        if (self.quiz.is(':animated')) {
+                            return false;
+                        }
+                        self.choose();
+
+                        if (isNaN(self.selections[self.questionCounter])) {
+                            alert('Please make a selection!');
+                        } else {
+                            self.questionCounter++;
+                            self.displayNext();
+                        }
+                }
             }
             else if(index==1){
-                div.setAttribute("id","prev");
-                menu.link["text"] = "הקודם";
+                button.buttonValue = "הקודם";
+                button.buttonAttribute["id"] = "prev";
+                button.buttonAttribute["class"] = "buttonGame";
+                button["commands"]["submit"]["name"] = "הקודם";
+                button["commands"]["submit"]["func"] = function (){
+
+                    event.preventDefault();
+                    if (self.quiz.is(':animated')) {
+                        return false;
+                    }
+                    self.choose();
+                    self.questionCounter--;
+                    self.displayNext();
+
+                }
             }
             else{
-                div.setAttribute("id","start");
-                menu.link["text"] = "התחל מהתחלה";
+                button.buttonValue = "מהתחלה";
+                button.buttonAttribute["id"] = "start";
+                button.buttonAttribute["class"] = "buttonGame";
+                button["commands"]["submit"]["name"] = "מהתחלה";
+                button["commands"]["submit"]["func"] = function (){
+
+                    event.preventDefault();
+                    if (self.quiz.is(':animated')) {
+                        return false;
+                    }
+                    self.questionCounter = 0;
+                    self.selections = [];
+                    self.displayNext();
+                    $('#start').hide();
+
+                }
             }
 
-            this.linkFactory.createObject(a,menu)
-            this.domElement.appendChild(div);
+            this.buttonFactory.createObject(tgbutton,button)
+            this.domElement.appendChild(tgbutton);
         }
 
         this.checkUser();
-        var self = this;
+
         $('#next').on('click', function (e) {
             e.preventDefault();
 
@@ -130,14 +176,51 @@ class Game extends Plugin {
 
     createRadios(index) {
 
+        var map = {"ראשונה":"0","שנייה" : "1","שלישית" : "2","רביעית":"3","שניה":"1"};
         var radioList = $('<div>', {
             class: 'row'
         });
         var input = '';
         // var item = '';
         for (var i = 0; i < this.questions[index].choices.length; i++) {
-            input = '<label class="cell"><input type="radio" name="answer" value=' + i + ' /> ' + (i + 1) + "." + "   " + '<img src="images/quez/' + this.questions[index].choices[i] + "." + "jpg" + '" width="40%" alt=' + this.questions[index].choices[i] + ' /></label>';
-            radioList.append(input);
+
+            let tginput= document.createElement("tg-input");
+
+            let radioinput = {
+                inputAttribute: {
+                    type: {}
+                },
+                commands: {
+                    name: {}
+
+                }
+            }
+
+            radioinput.inputAttribute["type"] = "radio";
+            radioinput.inputAttribute["name"] = "answer";
+            radioinput.inputAttribute["id"] = "radio_"+i;
+            radioinput.inputAttribute["value"] = i;
+            radioinput.commands["name"]["name"] = "תשובה *search";
+            radioinput.commands["name"]["func"] = function(content){
+                console.log(content);
+                $("#radio_" + map[content]).attr('checked', 'checked');
+            }
+            this.inputFactory.createObject(tginput, radioinput);
+
+
+            let questionContainer = document.createElement("label");
+            questionContainer.setAttribute("class","cell");
+            questionContainer.appendChild(tginput);
+            questionContainer.innerHTML+= (i+1);
+
+            let image = document.createElement("img");
+            image.setAttribute("src","images/quez/"+this.questions[index].choices[i]+ "." + "jpg");
+            image.setAttribute("width","40%");
+            image.setAttribute("alt",this.questions[index].choices[i]);
+
+            questionContainer.appendChild(image);
+
+            radioList.append(questionContainer);
         }
         return radioList;
     }
