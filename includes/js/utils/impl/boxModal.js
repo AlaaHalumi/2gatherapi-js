@@ -51,10 +51,10 @@ class BoxModelUtil extends Util {
         window.onclick = function (event) {
             let modal = document.getElementById('myModal');
             if (event.target == modal) {
-                modal.style.display = "none";
                 sessionStorage.scrollPosition = 0;
                 console.log("insied modal close " + sessionStorage.getItem("scrollPosition"))
                 $(".modal-content").scrollTop(0);
+                modal.style.display = "none";
             }
         }
 

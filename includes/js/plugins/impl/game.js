@@ -2,15 +2,46 @@ class Game extends Plugin {
 
     constructor(domElement) {
         super();
+        this.domElement = domElement;
         console.log("it's game");
         this.questionCounter = 0;
         this.selections = [];
         this.questions;
         $(domElement).append("<div id='quiz'></div>");
         this.quiz = $('#quiz');
+        this.linkFactory = new LinkFactory();
     }
 
     draw() {
+
+        for(let index=0; index < 3 ; index++){
+
+            let a = document.createElement("tg-a");
+            let menu = {
+                link : {}
+            }
+
+            let div = document.createElement("div");
+            div.setAttribute("class","buttonGame");
+            div.appendChild(a);
+
+            if(index==0){
+                div.setAttribute("id","next");
+                menu.link["text"] = "הבא";
+            }
+            else if(index==1){
+                div.setAttribute("id","prev");
+                menu.link["text"] = "הקודם";
+            }
+            else{
+                div.setAttribute("id","start");
+                menu.link["text"] = "התחל מהתחלה";
+            }
+
+            this.linkFactory.createObject(a,menu)
+            this.domElement.appendChild(div);
+        }
+
         this.checkUser();
         var self = this;
         $('#next').on('click', function (e) {

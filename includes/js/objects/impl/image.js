@@ -78,10 +78,10 @@ class Img extends TGObject {
                     if (langObj[langCommand].hasOwnProperty("imgCloseModal")) {
                         commands[langObj[langCommand]["imgCloseModal"]] = function () {
                             let modal = document.getElementById('myModal');
-                            modal.style.display = "none";
                             sessionStorage.scrollPosition = 0;
                             console.log("insied modal close " + sessionStorage.getItem("scrollPosition"))
                             $(".modal-content").scrollTop(0);
+                            modal.style.display = "none";
                         };
                     }
                     else if(langObj[langCommand].hasOwnProperty("imgScrollModalDown")){
