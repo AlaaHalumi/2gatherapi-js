@@ -21,7 +21,7 @@ class InputFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             inputText = new InputText(domElement);
             inputText.draw(null);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }
@@ -29,7 +29,7 @@ class InputFactory extends ObjectFactory{
             this.options = options;
             inputText = new InputText(domElement);
             inputText.draw(this.options);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }

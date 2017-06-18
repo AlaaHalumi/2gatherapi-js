@@ -20,7 +20,7 @@ class ButtonFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             button = new Button(domElement);
             button.draw();
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }
@@ -28,7 +28,7 @@ class ButtonFactory extends ObjectFactory{
             this.options = options;
             button = new Button(domElement);
             button.draw(this.options);
-            if( this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if( this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }
