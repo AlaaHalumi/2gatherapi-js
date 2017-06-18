@@ -33,6 +33,18 @@ tg-accessibilitytool<br>
 <h3>Example:</h3>
 <p> tg-button options="loginOptions" /tg-button</p>
 
+<h1>How to init middleware?></h1>
+<p> need to init the fowlloing attribute: <br>
+var options = {<br>
+    language: sessionStorage.getItem("lang"),<br>
+    middlewareDevices: {},<br>
+    requiredUtills: sessionStorage.getItem("utils").split(",")<br>
+};<br>
+options.middlewareDevices[sessionStorage.getItem("device")] = {<br>
+    vendorId: sessionStorage.getItem("vendorId"),<br>
+    productId: sessionStorage.getItem("productId")<br>
+};<br>
+
 <h1>2GatherAPI objects:</h1>
 <div>
 <h2>tg-button: </h2>
@@ -294,6 +306,35 @@ chatUtil.initChat("ws://ec2-34-209-72-126.us-west-2.compute.amazonaws.com:8080/i
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp href : "homePage.html" <br>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp text : "Homepage" <br>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp commandTrigger :"homePage" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp} <br>
+</p>
+
+
+<p> 
+In each html page you need firsttable init 2GatherAPI object
+</p>
+
+<div>
+<h2>tg-accessibility: </h2>
+<p></p>
+<h3>Object Property:</h3>
+<h4>option - the name of the function/h4>
+<h4>text - initial voice coomand</h4>
+<h4>image - path to the image that display in the tool
+
+<h3>Example:</h3>
+<p> 
+&nbsp var accessibility = { <br>
+&nbsp&nbsp&nbsp&nbsp func1 : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp option : "bigger_font" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp text : "הגדל פונט" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp image :"images/accessibility/bigFont.png" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
+&nbsp&nbsp&nbsp&nbsp func2 : { <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp option : "smaller_font" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp text : "הקטן פונט" <br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp image :"images/accessibility/smallFont.png" <br>
 &nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
 &nbsp&nbsp} <br>
 </p>
