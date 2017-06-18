@@ -317,7 +317,8 @@ In each html page you need firsttable init 2GatherAPI object
 
 <div>
 <h2>tg-accessibility: </h2>
-<p></p>
+<p> Accessibility tool is a unique solution, was build to provide ubiquitous access in order to assist as many as disabled people to navigate websites easily and automatically.</p>
+<p>It can make any site accessible, even if the site has no build-in Accessibility features.</p>
 <h3>Object Property:</h3>
 <h4>option - the name of the function/h4>
 <h4>text - initial voice coomand</h4>
@@ -338,7 +339,20 @@ In each html page you need firsttable init 2GatherAPI object
 &nbsp&nbsp&nbsp&nbsp&nbsp}, <br>
 &nbsp&nbsp} <br>
 </p>
-
+<p> Objects are: <br>
+Option 1: <br> Bigger font: Every single click increases the font size with 1px. <br>
+Option 2: <br> Smaller font: Every single click decreases the font size with 1px. <br>
+Option 3: <br> Legible font: With one click you can change the font-style to an easy readable font. <br>
+Option 4: <br> Bright Contrast: With one click you can change web page to be with bright colors, mostly white. <br>
+Option 5: <br> Dark Contrast: With one click you can change web page to be with darker, mostly black and yellow for hybertext. <br>
+Option 6: <br> Color Blind: With one click you can change web page to be grayscaled (Black and White, but mostly Gray). Helpful for color blind people.<br>
+Option 7: <br> Black Cursor: With one click you can change the cursor to a bigger black one. <br>
+Option 8: <br> White Cursor: With one click you can change the cursor to a bigger white one. <br>
+Option 9: <br> Magnifiger: With one click you can make the web page bigger, and more readable. <br>
+Option 10: <br> Images Descreption: With one click you can see the images descreption, which means you can read what is happening in the pictures. <br>
+Option 11: <br> Hightlight Titles: With one click you can see black border underline all titles. <br>
+Option 12: <br> Hightlight Links: With one click you can see red border underline all links. <br>
+</p>
 
 <p> 
 In each html page you need firsttable init 2GatherAPI object
