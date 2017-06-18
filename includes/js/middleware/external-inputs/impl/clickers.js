@@ -12,7 +12,7 @@ class Clickers extends ExternalInput{
     }
 
     connectExternalInput(){
-
+        this.connected = true;
         myElement = document.querySelector('body');
         myElement.onmousedown = this.doubleclick;
         var blockContextMenu, myElement;
@@ -50,10 +50,16 @@ class Clickers extends ExternalInput{
         if(this.i == 1){
             this.i = markables.length - 1;
         }
-        this.i--;
         var mark = markables[this.i];
+        mark.style.border = "none";
+        this.i--;
+        mark = markables[this.i];
         console.log(mark);
-        mark.focus();
+        if(mark.tagName == "IMG"){
+            mark.style.border = "5px solid blue";
+        }else{
+            mark.focus();
+        }
     }
 
     rightClickFunction() {
@@ -61,10 +67,17 @@ class Clickers extends ExternalInput{
         if(this.i == markables.length - 1){
             this.i = -1;
         }
-        this.i = this.i + 1;
         var mark = markables[this.i];
+        mark.style.border = "none";
+        this.i = this.i + 1;
+        mark = markables[this.i];
         console.log(mark);
-        mark.focus();
+        console.log(mark.tagName);
+        if(mark.tagName == "IMG"){
+            mark.style.border = "5px solid blue";
+        }else{
+            mark.focus();
+        }
     }
 
     chooseFunction() {
