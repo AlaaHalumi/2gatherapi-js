@@ -20,7 +20,7 @@ class LinkFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             link = new Link(domElement);
             link.draw(null);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }
@@ -28,7 +28,7 @@ class LinkFactory extends ObjectFactory {
             this.options = options;
             link = new Link(domElement);
             link.draw(this.options);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }

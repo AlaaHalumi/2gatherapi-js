@@ -21,7 +21,7 @@ class ParagraphFactory extends ObjectFactory {
             this.options = eval(domElement.getAttribute("options"));
             paragraph = new Paragraph(domElement);
             paragraph.draw(null);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1 ){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1 ){
                 this.initUtils();
             }
         }
@@ -29,7 +29,7 @@ class ParagraphFactory extends ObjectFactory {
             this.options = options;
             paragraph = new Paragraph(domElement);
             paragraph.draw(this.options);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }

@@ -20,7 +20,7 @@ class LiFactory extends ObjectFactory{
             this.options = eval(domElement.getAttribute("options"));
             li = new Li(domElement);
             li.draw();
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }
@@ -28,7 +28,7 @@ class LiFactory extends ObjectFactory{
             this.options = options;
             li = new Li(domElement);
             li.draw(this.options);
-            if(this.gatherApiObject.requiredUtills.indexOf("voice command") != -1){
+            if(this.gatherApiObject.requiredUtills.indexOf("voice commands") != -1){
                 this.initUtils();
             }
         }

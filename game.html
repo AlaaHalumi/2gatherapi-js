@@ -20,6 +20,8 @@
     <script src="includes/js/middleware/middleware.js"></script>
     <script src="includes/js/middleware/external-inputs/external-input.js"></script>
     <script src="includes/js/middleware/external-inputs/impl/clickers.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/tobii.js"></script>
+    <script src="includes/js/middleware/external-inputs/impl/joystick.js"></script>
     <!--Utils-->
 
     <script src="includes/js/utils/util.js"></script>
@@ -217,6 +219,13 @@
         }
 
         var options = {
+            language: sessionStorage.getItem("lang"),
+            middlewareDevices: {},
+            requiredUtills : sessionStorage.getItem("utils").split(",")
+        };
+        options.middlewareDevices[sessionStorage.getItem("device")] = {
+            vendorId: sessionStorage.getItem("vendorId"),
+            productId: sessionStorage.getItem("productId")
         };
 
         var twoGatherApi = new Gatherapi(options);

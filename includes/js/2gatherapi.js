@@ -4,7 +4,7 @@ class Gatherapi {
     constructor(options) {
 
         this.options = options;
-        this.requiredUtills = !options.requiredUtills ? ["voice command"] : options.requiredUtills;
+        this.requiredUtills = !options.requiredUtills ? ["voice commands"] : options.requiredUtills;
         if(options.middlewareDevices) {
             this.middleware = new Middleware(options.middlewareDevices, this);
         }
