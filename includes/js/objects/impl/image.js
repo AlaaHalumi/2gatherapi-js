@@ -129,7 +129,9 @@ class Img extends TGObject {
     }
 
     enableClickers(){
-
+        this.img.addEventListener("focus", function () {
+            this.style.backgroundColor = "red";
+        });
     }
 
 }
